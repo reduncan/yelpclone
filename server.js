@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // Connect to the Mongo DB using the inventorymaster database (will be created if it doesn't exist)
-mongoose.connect('mongodb://localhost/inventorymaster', { useNewUrlParser: true });
+mongoose.connect('mongodb://yelpuser:yelp123@ds121753.mlab.com:21753/heroku_n8mmhx1p', { useNewUrlParser: true });
 
 // Routes
 // API Routes (require from routes file and pass in Express app)
