@@ -15,8 +15,6 @@ module.exports = function (app) {
             });
     });
     
-    // Route for saving a new Inventory entry to the database via a POST request
-    /* --- Code here --- */
     app.post('/api/review', function (req, res) {
         db.review.create(req.body)
             .then(function (dbReview) {
@@ -26,8 +24,7 @@ module.exports = function (app) {
                 res.json(err);
             });
     });
-    // Route for saving updates to inventory via a PUT request
-    /* --- Code here --- */
+    
     app.put('/api/review/:id', function (req, res) {
         db.review.findOneAndUpdate({ _id: req.params.id }, { $set: { 
             userName: req.body.userName, 
