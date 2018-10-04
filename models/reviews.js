@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+mongoose.set('useCreateIndex', true);
 /* --- PHASE 1 - WRITE THE INVENTORY MODEL --- */
 
 // Save a reference to the Schema constructor
