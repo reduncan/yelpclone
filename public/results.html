@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <title>Document</title>
+    <!--This title will need to dynamcially change to include "search item" near "location"-->
+</head>
+
+<body>
+    <header>
+        <div class="logo"></div>
+        <form class="searchbar-business">
+            <label for="find">Find</label>
+            <input type="text" placeholder="restaraunts, burgers, pizza" />
+            <label for="location">Near</label>
+            <input type="text" placeholder="your current location" />
+            <button type="submit" id="submit"><i class="fas fa-search fa-2x"></i></button>
+        </form>
+    </header>
+    <section class="search-title">
+        <div>
+            <!--This div should dynamically change to include "search item" near "location"-->
+        </div>
+        <div>
+            <!--This div should dynamically change to include Showing "x - x of xx"-->
+        </div>
+    </section>
+    <section class="filter">
+        <button>$</button>
+        <button>$$</button>
+        <button>$$$</button>
+        <button>$$$$</button>
+        <button><i class="far fa-clock"></i>Open Now</button>
+    </section>
+    <section class="render">
+        <!--This is where the serch results should render-->
+    </section>
+    <aside class="result-map">
+        <!--This is where the results map should render-->
+    </aside>
+    <footer>
+        <p>created by a bunch of nerds (the candy that is)</p>
+    </footer>
+</body>
+
+</html>
