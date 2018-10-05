@@ -11,39 +11,96 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
 
     <title>Write a Review</title>
 </head>
 
+
 <body>
-    <header>
-        <div class="logo"></div>
-        <h2>Write a Review</h2>
-        <p class="link">Log In</p>
-        <button class="signup-home">Sign Up</button>
-        </form>
+
+    <header class="review-header">
+        <div class="header-content">
+            <div class="header-arrange">
+            <div class="logo-container">
+                <div class="yelp-logo">
+                    <a class="logo-link" href="/github/yelpclone/public/index.html">Yelp</a>
+                </div>
+            </div>
+            <div class="write-review-contain">
+                <h2 class="review-wrap">
+                    <span class="write-review">Write a Review</span>
+                </h2>
+            </div>
+        </div>
+        </div>
     </header>
-    <section>
-        <div class="business-name">
-            <h1>
-                <!--The business name that the user is reviewing should render here-->
-            </h1>
+
+    <main class="y-container">
+        <div class='header'>
+            <h2 class="heading-link">
+                <a href="#" target="_blank">Testing Cafe</a>
+            </h2>
         </div>
-        <div class="review-box">
-            <div class="rating">
-                <!--This is where the star boxes will go-->
-            </div>
-            <div class="review-text">
-                <!--This is the text input-->
-            </div>
+    
+        <!-- <div class="form"> -->
+        <form id='reviewBox'>
+            <!-- <div class="stars">-->
+            <fieldset class="rating-selector">
+                <ul data-stars=0 class="i-selector-star" role="radiogroup">
+                    <li class="stars">
+                        <input type="radio" name="rating" value="1" class="input"></div>
+                        <div class='label'>1 star rating</div>
+                        <div class='label'>Eek! Methinks not</div>
+                    </li>
+                    <li class="stars">
+                        <input type="radio" name="rating" value="2" class="input"></div>
+                        <div class='label'>2 star rating</div>
+                        <div class='label'>Meh. I've experienced better.</div>
+                    </li>
+                    <li class="stars">
+                        <input type="radio" name="rating" value="3" class="input"></div>
+                        <div class='label'>3 star rating</div>
+                        <div class='label'>A-OK</div>
+                    </li>
+                    <li class="stars">
+                        <input type="radio" name="rating" value="4" class="input"></div>
+                        <div class='label'>4 star rating</div>
+                        <div class='label'>Yay! I'm a fan</div>
+                    </li>
+                    <li class="stars">
+                        <input type="radio" name="rating" value="5" class="input"></div>
+                        <div class='label'>5 star rating</div>
+                        <div class='label'>Woohoo! As good as it gets!</div>
+                    </li>
+                </ul>
+                <span class="description">
+                    <p class="des-text">
+    
+                    </p>
+                </span>
+            </fieldset>
+            <textarea class="review-input" placeholder="Your review helps others learn about great local business. 
+                      
+Please don't review this business if you received a freebie for writing this review, or is connected in any way to the owner or employees."
+                maxlength="5000" style="height:152px;"></textarea>
+            
+        </form>
+        <div class="review-footer">
+            <div class="arrange-post">
+            <button type="submit" value="submit" class="outer-post">
+                <span class="inner-post">
+                    <span class="post-button-text">
+                        Post Review
+                    </span>
+                </span>
+            </button>
         </div>
-        <div class="submit-review">
-            <button>Post Review</button>
         </div>
-    </section>
-    <footer>
-        <p>created by a bunch of nerds (the candy that is)</p>
-    </footer>
-</body>
+    </main>
+        
+        <script src="js/review.js"></script>
+    </body>
 
 </html>
