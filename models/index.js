@@ -1,3 +1,4 @@
 module.exports = {
-    review: require("./reviews.js")
+    Restaurant: require("./restaurant.js"),
+    Review: require("./review.js")
 }
