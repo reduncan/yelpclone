@@ -1,0 +1,219 @@
+/* Review Box */
+
+
+
+/* header */
+
+.header{
+    padding-top: 24px;
+    padding-bottom: 12px;
+
+}
+
+.heading-link{
+    font-size: 36px;
+    line-height: 1.16667em;
+
+}
+h2 {
+    word-wrap: break-word!important;
+    word-break: break-word!important;
+    overflow-wrap: break-word!important;
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: #0073bb;
+    text-decoration: none;
+}
+
+/* Review Box */
+
+#reviewBox {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: text;
+    padding: 18px;
+    max-width: 630px;
+
+}
+
+.rating-selector{
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 18px;
+    width: 500px;
+    
+}
+
+.i-selector-star {
+    /* float: left; */
+    width: 162px;
+    height: 30px;
+    background-position: 0 -30px;
+    background: url(https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/a5aa4dca29f3/assets/img/stars/selector_stars.png) no-repeat;
+    background-size: 162px 180px;
+    display: inline-block;
+    vertical-align: middle;
+    list-style: none;
+    margin-right: 9px;
+}
+
+.i-selector-star >span{
+    position:absolute;
+    white-space:nowrap;
+    left:100%;
+    top:9px;
+   
+}
+[data-stars="0"]{background-position:0    0px;}
+[data-stars="1"]{background-position:0  -30px;}
+[data-stars="2"]{background-position:0  -60px;}
+[data-stars="3"]{background-position:0  -90px;}
+[data-stars="4"]{background-position:0 -120px;}
+[data-stars="5"]{background-position:0 -150px;}
+
+.stars:first-child{
+    padding-left: 0;
+}
+.stars{
+    padding-left: 3px;
+    float: left;
+    height: 30px;
+    width: 30px;
+
+}
+
+.input{
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    outline: 0;
+}
+.label{
+    display: none;
+}
+
+.description{
+    margin: 8px 0 0 9px;
+    float: right;
+    display: inline-block;
+}
+.des-text{
+    text-align: left;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.28571em;
+    width: 400px;
+    display: block;
+    margin-block-start: .5em;
+    margin-inline-start: 170px;
+    margin-inline-end: 0px;
+}
+
+.review-input{
+    font-size: 18px;
+    line-height: 1.33333em;
+    line-height: 1.44em;
+    border: 0;
+    outline: none;
+    padding: 0;
+    resize: none;
+    width: 100%;
+    min-height: 258px;
+}
+
+textarea{
+    -webkit-appearance: textarea;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    flex-direction: column;
+    resize: auto;
+    cursor: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start; 
+    font: 400 13.3333px Arial;
+    -webkit-writing-mode: horizontal-tb !important;
+}
+/* Post Button */
+.review-footer{
+    padding: 18px 0;
+    background-color: #fff;
+    position: relative;
+    height: 80px;
+    
+}
+
+.arrange-post{
+    vertical-align: middle;
+    width: 100%;
+    box-sizing: border-box;
+    display: table-cell;
+}
+.outer-post{
+    min-width: 240px;
+    height: 48px;
+    color: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,.3);
+    background-color: #d90007;
+    background: linear-gradient(#d90007,#c91400);
+    padding: 12px 18px 13px;
+    font-size: 16px;
+    line-height: 1.3125em;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    cursor: pointer;
+    border:1px solid;
+    border-color: #8d0005;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 3px;
+}
+
+
+.button{
+    overflow: visible;
+    align-items: flex-start;
+    box-sizing: border-box;
+    text-rendering: auto;
+    /* color: initial; */
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    -webkit-writing-mode: horizontal-tb !important;
+    -webkit-appearance: button;
+
+}
+
+
+li:hover{
+    color:#fff7cc;
+}
+.i-selector-stars{
+    background:url(https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/a5aa4dca29f3/assets/img/stars/selector_stars.png) no-repeat;
+    background-size:162px 180px;
+    display:inline-block;
+    vertical-align:middle
+}
+
