@@ -1,8 +1,8 @@
-// Require all models
-const db = require('../models');
+require("dotenv").config();
+const db = require('../models/reviews.js');
+const id =  process.env.YELP_SECRET;
+const client = yelp.client(id);
 
-// module.exports exports this function so it can be required by another file (in this case, server.js)
-// Must pass in app because it contains the Express application
 module.exports = function (app) {
 
     app.get('/api/review', function (req, res) {
