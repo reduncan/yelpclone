@@ -1,6 +1,20 @@
 
-const searchBy = function () {
-    
+const terms = function () {
+
 }
 
-module.exports = searchUtils;
+const location = function () {
+
+}
+
+const tags = function () {
+
+}
+
+const searchBy = {
+    terms : terms,
+    location : location,
+    tags : tags
+}
+
+module.exports = searchBy;
