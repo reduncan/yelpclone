@@ -1,5 +1,10 @@
+//GOOGLE MAPS INTERGRATION
 $.ajax({
-url: '/api/restaurants'
+    url: '/api/restaurant',
+    method: 'GET',
+    dataType: 'json',
+}).then(function(data){
+    console.log(data);
 })
 
 
