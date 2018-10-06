@@ -1,5 +1,8 @@
 /* Review Page */
-
+#map {
+    height: 100px;
+    width: 250px;
+}
 /* header */
 .review-header{
     position: relative;
