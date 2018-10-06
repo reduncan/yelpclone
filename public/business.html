@@ -32,7 +32,7 @@
         </section>
         <button class="reviewbutton"><i class="fas fa-star"></i><p>Write a Review</p></button>
         <section class="assets">
-            <div class="map">
+            <div id="map">
                 <!--The google map box should render here-->
             </div>
             <div class="photos">
@@ -49,7 +49,9 @@
             <!--This is where the review box should render and everythign else on the page will be removed-->
         </section>
     </main>
-
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw&callback=initMap"type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+    <script src="./js/business.js"></script>
 </body>
 
 </html>
