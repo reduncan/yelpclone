@@ -55,7 +55,7 @@ module.exports = function (app) {
     });
 
     app.get('/api/restaurant', function (req, res) {
-        db.Restuarant.find({})
+        db.Restaurant.find({})
             .then(function (dbRestaurant) {
                 res.json(dbRestaurant);
             })
