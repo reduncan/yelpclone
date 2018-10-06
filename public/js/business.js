@@ -1,13 +1,12 @@
-//GOOGLE MAPS INTERGRATION
-$.ajax({
-    url: '/api/restaurant',
-    method: 'GET',
-    dataType: 'json',
-}).then(function(data){
-    console.log(data);
-})
+// //GOOGLE MAPS INTERGRATION
+// $.ajax({
+//     url: '/api/restaurant',
+//     method: 'GET',
+//     dataType: 'json',
+// }).then(function (data) {
 
 
+// })
 
 function initMap() {
     var uluru = { lat: 33.928694, lng: -84.343081 };
@@ -23,4 +22,3 @@ function initMap() {
         map: map,
     });
 }
-
