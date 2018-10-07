@@ -30,17 +30,20 @@
         <section class="business">
             <!--This where the business name, star rating, dollar signs and tags should render-->
         </section>
-        <button class="reviewbutton"><i class="fas fa-star"></i><p>Write a Review</p></button>
+        <button class="reviewbutton"><i class="fas fa-star"></i>
+            <p>Write a Review</p>
+        </button>
         <section class="assets">
-            <div id="map">
-                <!--The google map box should render here-->
-            </div>
+            <div id="map"></div>
+            <div class="mapBoxText"></div>
             <div class="photos">
                 <!--This is where any photos should render to-->
             </div>
         </section>
         <section class="reviews">
-            <h3>Recommended Reviews for <!--name of business should dynamically render here--> </h3>
+            <h3>Recommended Reviews for
+                <!--name of business should dynamically render here-->
+            </h3>
             <div>
                 <!--This is where the reviews should render-->
             </div>
@@ -49,7 +52,9 @@
             <!--This is where the review box should render and everythign else on the page will be removed-->
         </section>
     </main>
-
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw&callback=initMap"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+    <script src="./js/business.js"> </script>
 </body>
 
 </html>
