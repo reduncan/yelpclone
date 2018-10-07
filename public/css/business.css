@@ -1,3 +1,50 @@
+body {
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    background-color: #d90007;
+    height: 60px;
+}
+
+.header-container {
+    width: 1020px;
+    margin: auto;
+    display: grid;
+    grid-template-rows: 60px;
+    grid-template-columns: 100px 770px 65px 85px;
+}
+
+form {
+    display: grid;
+    grid-template-rows: 60px;
+    grid-template-columns: 50px 275px 50px 275px 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+label {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: gray;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.yelp {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 85px;
+    height: 40px;
+}
+
 #map {
     height: 135px;
     width: 286px;
