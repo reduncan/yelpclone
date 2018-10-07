@@ -8,32 +8,36 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/index.css">
 
     <title>yelp</title>
 </head>
 <body>
     <header>
-        <p class="link">Write a Review</p>
-        <p class="link">Log In</p>
-        <button class="signup-home">Sign Up</button>
+        <ul>
+            <li class="write"><p class="link">Write a Review</p></li>
+            <li class="log"><p class="link">Log In</p></li>
+            <li class="signup"><button class="signup-home"><p>Sign Up</p></button></li>
+        </ul>
     </header>
     <main>
-        <div class="logo"></div>
+        <div class="yelp"><img src="https://s3.amazonaws.com/yelpcloneassets/Logos/yelp.logo.png" class="logo"/></div>
         <form class="searchbar-home">
-            <label for="find">Find</label>
+            <label class="find">Find</label>
             <input type="text" placeholder="restaraunts, burgers, pizza" /> 
-            <label for="location">Near</label>
+            <label class="location">Near</label>
             <input type="text" placeholder="your current location" />
-            <button type="submit" id="submit"><i class="fas fa-search fa-2x"></i></button>
+            <button class="submit" type="submit" id="submit"><i class="fas fa-search fa-2x"></i></button>
         </form>
-        <div>
+        <div class="shortcuts">
             <i class="fas fa-utensils"></i>
-            <p class="link">restaraunts</p>
+            <li class="subhead"><p class="underline">Restaurants</p></li>
+            <i class="fas fa-city"></i>
+            <li class="subhead"><p class="underline">Businesses</p></li>
         </div>
     </main>
     <footer>
-        <p>created by a bunch of nerds (the candy that is)</p>
+        <p>created by a bunch of nerds {the candy that is}</p>
     </footer>
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
