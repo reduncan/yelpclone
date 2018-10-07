@@ -1,6 +1,8 @@
 
 // require("dotenv").config();
 const db = require('../models/');
+const searchBy = require('../public/js/search.js');
+const test = require('../models/test.js');
 // const yelp = require('yelp-fusion');
 // const id =  process.env.YELP_SECRET;
 // const client = yelp.client(id);
@@ -62,5 +64,10 @@ module.exports = function (app) {
             .catch(function (err) {
                 res.json(err);
             });
+    });
+
+    app.post('/api/search', function(req, res) {
+        console.log(`Searching keyword... ${test.searchBy.term}`);
+        searchBy.keywords(test.searchBy.term, res); 
     });
 };
