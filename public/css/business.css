@@ -1,3 +1,96 @@
+/* Page Styling */
+body {
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    background-color: #d90007;
+    height: 60px;
+}
+
+.header-container {
+    width: 1020px;
+    margin: auto;
+    display: grid;
+    grid-template-rows: 60px;
+    grid-template-columns: 100px 770px 65px 85px;
+}
+
+.fa-search {
+    color: white;
+}
+
+form {
+    height: 40px;
+    margin-top: 10px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 50px 275px 50px 275px 50px;
+    justify-content: center;
+}
+
+label {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: gray;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.find {
+    border-radius: 3px 0px 0px 3px;
+}
+
+input {
+    border: none;
+    font-size: 16px;
+    color: gray;
+}
+
+.submit {
+    border: none;
+    background-color: #bd1f1f;
+    border-radius: 0px 3px 3px 0px;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: #8d0005;
+}
+
+.fa-utensils, .fa-city {
+    color: black;
+}
+
+.yelp {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 85px;
+    height: 40px;
+}
+
+main {
+    width: 1020px;
+    margin: auto; 
+}
+
+.shortcuts {
+    margin-top: 10px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 20px 85px 25px 75px;
+    /* align-items: center;
+    justify-content: center; */
+}
+
+/* Map Styling */
 #map {
     height: 135px;
     width: 286px;
@@ -5,7 +98,7 @@
     border: 1px solid #ccc;
 }
 
-i {
+.assets i {
     color: rgb(97, 97, 97);
     font-size: 15px;
 }
