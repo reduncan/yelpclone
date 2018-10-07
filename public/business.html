@@ -18,17 +18,31 @@
 <body>
     <header>
         <div class="header-container">
-            <div class="yelp"><img src="https://s3.amazonaws.com/yelpcloneassets/Logos/yelp.logo.png" class="logo"/></div>
+            <div class="yelp"><img src="https://s3.amazonaws.com/yelpcloneassets/Logos/yelp.logo.png" class="logo" /></div>
             <form class="searchbar-business">
-            <label for="find">Find</label>
-            <input type="text" placeholder="restaraunts, burgers, pizza" />
-            <label for="location">Near</label>
-            <input type="text" placeholder="your current location" />
-            <button type="submit" id="submit"><i class="fas fa-search fa-2x"></i></button>
+                <label class="find">Find</label>
+                <input type="text" placeholder="restaraunts, burgers, pizza" />
+                <label class="location">Near</label>
+                <input type="text" placeholder="your current location" />
+                <button type="submit" class="submit" id="submit"><i class="fas fa-search fa-2x"></i></button>
         </div>
         </form>
     </header>
     <main>
+        <section>
+            <div class="shortcuts">
+                <ul>
+                    <i class="fas fa-utensils"></i>
+                    <li class="subhead">
+                        <p class="underline">Restaurants</p>
+                    </li>
+                    <i class="fas fa-city"></i>
+                    <li class="subhead">
+                        <p class="underline">Businesses</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
         <section class="business">
             <!--This where the business name, star rating, dollar signs and tags should render-->
         </section>
@@ -55,7 +69,8 @@
         </section>
     </main>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw&callback=initMap"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <script src="./js/business.js"> </script>
 </body>
 
