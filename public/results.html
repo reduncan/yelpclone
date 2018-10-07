@@ -9,8 +9,9 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <title>Document</title>
     <!--This title will need to dynamcially change to include "search item" near "location"-->
@@ -21,9 +22,9 @@
         <div class="logo"></div>
         <form class="searchbar-business">
             <label for="find">Find</label>
-            <input type="text" placeholder="restaraunts, burgers, pizza" />
+            <input id="searchInput" type="text" placeholder="restaraunts, burgers, pizza" />
             <label for="location">Near</label>
-            <input type="text" placeholder="your current location" />
+            <input id="locationInput" type="text" placeholder="your current location" />
             <button type="submit" id="submit"><i class="fas fa-search fa-2x"></i></button>
         </form>
     </header>
@@ -42,8 +43,10 @@
         <button>$$$$</button>
         <button><i class="far fa-clock"></i>Open Now</button>
     </section>
-    <section class="render">
-        <!--This is where the serch results should render-->
+    <section class="card mb-14">
+        <div class="card-body" id="holder">
+        </div>
+    </section>        <!--This is where the serch results should render-->
     </section>
     <aside class="result-map">
         <!--This is where the results map should render-->
@@ -51,6 +54,12 @@
     <footer>
         <p>created by a bunch of nerds (the candy that is)</p>
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"></script>
+    <script src="js/results.js"></script>
 </body>
 
 </html>
