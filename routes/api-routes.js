@@ -1,4 +1,3 @@
-
 // require("dotenv").config();
 const db = require('../models/');
 const searchBy = require('../public/js/search.js');
@@ -6,8 +5,6 @@ const test = require('../models/test.js');
 // const yelp = require('yelp-fusion');
 // const id =  process.env.YELP_SECRET;
 // const client = yelp.client(id);
-
-
 
 module.exports = function (app) {
 
@@ -41,13 +38,15 @@ module.exports = function (app) {
     });
 
     app.put('/api/review/:id', function (req, res) {
-        db.Review.findOneAndUpdate({ _id: req.params.id }, {
-            $set: {
-                time_created: req.body.time_created,
-                text: req.body.text,
-                rating: req.body.rating
-            }
-        })
+        db.Review.findOneAndUpdate({
+                _id: req.params.id
+            }, {
+                $set: {
+                    time_created: req.body.time_created,
+                    text: req.body.text,
+                    rating: req.body.rating
+                }
+            })
             .then(function (dbReview) {
                 res.json(dbReview);
             })
@@ -66,8 +65,8 @@ module.exports = function (app) {
             });
     });
 
-    app.post('/api/search', function(req, res) {
-        console.log(`Searching keyword... ${test.searchBy.term}`);
-        searchBy.keywords(test.searchBy.term, res); 
+    app.post('/api/search', function (req, res) {
+        console.log(`Searching keyword... ${req.body.searchInput}`);
+        searchBy.keywords(req.body.searchInput, res);
     });
 };
