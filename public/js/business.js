@@ -18,7 +18,7 @@ function initMap() {
         const info = `<ul>
         <li><i class="fas fa-map-marker-alt"></i><p> <span>${street}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${state}, ${city} ${zipCode}</span></p></li>
         <li><i class="fas fa-directions"></i>&nbsp;<a href='#'>Get Directions</a></li>
-        <li><i class="fas fa-phone"></i>&nbsp;${phone}</li>
+        <li><i class="fas fa-phone fa-flip-horizontal"></i>&nbsp;${phone}</li>
         <li><i class="fas fa-external-link-alt"></i>&nbsp;<a href='${url}'>${name}</a></li>
         <li><i class="fas fa-mobile-alt"></i>&nbsp;<a href='#'>Send to your phone</a></li></ul>`;
         $('.mapBoxText').append(info);            
