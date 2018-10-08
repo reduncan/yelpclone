@@ -1,5 +1,6 @@
-$(function () {
 
+
+$(function () {
   // Click listener for the submit button
   $('#submit').on('click', function (event) {
     event.preventDefault();

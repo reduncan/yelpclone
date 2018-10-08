@@ -1,7 +1,6 @@
 // require("dotenv").config();
 const db = require('../models/');
 const searchBy = require('../public/js/search.js');
-// const buildElement = require('../public/js/elements.js')
 const test = require('../models/test.js');
 // const yelp = require('yelp-fusion');
 // const id =  process.env.YELP_SECRET;
