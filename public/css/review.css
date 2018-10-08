@@ -243,7 +243,9 @@ textarea{
     font: 400 13.3333px Arial;
     -webkit-writing-mode: horizontal-tb !important;
 }
+
 /* Post Button */
+
 .review-footer{
     padding: 18px 0;
     background-color: #fff;
@@ -285,7 +287,7 @@ textarea{
     align-items: flex-start;
     box-sizing: border-box;
     text-rendering: auto;
-    /* color: initial; */
+    color: initial;
     letter-spacing: normal;
     word-spacing: normal;
     text-transform: none;
@@ -296,13 +298,8 @@ textarea{
 
 }
 
+button:hover{
+    color:  #5adf55; 
+    background-color: #5adf55;
+}
 
-li:hover{
-    color:#fff7cc;
-}
-.i-selector-stars{
-    background:url(https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/a5aa4dca29f3/assets/img/stars/selector_stars.png) no-repeat;
-    background-size:162px 180px;
-    display:inline-block;
-    vertical-align:middle
-}
