@@ -46,5 +46,55 @@ $(function () {
         });
         $('#holder').html(htmlstr);
       })
-  });
+      });
+
+//GOOGLE MAPS INTERGRATION
+
+function initMap() {
+  $.ajax({
+      url: '/api/restaurant',
+      method: 'GET',
+      dataType: 'json',
+  }).then(function (data) {
+      const latitude = data[0].coordinates.latitude;
+      const longitude = data[0].coordinates.longitude;
+      const name = data[0].name;         
+                      
+      const uluru = { lat: latitude, lng: longitude };
+      const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          zoomControl: true,
+          zoomControlOptions: {
+              position: google.maps.ControlPosition.LEFT_TOP,
+          },
+          center: uluru,
+          tilt: 45,
+          disableDefaultUI: true
+      });
+      const marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: `${name}`
+      });
+  })
+};
+const lessMoreToggle = function(){
+  if($('.map-header a span').text() === "Mo' Map"){
+    $('.map-header a span').text("Less Map");
+  }
+  else{
+    $('.map-header a span').text("Mo' Map");
+  }
+}
+
+const rotate = function(){
+  $('.rotate').toggleClass('left');
+};
+
+$('.map-header a').on('click', function(e){
+  e.preventDefault();
+  rotate();
+  lessMoreToggle();
+  $('.result-map').toggleClass('mo-map');
+})
 });
