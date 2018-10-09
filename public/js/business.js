@@ -36,4 +36,14 @@ function initMap() {
             title: `${name}`
         });
     })
+
+    $('.review').on('click', function (event) {
+        event.preventDefault();
+        location.href = "/write";
+        console.log(event)
+        
+
+    })
+    
+    
 }

@@ -1,11 +1,209 @@
+/* Page Styling */
+body {
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    background-color: #d90007;
+    height: 65px;
+}
+
+.header-container {
+    width: 1020px;
+    margin: auto;
+    display: grid;
+    grid-template-rows: 60px;
+    grid-template-columns: 100px 770px 65px 85px;
+}
+
+.fa-search {
+    color: white;
+}
+
+form {
+    height: 40px;
+    margin-top: 12px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 50px 275px 50px 275px 50px;
+    justify-content: center;
+}
+
+label {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: gray;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.find {
+    border-radius: 3px 0px 0px 3px;
+}
+
+input {
+    border: none;
+    font-size: 16px;
+    color: gray;
+}
+
+.submit {
+    border: none;
+    background-color: #bd1f1f;
+    border-radius: 0px 3px 3px 0px;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: #8d0005;
+}
+
+.fa-utensils, .fa-city {
+    color: gray;
+}
+
+.yelp {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 85px;
+    height: 40px;
+}
+
+nav {
+    width: 1020px;
+    margin: auto;
+}
+
+.shortcuts {
+    height: 45px;
+    margin-top: auto;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 150px 150px;
+}
+
+.utensils, .city {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 40px 110px;
+    cursor: pointer;
+}
+
+.blue:hover {
+    color: #0073bb;
+}
+
+.shortcuts i {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid gray;
+}
+
+.shortcuts li {
+    display: grid;
+    align-items: center;
+    justify-content: left;
+}
+
+.border {
+    border-right: 1px solid gray;
+}
+
+.business {
+    background-color: #f5f5f5;
+}
+
+.info {
+    height: 130px;
+    width: 1020px;
+    margin: auto;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 510px 510px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 230px 120px 90px 90px;
+    align-items: center;
+}
+
+.buttons i {
+    padding-right: 4px;
+}
+
+.buttons p {
+    padding-left: 4px;
+    font-weight: bold;
+}
+
+.photo {
+    border-radius: 3px 0px 0px 3px;
+}
+
+.share {
+    border-radius: 1px 0px 1px 0px;
+}
+
+.save {
+    border-radius: 0px 3px 3px 0px;
+}
+
+.review {
+    height: 40px;
+    width: 180px;
+    margin: auto;
+    background-color: #d90007;
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.photo, .share, .save {
+    height: 30px;
+    font-size: 13px;
+    color: gray;
+    cursor: pointer;
+}
+
+.map-photo {
+    background-color: #f5f5f5;
+    height: 250px;
+}
+
+.photo-map {
+    width: 1020px;
+    margin: auto;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 312px 908px;
+}
+
+.reviews {
+    width: 1020px;
+    margin: auto;
+}
+
+/* Map Styling */
 #map {
     height: 135px;
-    width: 286px;
+    width: 298px;
     background-color: gray;
     border: 1px solid #ccc;
 }
 
-i {
+.assets i {
     color: rgb(97, 97, 97);
     font-size: 15px;
 }
@@ -24,10 +222,11 @@ ul:first-child span {
 }
 
 .assets {
-    width: 288px;
+    width: 300px;
     height: auto;
     border: 1px solid #ccc;
     padding: 5px;
+    background-color: white;
 }
 
 .mapBoxText {

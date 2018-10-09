@@ -1,5 +1,3 @@
-$(function () {
-
   // const geocode = (e) => {
   //   e.preventDefault();
   //   let location = document.getElementById('locationInput').value
@@ -29,6 +27,8 @@ $(function () {
   // };
   // geocode();
 
+$(function () {
+  
   // Click listener for the submit button
   $('#submit').on('click', function (event) {
     event.preventDefault();

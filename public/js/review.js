@@ -1,4 +1,20 @@
-$("[data-stars]").each(function(){
+$(document).ready(function(){
+
+  $.ajax({
+    url: '/api/restaurant',
+    method: 'GET',
+    dataType: 'json',
+  }).then(function (data) {
+    const name = data[0].name;
+    const url = data[0].url;
+    $(".heading-link a").append(`${name}`)
+    $(".heading-link a").attr("href",` ${url}`)
+  
+    console.log(url)
+  })
+
+  
+  $("[data-stars]").each(function(){
     var msg = ["Select your rating","Eek! Methinks not","Meh. I've experienced better","A-OK","Yay! I'm a fan","Woohoo! As good as it gets!"];
     
     var $el = $(this);
@@ -28,3 +44,5 @@ $("[data-stars]").each(function(){
     });
     
   });
+
+})

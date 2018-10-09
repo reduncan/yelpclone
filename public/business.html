@@ -17,43 +17,77 @@
 
 <body>
     <header>
-        <div class="logo"></div>
-        <form class="searchbar-business">
-            <label for="find">Find</label>
-            <input type="text" placeholder="restaraunts, burgers, pizza" />
-            <label for="location">Near</label>
-            <input type="text" placeholder="your current location" />
-            <button type="submit" id="submit"><i class="fas fa-search fa-2x"></i></button>
+        <div class="header-container">
+            <div class="yelp"><img src="https://s3.amazonaws.com/yelpcloneassets/Logos/yelp.logo.png" class="logo" /></div>
+            <form class="searchbar-business">
+                <label class="find">Find</label>
+                <input type="text" placeholder="restaraunts, burgers, pizza" />
+                <label class="location">Near</label>
+                <input type="text" placeholder="your current location" />
+                <button type="submit" class="submit" id="submit"><i class="fas fa-search fa-2x"></i></button>
+        </div>
         </form>
     </header>
-    <main>
-        <section class="business">
-            <!--This where the business name, star rating, dollar signs and tags should render-->
-        </section>
-        <button class="reviewbutton"><i class="fas fa-star"></i>
-            <p>Write a Review</p>
-        </button>
-        <section class="assets">
-            <div id="map"></div>
-            <div class="mapBoxText"></div>
+    <nav>
+        <ul class="shortcuts">
+            <div class="utensils blue">
+                <i class="fas fa-utensils"></i>
+                <li>
+                    <p>Restaurants</p>
+                </li>
+            </div>
+            <div class="city blue">
+                <i class="fas fa-city"></i>
+                <li class="border">
+                    <p>Businesses</p>
+                </li>
+            </div>
+        </ul>
+    </nav>
+    <section class="business">
+        <div class="info">
+            <div class="details">
+                <!--This is where the business name, star rating, dollar signs and tags should render-->
+            </div>
+            <div class="buttons">
+                <button class="review" id="">
+                    <p><i class="fas fa-star" href="" ></i>Write a Review</p>
+                </button>
+                <button class="photo">
+                    <p><i class="fas fa-camera"></i>Add Photo</p>
+                </button>
+                <button class="share">
+                    <p><i class="fas fa-share-square"></i>Share</p>
+                </button>
+                <button class="save">
+                    <p><i class="fas fa-bookmark"></i>Save</p>
+                </button>
+            </div>
+        </div>
+    </section>
+    <section class="map-photo">
+        <div class="photo-map">
+            <div class="assets">
+                <div id="map"></div>
+                <div class="mapBoxText"></div>
+            </div>
             <div class="photos">
                 <!--This is where any photos should render to-->
             </div>
-        </section>
-        <section class="reviews">
-            <h3>Recommended Reviews for
-                <!--name of business should dynamically render here-->
-            </h3>
-            <div>
-                <!--This is where the reviews should render-->
-            </div>
-        </section>
-        <section class="write">
-            <!--This is where the review box should render and everythign else on the page will be removed-->
-        </section>
-    </main>
+
+        </div>
+    </section>
+    <section class="reviews inline">
+        <h3>Recommended Reviews for
+            <!--name of business should dynamically render here-->
+        </h3>
+        <div>
+            <!--This is where the reviews should render-->
+        </div>
+    </section>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw&callback=initMap"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <script src="./js/business.js"> </script>
 </body>
 
