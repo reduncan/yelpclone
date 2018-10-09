@@ -185,7 +185,7 @@ footer {
     margin: auto;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 660px auto;
+    grid-template-columns: auto auto;
     grid-gap: 30px;
 }
 
