@@ -66,7 +66,7 @@ module.exports = function (app) {
     });
 
     app.post('/api/search', function (req, res) {
-        console.log(`Searching keyword... ${req.body.searchInput}`);
-        searchBy.keywords(req.body.searchInput, res);
+        console.log(`Searching keyword... ${req.body.searchInput} & ${req.body.locationInput}`);
+        searchBy.keywords(req.body.locationInput, res);
     });
 };
