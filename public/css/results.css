@@ -185,16 +185,11 @@ footer {
     margin: auto;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 660px 330px;
+    grid-template-columns: 660px auto;
     grid-gap: 30px;
 }
 
 .card {
-    display: grid;
-    grid-column: span 1;
-}
-
-.result-map {
     display: grid;
     grid-column: span 1;
 }
@@ -367,4 +362,74 @@ address {
     overflow: hidden;
     width: 1px;
     height: 1px;
+}
+
+/* GOOGLE MAPS BOX */
+.result-map {
+    border: 1px solid #ccc;
+    background-color: #eee;
+    width: 298px;
+    height: 345px;
+    overflow: hidden;
+    transition: .7s;
+}
+
+.map-header {
+    display: flex;
+    font-size: 12px;
+    border-bottom: 1px solid #ccc;
+    padding: 6px 0;
+}
+
+.map-header a{
+    align-self: center;
+    margin-left: 10px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.map-header i {
+    margin-right: 8px;
+    font-size: 13px;
+    color: #444;
+}
+
+.result-map button {
+    background-color: #d90007;
+    color: #fff;
+    border-radius: 5px;
+    border-color: #8d0005;
+    margin-left: auto;
+    padding: 5px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    width: 130px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.result-map button:hover {
+    background-color: #ed0008
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+.mo-map {
+    height: 555px;
+    width: 628px;
+}
+
+.rotate{
+    -moz-transition: all .7s linear;
+    -webkit-transition: all .7s linear;
+    transition: all .7s linear;
+}
+
+.rotate.left{
+    -moz-transform:rotate(-180deg);
+    -webkit-transform:rotate(-180deg);
+    transform:rotate(-180deg);
 }
