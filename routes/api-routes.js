@@ -55,8 +55,8 @@ module.exports = function (app) {
             });
     });
 
-    app.get('/api/restaurant', function (req, res) {
-        db.Restaurant.find({})
+    app.get('/api/restaurant/:alias', function (req, res) {
+        db.Restaurant.find({alias:req.params.alias})
             .then(function (dbRestaurant) {
                 res.json(dbRestaurant);
             })
@@ -66,7 +66,7 @@ module.exports = function (app) {
     });
 
     app.post('/api/search', function (req, res) {
-        console.log(`Searching keyword... ${req.body.searchInput}`);
+        console.log(`Searching keyword... ${req.body.searchInput} & ${req.body.locationInput}`);
         searchBy.keywords(req.body.searchInput, res);
     });
 };
