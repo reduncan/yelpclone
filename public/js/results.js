@@ -38,13 +38,12 @@ $(function () {
     };
 
     $.post('/api/search', newSearch)
-      .then(function (data) {
-        console.log(data);
+      .then(function (businessData) {
+        console.log(businessData);
         let htmlstr = '';
-        data.forEach(businessData => {
-          html += buildIndivBusinessBlock(businessData);
+        businessData.forEach(e => {
+          htmlstr += build.businessBlock(e);
         });
-        console.log(businessData)
         $('#holder').html(htmlstr);
       })
   });
