@@ -17,10 +17,9 @@ module.exports = function(app) {
     app.get('/write', function(req, res) {
         res.sendFile(path.join(__dirname, '../public/review.html'));
     });
-
     //Sends update-review page
     app.get('/update', function(req, res) {
-        res.sendFile(path.join(__dirname, '../public/update-review.html'));
+        res.sendFile(path.join(__dirname, '../public/edit-review.html'));
     });
     // If no matching route is found default to index.html
     app.get('*', function(req, res) {
