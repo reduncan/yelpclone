@@ -16,9 +16,10 @@ $('#submit').on('click', function (event) {
         }
       })
       .then(function (res) {
+        let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
         for (let i = 0; i < addressComponents.length; i++) {
-          callAddressCity(addressComponents[i].long_name)
+          callAddressCity(addressComponents[i].long_name, formattedAddress)
         }
       })
 
@@ -28,7 +29,7 @@ $('#submit').on('click', function (event) {
 
   };
   geocode();
-  const callAddressCity = function (longName) {
+  const callAddressCity = function (longName, cityState) {
     const newSearch = {
       searchInput: $('#searchInput').val().trim(),
       locationInput: longName,
@@ -43,7 +44,7 @@ $('#submit').on('click', function (event) {
           });
           $('#holder').html(htmlstr);
           let lowerSearchInput = newSearch.searchInput.charAt(0).toUpperCase() + newSearch.searchInput.slice(1);
-          $('#bestNear').html(`Best ${lowerSearchInput} near ${newSearch.locationInput}`);
+          $('#bestNear').html(`Best ${lowerSearchInput} near ${cityState}`);
         }
       })
 
