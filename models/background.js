@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-var BackgroundSchema = new Schema(
+const BackgroundSchema = new Schema(
     {
       url: {
           type: String,
