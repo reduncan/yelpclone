@@ -52,7 +52,8 @@ const getStarRatingClass = function (rating) {
 }
 
 const build = {
-    businessBlock : buildIndivBusinessBlock
+    businessBlock : buildIndivBusinessBlock,
+    count: count
 }
 
 const testJson = {

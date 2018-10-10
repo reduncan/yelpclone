@@ -166,8 +166,29 @@ nav {
     border: 1px solid #e6e6e6;
 }
 
-.tagFilter:hover {
-    box-shadow:black;
+button[data-tool-tip] {
+    position: relative;
+}
+
+button[data-tool-tip]::after{
+    content:attr(data-tool-tip);
+    display: block;
+    position: absolute;
+    background-color: black;
+    padding: 1em 3em;
+    color: white;
+    border-radius: 5px;
+    font-size: .9em;
+    bottom: 0em;
+    left: -40px;
+    white-space: nowrap;
+    transform: scale(0);
+    transition: ease-out 150ms;
+}
+
+button[data-tool-tip]:hover::after {
+    transform: scale(1);
+    bottom: 100%;
 }
 
 button {

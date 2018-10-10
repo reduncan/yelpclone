@@ -7,7 +7,6 @@
 
 $('#submit').on('click', function (event) {
   event.preventDefault();
-
   const geocode = () => {
     let location = document.getElementById('locationInput').value
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
