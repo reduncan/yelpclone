@@ -1,71 +1,52 @@
-<<<<<<< HEAD
-// const geocode = (e) => {
-//   e.preventDefault();
-//   let location = document.getElementById('locationInput').value
-//   $.get('https://maps.googleapis.com/maps/api/geocode/json', {
-//       params: {
-//         address: location,
-//         key: 'AIzaSyAQPXz579UmeXLiAqMxez-ud7xJJgnsxaI'
-//       }
-//     })
-//     .then(function (res) {
-//       console.log(res);
 
-//       let addressComponents = res.data.results[0].address_components;
+  /**
+   * add two numbers JSDoc format
+   * @param {Number} num1 - The first Number
+   * @param {Number} num2 - The second Number
+   * @return {Number} sum of the two param
+   */
 
-//       for (let i = 0; i < addressComponents.length; i++) {
-//         addressComponentsOutput +=
-//           `<li class="list-group-item"><strong>${addressComponents[i].types[0]}</strong>: ${addressComponents[i].long_name}</li>`;
-//       }
-//       console.log(addressComponents[i].types[0])
-//       console.log(addressComponents[i].long_name)
-//     })
-
-//     .catch(function (err) {
-//       console.log(err);
-//     })
-
-// };
-// geocode();
-
-$(function () {
-
-=======
-$(function () {
->>>>>>> 691fe62deed897868ec805f90f8a03f5c2cbe758
-  // Click listener for the submit button
   $('#submit').on('click', function (event) {
-    event.preventDefault();
-    const newSearch = {
-      searchInput: $('#searchInput').val().trim(),
-      locationInput: $('#locationInput').val().trim(),
-    };
+        event.preventDefault();
 
-    $.post('/api/search', newSearch)
-      .then(function (data) {
-        console.log(data);
-        let htmlstr = '';
-        data.forEach(element => {
-          htmlstr += `<a href="${element.id}"><h5 class="card-title">${element.name}</h5></a>`;
-          htmlstr += `<h6 class="card-subtitle mb-2 text-muted">#${element.image_URL} / In stock: ${element.itemCount}</h6>`;
-          htmlstr += `<button id="edit" data-id=${element.price} class="btn btn-primary">Review</button>`;
-          htmlstr += `<div id="${element.rating}">`;
-          htmlstr += `<h5 class="card-title">${element.review_count}</h5>`;
-          htmlstr += `<h6 class="card-subtitle mb-2 text-muted">#${element.phone} / In stock: ${element.itemCount}</h6>`;
-          htmlstr += `<button id="edit" data-id=${element.hours} class="btn btn-primary">Review</button>`;
-          htmlstr += `<div id="${element.categories}">`;
-          htmlstr += `<h5 class="card-title">${element.photos}</h5>`;
-          htmlstr += `<h6 class="card-subtitle mb-2 text-muted">#${element.phone} / In stock: ${element.itemCount}</h6>`;
-          htmlstr += `<button id="edit" data-id=${element.location} class="btn btn-primary">Review</button>`;
-          htmlstr += `<div id="${element.transactions}">`;
-          htmlstr += `</div>`;
-          htmlstr += `<hr />`;
-        });
+        const geocode = () => {
+          let location = document.getElementById('locationInput').value
+          axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+              params: {
+                address: location,
+                key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
+              }
+            })
+            .then(function (res) {
+              let addressComponents = res.data.results[0].address_components;
+              //long_name is Atlanta
+              callAddressCity(addressComponents[0].long_name)
+            })
 
-        $('#holder').html(htmlstr);
-      })
-  });
-});
+            .catch(function (err) {
+              console.log(err);
+            })
+
+        };
+        geocode();
+        const callAddressCity = function (longName) {
+          const newSearch = {
+            searchInput: $('#searchInput').val().trim(),
+            locationInput: longName,
+          };
+
+          $.post('/api/search', newSearch)
+            .then(function (businessData) {
+              //location.city is Atlanta
+              // console.log(businessData[0].location.city)
+              let htmlstr = '';
+              businessData.forEach(e => {
+                htmlstr += build.businessBlock(e);
+              });
+              $('#holder').html(htmlstr);
+            })
+        };
+  })
 
  //GOOGLE MAPS INTERGRATION
  function initMap() {
