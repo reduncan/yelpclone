@@ -55,6 +55,16 @@ module.exports = function (app) {
             });
     });
 
+    app.get('/api/restaurant', function (req, res) {
+        db.Restaurant.find({})
+            .then(function (dbRestaurant) {
+                res.json(dbRestaurant);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
     app.get('/api/restaurant/:alias', function (req, res) {
         db.Restaurant.find({alias:req.params.alias})
             .then(function (dbRestaurant) {
