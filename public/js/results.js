@@ -20,7 +20,9 @@
             .then(function (res) {
               let addressComponents = res.data.results[0].address_components;
               //long_name is Atlanta
-              callAddressCity(addressComponents[0].long_name)
+              for (let i=0; i<addressComponents.length; i++) {
+                callAddressCity(addressComponents[i].long_name)
+              }
             })
 
             .catch(function (err) {
