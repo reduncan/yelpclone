@@ -43,6 +43,8 @@ $('#submit').on('click', function (event) {
             htmlstr += build.businessBlock(e);
           });
           $('#holder').html(htmlstr);
+          let lowerSearchInput = newSearch.searchInput.charAt(0).toUpperCase() + newSearch.searchInput.slice(1);
+          $('#bestNear').html(`Best ${lowerSearchInput} near ${newSearch.locationInput}`);
         }
       })
 

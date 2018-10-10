@@ -26,9 +26,9 @@
             <form class="searchbar-business">
                 <label class="find">Find</label>
                 <input id="searchInput" type="text" placeholder="restaraunts, burgers, pizza" />
-                <label class="location">Near</label>
-                <input id="locationInput" type="text" placeholder="your current location" />
-                <button type="submit" class="submit" id="submit"><i class="fas fa-search fa-2x"></i></button>
+                <label class="near">Near</label>
+                <input id="locationInput" type="text" placeholder="Current Location" />
+                <button type="submit" class="submit" id="submit"><i class="fas fa-search fa-lg"></i></button>
         </div>
         </form>
     </header>
@@ -50,7 +50,7 @@
     </nav>
     <div class="background">
         <section class="search-title">
-            <div>
+            <div id="bestNear">
                 <!--This div should dynamically change to include "search item" near "location"-->
             </div>
             <div>
@@ -59,12 +59,12 @@
         </section>
         <section class="filter">
             <div class="dollar">
-                <button id="oneDollar" class="first">$</button>
-                <button id="twoDollar" >$$</button>
-                <button id="threeDollar">$$$</button>
-                <button id="fourDollar" class="last">$$$$</button>
+                <button id="oneDollar" class="first tagFilter">$</button>
+                <button id="twoDollar" class="tagFilter">$$</button>
+                <button id="threeDollar" class="tagFilter">$$$</button>
+                <button id="fourDollar" class="last tagFilter">$$$$</button>
             </div>
-            <button id="openStatus" class="open">
+            <button id="openStatus" class="open tagFilter">
                 <p><i class="far fa-clock"></i>Open Now</p>
             </button>
         </section>
