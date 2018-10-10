@@ -14,7 +14,7 @@ const keywords = function (keywords, res) {
             { 'location.address3' : regex },
             { 'location.zip_code' : regex },
             { 'location.country' : regex },
-            { 'location.state' : regex }
+            { 'location.state' : regex },
     ])
     .then(function(businesses) {res.json(businesses);})
     .catch(function(err) {res.json(err);});
