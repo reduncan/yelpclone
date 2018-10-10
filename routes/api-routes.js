@@ -17,6 +17,16 @@ module.exports = function (app) {
     //     console.log(e);
     //   });
 
+    app.get('/api/background', function(req, res) {
+        db.Background.find({})
+            .then(function (dbBackground) {
+                res.json(dbBackground.url)
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
     app.get('/api/review', function (req, res) {
         db.Review.find({})
             .then(function (dbReview) {

@@ -11,6 +11,6 @@ var BackgroundSchema = new Schema(
     }
 );
 
-const Backgrounds = mongoose.model("Background", BackgroundSchema);
+const Background = mongoose.model("Background", BackgroundSchema);
 
 module.exports = Background;
