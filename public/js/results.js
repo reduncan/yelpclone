@@ -1,50 +1,48 @@
-  // const geocode = (e) => {
-  //   e.preventDefault();
-  //   let location = document.getElementById('locationInput').value
-  //   $.get('https://maps.googleapis.com/maps/api/geocode/json', {
-  //       params: {
-  //         address: location,
-  //         key: 'AIzaSyAQPXz579UmeXLiAqMxez-ud7xJJgnsxaI'
-  //       }
-  //     })
-  //     .then(function (res) {
-  //       console.log(res);
+  /**
+   * add two numbers JSDoc format
+   * @param {Number} num1 - The first Number
+   * @param {Number} num2 - The second Number
+   * @return {Number} sum of the two param
+   */
 
-  //       let addressComponents = res.data.results[0].address_components;
-
-  //       for (let i = 0; i < addressComponents.length; i++) {
-  //         addressComponentsOutput +=
-  //           `<li class="list-group-item"><strong>${addressComponents[i].types[0]}</strong>: ${addressComponents[i].long_name}</li>`;
-  //       }
-  //       console.log(addressComponents[i].types[0])
-  //       console.log(addressComponents[i].long_name)
-  //     })
-
-  //     .catch(function (err) {
-  //       console.log(err);
-  //     })
-
-  // };
-  // geocode();
-
-$(function () {
-  
-  // Click listener for the submit button
   $('#submit').on('click', function (event) {
-    event.preventDefault();
-    const newSearch = {
-      searchInput: $('#searchInput').val().trim(),
-      locationInput: $('#locationInput').val().trim(),
-    };
+        event.preventDefault();
 
-    $.post('/api/search', newSearch)
-      .then(function (businessData) {
-        console.log(businessData);
-        let htmlstr = '';
-        businessData.forEach(e => {
-          htmlstr += build.businessBlock(e);
-        });
-        $('#holder').html(htmlstr);
-      })
-  });
-});
+        const geocode = () => {
+          let location = document.getElementById('locationInput').value
+          axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+              params: {
+                address: location,
+                key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
+              }
+            })
+            .then(function (res) {
+              let addressComponents = res.data.results[0].address_components;
+              //long_name is Atlanta
+              callAddressCity(addressComponents[0].long_name)
+            })
+
+            .catch(function (err) {
+              console.log(err);
+            })
+
+        };
+        geocode();
+        const callAddressCity = function (longName) {
+          const newSearch = {
+            searchInput: $('#searchInput').val().trim(),
+            locationInput: longName,
+          };
+
+          $.post('/api/search', newSearch)
+            .then(function (businessData) {
+              //location.city is Atlanta
+              // console.log(businessData[0].location.city)
+              let htmlstr = '';
+              businessData.forEach(e => {
+                htmlstr += build.businessBlock(e);
+              });
+              $('#holder').html(htmlstr);
+            })
+        };
+  })
