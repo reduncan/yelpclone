@@ -30,7 +30,7 @@ header {
 }
 
 form {
-    height: 30px;
+    height: 40px;
     margin-top: 12px;
     display: grid;
     grid-template-rows: 1fr;
@@ -43,20 +43,17 @@ label {
     align-items: center;
     justify-content: center;
     background-color: white;
+    color: gray;
     font-size: 16px;
     font-weight: 700;
 }
 
-.find, .near {
+.find {
     border-radius: 3px 0px 0px 3px;
-    font-weight: bold;
 }
 
 input {
-    border-top: none;
-    border-bottom: none;
-    border-left: none;
-    border-right: .1px solid black;
+    border: none;
     font-size: 16px;
     color: gray;
 }
