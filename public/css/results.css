@@ -185,7 +185,7 @@ footer {
     margin: auto;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 660px auto;
+    grid-template-columns: auto auto;
     grid-gap: 30px;
 }
 
@@ -196,13 +196,12 @@ footer {
 
 .media-block {
     display: grid;
-    grid-template-columns: 228px 402px;
+    grid-template-columns: auto auto;
     grid-template-rows: 210px;
     height: 210px;
-    width: 630px;
-    padding: 17px 0 17px 0;
-    border-top: 1px solid #e6e6e6;
-    margin: 20px 0 30px 0;
+    width: auto;
+    border-bottom: 1px solid #e6e6e6;
+    margin: 0 0 30px 0;
 }
 
 .biz-attributes {
@@ -226,6 +225,8 @@ footer {
 .media-avatar img {
    border-radius: 4px;
    object-fit: cover;
+   height: 100%;
+   width: 100%;
 }
 
 .main-attributes {
