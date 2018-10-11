@@ -1,17 +1,19 @@
 /** API to build elements dynamically */
 
 /** Yelp - Results Page */
+let count = 0;
 
 const buildIndivBusinessBlock = function (businessData) {
+    count++;
     let businessElement = '';
     businessElement += `<div class='media-block'>`;
         businessElement += `<div class='media-avatar'><img alt='Photo of ${businessData.name}' src='${businessData.image_url}' height='210' width='210'></div>`;
         businessElement += `<div class='media-story'>`;
             businessElement += `<div class='biz-attributes'>`;
                 businessElement += `<div class='main-attributes'>`;
-                    businessElement += `<div class='search-result-title'><span class='indexed-biz-name'>1. <a class='biz-name' id='${businessData.id}' href='#'><span>${businessData.name}</span></a></span></div>`;
+                    businessElement += `<div class='search-result-title'><span class='indexed-biz-name'>${count}. <a class='biz-name' id='${businessData.id}' href='/business/${businessData.alias}'><span>${businessData.name}</span></a></span></div>`;
                     businessElement += `<div class='biz-rating'><div class='i-stars ${getStarRatingClass(businessData.rating)}' title='${businessData.rating}'><img class="offscreen" height="303" src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png" width="84" alt="${businessData.rating} star rating"></div><span class='review-count'>${businessData.review_count} reviews</span></div>`;
-                    businessElement += `<div class='price-category'><span class='bullet-after'><span class='price-range'>$$</span></span><span class='category-list'>${anchorCategories(businessData.categories)}</span></div>`;
+                    businessElement += `<div class='price-category'><span class='bullet-after'><span class='price-range'>${businessData.price || ''}</span></span><span class='category-list'>${anchorCategories(businessData.categories)}</span></div>`;
                 businessElement += `</div>`;
                 businessElement += `<div class='secondary-attributes'>`;
                     businessElement += `<span class='biz-phone'>${formatPhoneNumbers(businessData.phone)}</span>`;
@@ -50,7 +52,8 @@ const getStarRatingClass = function (rating) {
 }
 
 const build = {
-    businessBlock : buildIndivBusinessBlock
+    businessBlock : buildIndivBusinessBlock,
+    count: count
 }
 
 const testJson = {
@@ -91,5 +94,3 @@ const testJson = {
     'phone': '+14048733088',
     '__v': 0
 }
-
-module.exports = build;

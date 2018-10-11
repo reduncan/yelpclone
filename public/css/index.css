@@ -107,14 +107,14 @@ label {
     font-weight: 700;
 }
 
-.find {
+.find, .location {
     border-radius: 3px 0px 0px 3px;
+    color: black;
 }
 
 input {
     border: none;
     font-size: 16px;
-    color: gray;
 }
 
 .submit {
