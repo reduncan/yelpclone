@@ -53,10 +53,7 @@ label {
 }
 
 input {
-    border-top: none;
-    border-bottom: none;
-    border-left: none;
-    border-right: .1px solid black;
+    border: none;
     font-size: 16px;
     color: gray;
 }
@@ -190,15 +187,15 @@ button {
 }
 
 .first {
-    border-radius: 3px 0px 0px 3px;
+    border-radius: 5px 0px 0px 5px;
 }
 
 .last {
-    border-radius: 0px 3px 3px 0px;
+    border-radius: 0px 5px 5px 0px;
 }
 
 .open {
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 .open i {
@@ -231,7 +228,6 @@ footer {
 
 .tagFilter {
     background-color: white;
-    border-radius: 5px;
     border: 1px solid #e6e6e6;
 }
  .tagFilter:hover {
