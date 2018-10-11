@@ -5,16 +5,16 @@ const keywords = function (keywords, res) {
     db.Restaurant
     .find()
     .or([
+            { 'location.city' : regex },
             { 'alias': regex },
             { 'categories.alias': regex },
             { 'categories.title': regex },
-            // { 'location.address1' : regex },    
-            // { 'location.address2' : regex },
-            // { 'location.address3' : regex },
-            // { 'location.city' : regex },
-            // { 'location.zip_code' : regex },
-            // { 'location.country' : regex },
-            // { 'location.state' : regex }
+            { 'location.address1' : regex },    
+            { 'location.address2' : regex },
+            { 'location.address3' : regex },
+            { 'location.zip_code' : regex },
+            { 'location.country' : regex },
+            { 'location.state' : regex },
     ])
     .then(function(businesses) {res.json(businesses);})
     .catch(function(err) {res.json(err);});

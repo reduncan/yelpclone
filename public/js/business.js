@@ -35,15 +35,11 @@ function initMap() {
             map: map,
             title: `${name}`
         });
-    })
-
-    $('.review').on('click', function (event) {
-        event.preventDefault();
-        location.href = "/write";
-        console.log(event)
-        
-
-    })
-    
-    
+    })    
 }
+
+$('.review').on('click', function (event) {
+    event.preventDefault();
+    location.href = "/write";
+    console.log(event)
+})
