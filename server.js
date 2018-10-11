@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 // Set the port to 3000 OR let the process set the port (if deployed to Heroku)
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 // Initialize Express
 const app = express();

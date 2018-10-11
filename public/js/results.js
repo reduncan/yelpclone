@@ -54,42 +54,53 @@ $('#submit').on('click', function (event) {
     $('#searchInput').val(null)
     $('#locationInput').val(null)
     $('#searchInput').focus()
-
-    var map;
     function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 18,
-        zoomControl: true,
-        zoomControlOptions: {
-          position: google.maps.ControlPosition.LEFT_TOP,
-        },
-        tilt: 45,
-        disableDefaultUI: true
+      $.ajax({
+        url: '/api/restaurant',
+        method: 'GET',
+        dataType: 'json'
+      }).then(function (data) {
+        const resultsId = [];
+        //this gets all ID's from found results
+        $('.biz-attributes a').map(function () {
+          resultsId.push(this.id)
+        })
+        const resultsIdFiltered = resultsId.filter(function (e) {
+          return e != "";
+        })
+        //this finds the resturants json obj matching page results, and returns the coors for each
+        const list = [];
+        data.map(function (obj) {
+          if (resultsIdFiltered.includes(obj.id)) {
+            list.push(obj)
+          }
+        })
+        const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 11,
+          zoomControl: true,
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP,
+          },
+          center: { lat: list[0].coordinates.latitude, lng: list[0].coordinates.longitude },
+          tilt: 45,
+          disableDefaultUI: true
+        })
+        for (let i = 0; i < 10; i++) {
+          const marker = new google.maps.Marker({
+            position: { lat: list[i].coordinates.latitude, lng: list[i].coordinates.longitude },
+            map: map,
+            title: list[i].name,
+            label: {
+              text:'Yelp',
+              fontSize: '10px',
+            }
+            
+          })
+        }
       });
-      let marker = new google.maps.Marker({
-        position: { lat: -34.397, lng: 150.644 },
-        map: map,
-        title: "You are here!",
-        animation: google.maps.Animation.BOUNCE
-      });
-      // Try HTML5 geolocation.
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-          var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          map.setCenter(pos);
-          marker.setPosition(pos);
-        }, function () {
-          handleLocationError(true, map.getCenter());
-        });
-      } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, map.getCenter());
-      }
     }
+
+
     initMap();
   };
 })
@@ -219,7 +230,7 @@ $('#fourDollar').on('click', function (event) {
 //             })
 //         });
 
-var map, infoWindow;
+var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: -34.397, lng: 150.644 },
