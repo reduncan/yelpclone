@@ -112,7 +112,7 @@ nav {
     display: grid;
     align-items: center;
     justify-content: center;
-    border-left: 1px solid #e6e6e6;
+    border-left: 1px solid gray;
 }
 
 .shortcuts li {
@@ -122,7 +122,7 @@ nav {
 }
 
 .line {
-    border-right: 1px solid #e6e6e6;
+    border-right: 1px solid gray;
 }
 
 .background {
@@ -145,46 +145,10 @@ nav {
     grid-gap: 10px;
 }
 
-#bestNear {
-    font-size: 20px;
-    padding-top: 35px;
-    margin-bottom: 10px;
-}
-
 .dollar {
     display: grid;
     grid-template-rows: 1fr; 
     grid-template-columns: 40px 40px 50px 55px;
-}
-
-.tagFilter {
-    background-color: white;
-    border: 1px solid #e6e6e6;
-}
-
-button[data-tool-tip] {
-    position: relative;
-}
-
-button[data-tool-tip]::after{
-    content:attr(data-tool-tip);
-    display: block;
-    position: absolute;
-    background-color: black;
-    padding: 1em 3em;
-    color: white;
-    border-radius: 5px;
-    font-size: .9em;
-    bottom: 0em;
-    left: -40px;
-    white-space: nowrap;
-    transform: scale(0);
-    transition: ease-out 150ms;
-}
-
-button[data-tool-tip]:hover::after {
-    transform: scale(1);
-    bottom: 100%;
 }
 
 button {
@@ -228,8 +192,6 @@ footer {
 .card {
     display: grid;
     grid-column: span 1;
-    border-left: none;
-    border-right: none;
 }
 
 .media-block {
@@ -263,8 +225,8 @@ footer {
 .media-avatar img {
    border-radius: 4px;
    object-fit: cover;
-   height: 90%;
-   width: 90%;
+   height: 100%;
+   width: 100%;
 }
 
 .main-attributes {
