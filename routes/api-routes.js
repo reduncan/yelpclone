@@ -64,7 +64,7 @@ module.exports = function (app) {
                 res.json(err);
             });
     });
-
+ 
     app.get('/api/restaurant/:alias', function (req, res) {
         db.Restaurant.find({
                 alias: req.params.alias
