@@ -67,23 +67,27 @@ $('#submit').on('click', function (event) {
             list.push(obj)
           }
         })
-          const map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 11,
-            zoomControl: true,
-            zoomControlOptions: {
-              position: google.maps.ControlPosition.LEFT_TOP,
+        let map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          zoomControl: true,
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP,
+          },
+          center: { lat: list[0].coordinates.latitude, lng: list[0].coordinates.longitude },
+          tilt: 45,
+          disableDefaultUI: true
+        })
+        for (let i = 0; i < 10; i++) {
+          let marker = new google.maps.Marker({
+            position: { lat: list[i].coordinates.latitude, lng: list[i].coordinates.longitude },
+            map: map,
+            label: {
+              text:'Yelp',
+              fontSize: '10px',
             },
-            center: {lat:list[0].coordinates.latitude, lng: list[0].coordinates.longitude},
-            tilt: 45,
-            disableDefaultUI: true
+            title: list[i].name
           })
-          for(let i = 0; i < 10; i++){
-            const marker = new google.maps.Marker({
-              position: {lat:list[i].coordinates.latitude, lng: list[i].coordinates.longitude},
-              map: map,
-              title: list[i].name
-            })
-          }
+        }
       }).catch(function (err) {
         console.log(err);
       })
@@ -91,7 +95,41 @@ $('#submit').on('click', function (event) {
     initMap();
   };
 })
-//run init map deafult to browser location**
+var map, infoWindow;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 18,
+    zoomControl: true,
+    zoomControlOptions: {
+      position: google.maps.ControlPosition.LEFT_TOP,
+    },
+    tilt: 45,
+    disableDefaultUI: true
+  });
+  let marker = new google.maps.Marker({
+    position: { lat: -34.397, lng: 150.644 },
+    map: map,
+    title: "You are here!",
+    animation: google.maps.Animation.BOUNCE
+  });
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      map.setCenter(pos);
+      marker.setPosition(pos);
+    }, function () {
+      handleLocationError(true, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, map.getCenter());
+  }
+}
 
 const lessMoreToggle = function () {
   if ($('.map-header a span').text() === "Mo' Map") {
