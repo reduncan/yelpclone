@@ -1,17 +1,64 @@
 $(document).ready(function(){
 
-  $.ajax({
-    url: '/api/restaurant',
-    method: 'GET',
-    dataType: 'json',
-  }).then(function (data) {
-    const name = data[0].name;
-    const url = data[0].url;
-    $(".heading-link a").append(`${name}`)
-    $(".heading-link a").attr("href",` ${url}`)
+  // $.ajax({
+  //   url: '/api/restaurant',
+  //   method: 'GET',
+  // }).then(function (data) {
+  //   const name = data[0].name;
+  //   const url = data[0].url;
+  //   $(".heading-link a").append(`${window.location.search }`)
+  //   $(".heading-link a").attr("href",` ${url}`)
   
-    console.log(url)
+  //   console.log(url)
+  // })
+  
+  $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
+    .then(function (dataList) {
+      console.log(dataList)
+      console.log(window.location.search)
+      const newID = window.location.search.substring(7);
+      console.log(newID);
+      for (let i=0; i < dataList.length; i++){
+        if(dataList[i].alias === newID){
+          console.log(dataList[i])
+          const newURL = `http://localhost:3000/business${window.location.search}`
+          console.log(newURL)
+          $(".heading-link a").append(`${dataList[i].name }`)
+          $(".heading-link a").attr("href", newURL)
+        }
+      }
+      
+})
+  
+const addReview = function(){
+  console.log('in the function')
+  $('.outer-post').on('click', function (event){
+    console.log('clicked')
+  event.preventDefault();
+  const newDate = (new Date().toJSON()).substring(0, 10);
+  // const getAlias = cutPrefix.substring(0, cutPrefix.indexOf("?"));
+  const reviewUrl = window.location.search.substring(7);
+  const newReview = {
+    rating: $(".i-selector-star").attr('data-stars'),
+    text: $('.review-input').val().trim(),
+    time_created: newDate,
+    url: reviewUrl
+  } 
+
+      
+    // console.log(newReview)
+    $.ajax({url:"/api/review", method:"POST", data:newReview}).then(function (data){
+      $('.review-input').empty();
+      $('#content').empty();
+    }).fail(function(err){
+      console.log('this failed', err)
+
+    })
+
   })
+}
+  
+
 
   
   $("[data-stars]").each(function(){
@@ -45,4 +92,6 @@ $(document).ready(function(){
     
   });
 
+
+  addReview();
 })
