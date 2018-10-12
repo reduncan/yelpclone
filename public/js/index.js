@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-$('#submitIndex').on('click', function (e) {
+$('#submit').on('click', function (e) {
     e.preventDefault();
     let searchTag = $('#searchInput').val().trim();
     let locationTag = $('#locationInput').val().trim();
@@ -7,7 +6,6 @@ $('#submitIndex').on('click', function (e) {
     sessionStorage.setItem('locationTag', `${locationTag}`);
     location.replace("/search")
 });
-=======
 const bgIndex = Math.floor((Math.random() * 9) + 1);
 
 const generate = function () {
@@ -32,4 +30,3 @@ const generate = function () {
 };
 
 window.onload = generate();
->>>>>>> 0de31c93a6309323b9388b9e8182de15687cf371

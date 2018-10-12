@@ -1,4 +1,4 @@
-$('#submitIndex').on('click', function (e) {
+$('#submit').on('click', function (e) {
     e.preventDefault();
     let searchTag = $('#searchInput').val().trim();
     let locationTag = $('#locationInput').val().trim();
