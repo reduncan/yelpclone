@@ -48,15 +48,30 @@ module.exports = function (app) {
     });
 
     app.post('/api/review', function (req, res) {
+        
         db.Review.create(req.body)
             .then(function (dbReview) {
-                res.json(dbReview);
-            })
+                console.log(dbReview)
+                console.log('hello')
+                console.log(req.body.url)
+                db.Restaurant.findOneAndUpdate({alias: req.body.url}, {$set: {personal_review: {
+                    // personal_review_ID : dbReview._id,
+                    personal_review_text : dbReview.text, 
+                    personal_review_rating: dbReview.rating,
+                    personal_review_time: dbReview.time_created, 
+                }}})
+                    //  { new: true}
+                
+            .then(function(dbUser){
+                console.log(dbUser)
+                res.json(dbUser)
+            }
+            )
             .catch(function (err) {
                 res.json(err);
             });
     });
-
+})
     app.put('/api/review/:id', function (req, res) {
         db.Review.findOneAndUpdate({
             _id: req.params.id
@@ -85,7 +100,32 @@ module.exports = function (app) {
             });
     });
 
+    app.get('/api/restaurant/:alias', function (req, res) {
+        db.Restaurant.find({
+                alias: req.params.alias
+            })
+            .then(function (dbRestaurant) {
+                res.json(dbRestaurant);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
 
+    app.get('/api/review/:alias', function (req, res) {
+        let alias = req.params.alias;
+        console.log(alias)
+        let regex = { $regex: new RegExp(alias, 'i')};
+        db.Restaurant.find({'alias' : alias})
+        .or([{'url' : regex}])
+        .then(function (aliasReview) {
+            console.log(aliasReview);
+            res.json(aliasReview);
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
+    });
     app.get('/api/business/:alias', function (req, res) {
         db.Restaurant.find({alias:req.params.alias})
             .then(function (dbRestaurant) {

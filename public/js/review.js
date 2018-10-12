@@ -21,29 +21,38 @@ $(document).ready(function(){
       for (let i=0; i < dataList.length; i++){
         if(dataList[i].alias === newID){
           console.log(dataList[i])
+          const newURL = `http://localhost:3000/business${window.location.search}`
+          console.log(newURL)
           $(".heading-link a").append(`${dataList[i].name }`)
+          $(".heading-link a").attr("href", newURL)
         }
       }
       
 })
   
-  const addReview = function(){
-    $('.outer-post').on('click', function (event){
-    event.preventDefault();
-    const newDate = (new Date().toJSON()).substring(0, 10);
-    // const getAlias = cutPrefix.substring(0, cutPrefix.indexOf("?"));
-    const newReview = {
-      rating: $(".i-selector-star").attr('data-stars'),
-      text: $('.review-input').val().trim(),
-      time_created: newDate
-    } 
+const addReview = function(){
+  console.log('in the function')
+  $('.outer-post').on('click', function (event){
+    console.log('clicked')
+  event.preventDefault();
+  const newDate = (new Date().toJSON()).substring(0, 10);
+  // const getAlias = cutPrefix.substring(0, cutPrefix.indexOf("?"));
+  const reviewUrl = window.location.search.substring(7);
+  const newReview = {
+    rating: $(".i-selector-star").attr('data-stars'),
+    text: $('.review-input').val().trim(),
+    time_created: newDate,
+    url: reviewUrl
+  } 
 
       
-    console.log(newReview)
+    // console.log(newReview)
     $.ajax({url:"/api/review", method:"POST", data:newReview}).then(function (data){
-      $('review-input').val('');
+      $('.review-input').empty();
       $('#content').empty();
-      console.log(data)
+    }).fail(function(err){
+      console.log('this failed', err)
+
     })
 
   })

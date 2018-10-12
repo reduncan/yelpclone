@@ -39,12 +39,32 @@ function initMap() {
                 fontSize: '10px',
               }
         });
-    })    
+    })  
+      
 }
 initMap() 
 
+$.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
+.then(function (dataList) {
+  console.log(dataList)
+  console.log(window.location.search)
+  const newID = window.location.search.substring(7);
+  console.log(newID);
+  for (let i=0; i < dataList.length; i++){
+    if(dataList[i].alias === newID){
+      console.log(dataList[i])
+      $(".review").attr("id", newID)
+    }
+  }
+  
+})
+
 $('.review').on('click', function (event) {
     event.preventDefault();
-    location.href = "/write";
+    if (event.target.id){
+    location.href = `review?alias=${event.target.id}`;
+    
     console.log(event)
+
+    }
 })
