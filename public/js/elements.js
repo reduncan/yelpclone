@@ -54,6 +54,12 @@ const build = {
     count: count
 }
 
+//render function for business page
+
+const buildBusinessHeader = {
+    
+}
+
 const testJson = {
     '_id': '5bb6bacc6b166a662080d323',
     'id': 'ZMEZgMF9FkgR9yl_RJkWfQ',
