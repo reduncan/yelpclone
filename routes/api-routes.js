@@ -17,6 +17,26 @@ module.exports = function (app) {
     //     console.log(e);
     //   });
 
+    app.get('/api/background', function (req, res) {
+        db.Background.find({})
+            .then(function (dbBackground) {
+                res.json(dbBackground)
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
+    app.post('/api/background', function (req, res) {
+        db.Background.create(req.body)
+            .then(function (dbBackground) {
+                res.json(dbBackground)
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+
     app.get('/api/review', function (req, res) {
         db.Review.find({})
             .then(function (dbReview) {
@@ -39,8 +59,8 @@ module.exports = function (app) {
 
     app.put('/api/review/:id', function (req, res) {
         db.Review.findOneAndUpdate({
-                _id: req.params.id
-            }, {
+            _id: req.params.id
+        }, {
                 $set: {
                     time_created: req.body.time_created,
                     text: req.body.text,
@@ -64,6 +84,7 @@ module.exports = function (app) {
                 res.json(err);
             });
     });
+
 
     app.get('/api/business/:alias', function (req, res) {
         db.Restaurant.find({alias:req.params.alias})
