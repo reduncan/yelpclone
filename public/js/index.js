@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $('#submitIndex').on('click', function (e) {
     e.preventDefault();
     let searchTag = $('#searchInput').val().trim();
@@ -6,3 +7,29 @@ $('#submitIndex').on('click', function (e) {
     sessionStorage.setItem('locationTag', `${locationTag}`);
     location.replace("/search")
 });
+=======
+const bgIndex = Math.floor((Math.random() * 9) + 1);
+
+const generate = function () {
+    $.ajax({
+        url: '/api/background',
+        method: 'GET',
+        dataType: 'json',
+    }).then (function (image) {
+        const newBG = image[bgIndex].url;
+        const rgba = "rgba(51, 51, 51, .3)";
+        console.log(newBG)
+        $('body').css({
+            "background": "linear-gradient("
+                + rgba +"," 
+                + rgba +
+              ")"+","+"url("+ newBG +")",
+              "background-size": "cover",
+              "background-repeat": "no-repeat",
+              "background-position": "center"
+    });
+    });
+};
+
+window.onload = generate();
+>>>>>>> 0de31c93a6309323b9388b9e8182de15687cf371

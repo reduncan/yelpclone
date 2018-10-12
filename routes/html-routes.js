@@ -11,14 +11,16 @@ module.exports = function(app) {
     });
     //Sends chosen business page to client
     app.get('/business', function(req, res) {
+        
         res.sendFile(path.join(__dirname, '../public/business.html'));
     });
     //Sends review form to client
-    app.get('/write', function(req, res) {
+    app.get('/review', function(req, res) {
+        console.log(req.query)
         res.sendFile(path.join(__dirname, '../public/review.html'));
     });
     //Sends update-review page
-    app.get('/update', function(req, res) {
+    app.get('/edit', function(req, res) {
         res.sendFile(path.join(__dirname, '../public/edit-review.html'));
     });
     // If no matching route is found default to index.html

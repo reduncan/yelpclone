@@ -119,6 +119,7 @@ nav {
 
 .business {
     background-color: #f5f5f5;
+    z-index: -2;
 }
 
 .info {
@@ -133,7 +134,7 @@ nav {
 .buttons {
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 230px 120px 90px 90px;
+    grid-template-columns: 210px 120px 90px 90px;
     align-items: center;
 }
 
