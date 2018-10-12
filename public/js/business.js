@@ -1,7 +1,7 @@
 //GOOGLE MAPS INTERGRATION
 function initMap() {
     $.ajax({
-        url: '/api/business',
+        url: '/api/restaurant',
         method: 'GET',
         dataType: 'json',
     }).then(function (data) {
@@ -33,10 +33,15 @@ function initMap() {
         const marker = new google.maps.Marker({
             position: uluru,
             map: map,
-            title: `${name}`
+            title: `${name}`,
+            label: {
+                text:'Yelp',
+                fontSize: '10px',
+              }
         });
     })    
 }
+initMap() 
 
 $('.review').on('click', function (event) {
     event.preventDefault();
