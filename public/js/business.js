@@ -33,10 +33,15 @@ function initMap() {
         const marker = new google.maps.Marker({
             position: uluru,
             map: map,
-            title: `${name}`
+            title: `${name}`,
+            label: {
+                text:'Yelp',
+                fontSize: '10px',
+              }
         });
     })    
 }
+initMap() 
 
 $('.review').on('click', function (event) {
     event.preventDefault();
