@@ -1,3 +1,11 @@
+$('#submit').on('click', function (e) {
+    e.preventDefault();
+    let searchTag = $('#searchInput').val().trim();
+    let locationTag = $('#locationInput').val().trim();
+    sessionStorage.setItem('searchTag', `${searchTag}`);
+    sessionStorage.setItem('locationTag', `${locationTag}`);
+    location.replace("/search")
+});
 const bgIndex = Math.floor((Math.random() * 9) + 1);
 
 const generate = function () {
