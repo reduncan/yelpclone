@@ -29,6 +29,14 @@ const buildIndivBusinessBlock = function (businessData) {
     return businessElement;
 }
 
+const buildBusinessHeader = function (businessInfo) {
+    let header = "";
+    header += `<h1>${businessData.name}</h1>`;
+    header += `<div class='biz-rating'><div class='i-stars ${getStarRatingClass(businessData.rating)}' title='${businessData.rating}'><img class="offscreen" height="303" src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png" width="84" alt="${businessData.rating} star rating"></div><span class='review-count'>${businessData.review_count} reviews</span></div>`;
+    header += `<div class='price-category'><span class='bullet-after'><span class='price-range'>${businessData.price || ''}</span></span><span class='category-list'>${anchorCategories(businessData.categories)}</span></div>`; 
+    return header;
+}
+
 const anchorCategories = function (categories) {
     let html = "";
     categories.forEach(category => { html += `<a href="#">${category.title}</a>,` });
@@ -55,16 +63,6 @@ const build = {
     businessBlock: buildIndivBusinessBlock,
     headerBlock: buildBusinessHeader,
     count: count
-}
-
-//render function for business page
-
-const buildBusinessHeader = function (businessInfo) {
-    let header = "";
-    header += `<h1>${businessData.name}</h1>`;
-    header += `<div class='biz-rating'><div class='i-stars ${getStarRatingClass(businessData.rating)}' title='${businessData.rating}'><img class="offscreen" height="303" src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png" width="84" alt="${businessData.rating} star rating"></div><span class='review-count'>${businessData.review_count} reviews</span></div>`;
-    header += `<div class='price-category'><span class='bullet-after'><span class='price-range'>${businessData.price || ''}</span></span><span class='category-list'>${anchorCategories(businessData.categories)}</span></div>`; 
-    return header;
 }
 
 const testJson = {
