@@ -24,6 +24,7 @@ const buildIndivBusinessBlock = function (businessData) {
     businessElement += `</div>`;
     businessElement += `</div>`;
     businessElement += `</div>`;
+    count++;
     return businessElement;
 }
 
