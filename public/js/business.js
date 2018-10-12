@@ -7,6 +7,11 @@ $('#submit').on('click', function (e) {
     location.replace("/search")
 });
 
+let searchIndexInput = sessionStorage.getItem('searchTag');
+let locationIndexInput = sessionStorage.getItem('locationTag');
+
+
+
 //GOOGLE MAPS INTERGRATION
 function initMap() {
     $.ajax({

@@ -11,8 +11,10 @@ const buildIndivBusinessBlock = function (businessData) {
     businessElement += `<div class='media-story'>`;
     businessElement += `<div class='biz-attributes'>`;
     businessElement += `<div class='main-attributes'>`;
-    businessElement += `<div class='search-result-title'><span class='indexed-biz-name'>${count}. <a id=${businessData.id} class='biz-name'  href='business?alias=${businessData.alias}'><span id='${businessData.alias}'>${businessData.name}</span></a></span></div>`; businessElement += `<div class='biz-rating'><div class='i-stars ${getStarRatingClass(businessData.rating)}' title='${businessData.rating}'><img class="offscreen" height="303" src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png" width="84" alt="${businessData.rating} star rating"></div><span class='review-count'>${businessData.review_count} reviews</span></div>`;
-    businessElement += `<div class='price-category'><span class='bullet-after'><span class='price-range'>${businessData.price || ''}</span></span><span class='category-list'>${anchorCategories(businessData.categories)}</span></div>`; businessElement += `</div>`;
+    businessElement += `<div class='search-result-title'><span class='indexed-biz-name'>${count}. <a id=${businessData.id} class='biz-name'  href='business?alias=${businessData.alias}'><span id='${businessData.alias}'>${businessData.name}</span></a></span></div>`; 
+    businessElement += `<div class='biz-rating'><div class='i-stars ${getStarRatingClass(businessData.rating)}' title='${businessData.rating}'><img class="offscreen" height="303" src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png" width="84" alt="${businessData.rating} star rating"></div><span class='review-count'>${businessData.review_count} reviews</span></div>`;
+    businessElement += `<div class='price-category'><span class='bullet-after'><span class='price-range'>${businessData.price || ''}</span></span><span class='category-list'>${anchorCategories(businessData.categories)}</span></div>`; 
+    businessElement += `</div>`;
     businessElement += `<div class='secondary-attributes'>`;
     businessElement += `<span class='biz-phone'>${formatPhoneNumbers(businessData.phone)}</span>`;
     businessElement += `<address class='biz-address'>${businessData.location.address1}</address>`;
@@ -51,13 +53,18 @@ const getStarRatingClass = function (rating) {
 
 const build = {
     businessBlock: buildIndivBusinessBlock,
+    headerBlock: buildBusinessHeader,
     count: count
 }
 
 //render function for business page
 
-const buildBusinessHeader = {
-    
+const buildBusinessHeader = function (businessInfo) {
+    let header = "";
+    header += `<h1>${businessData.name}</h1>`;
+    header += `<div class='biz-rating'><div class='i-stars ${getStarRatingClass(businessData.rating)}' title='${businessData.rating}'><img class="offscreen" height="303" src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png" width="84" alt="${businessData.rating} star rating"></div><span class='review-count'>${businessData.review_count} reviews</span></div>`;
+    header += `<div class='price-category'><span class='bullet-after'><span class='price-range'>${businessData.price || ''}</span></span><span class='category-list'>${anchorCategories(businessData.categories)}</span></div>`; 
+    return header;
 }
 
 const testJson = {
