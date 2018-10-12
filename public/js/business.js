@@ -7,16 +7,21 @@ $('#submit').on('click', function (e) {
     location.replace("/search")
 });
 
-//GOOGLE MAPS INTERGRATION
+
 function initMap() {
     $.ajax({
-        url: `/api/restaurant/${window.location.search}`,
+        url: `/api/restaurant`,
         method: 'GET',
-        type: 'object'
     }).then(function (data) {
-        const newID = window.location.search.substring(7)
-        data.filter(function (obj) {
-            if (newID === obj.alias) {
+        const queryAlias = window.location.search.substring(7)
+        const phoneFormat = function (phone) {
+            const areaCode = phone.substring(2, 5);
+            const preFix = phone.substring(5, 8)
+            const lastFour = phone.substring(8)
+            return `(${areaCode})-${preFix}-${lastFour}`
+        };
+        data.map(function (obj) {
+            if (queryAlias === obj.alias) {
                 const latitude = obj.coordinates.latitude;
                 const longitude = obj.coordinates.longitude;
                 const name = obj.name;
@@ -24,7 +29,7 @@ function initMap() {
                 const street = obj.location.address1;
                 const city = obj.location.city;
                 const zipCode = obj.location.zip_code;
-                const phone = obj.phone;
+                const phone = phoneFormat(obj.phone);
                 const url = obj.url;
                 const info = `<ul>
                 <li><i class="fas fa-map-marker-alt"></i><p> <span>${street}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${state}, ${city} ${zipCode}</span></p></li>
@@ -32,7 +37,7 @@ function initMap() {
                 <li><i class="fas fa-phone fa-flip-horizontal"></i>&nbsp;${phone}</li>
                 <li><i class="fas fa-external-link-alt"></i>&nbsp;<a href='${url}'>${name}</a></li>
                 <li><i class="fas fa-mobile-alt"></i>&nbsp;<a href='#'>Send to your phone</a></li></ul>`;
-                $('.mapBoxText').append(info);
+                $('.mapBoxText').html(info);
 
                 const uluru = { lat: latitude, lng: longitude };
                 const map = new google.maps.Map(document.getElementById('map'), {
