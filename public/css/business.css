@@ -196,6 +196,86 @@ nav {
     margin: auto;
 }
 
+.biz-rating {
+    margin: 6px 0;
+}
+
+.i-stars {
+    background: url(https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png) no-repeat;
+    display: inline-block;
+    background-size: 132px 560px;
+    vertical-align: middle;
+    margin: -1px 6px 0 0;
+}
+
+.star-rating-1 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -258px;
+}
+
+.star-rating-1-5 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -276px;
+}
+
+.star-rating-2 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -294px;
+}
+
+.star-rating-2-5 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -312px;
+}
+
+.star-rating-3 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -330px;
+}
+
+.star-rating-3-5 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -348px;
+}
+
+.star-rating-4 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -366px;
+}
+
+.star-rating-4-5 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -384px;
+}
+
+.star-rating-5 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -402px;
+}
+
+.bullet-after::after {
+    content: "•";
+    position: relative;
+    top: -1px;
+    margin: 0 6px;
+    color: #999;
+    font-size: 10px;
+    line-height: 18px;
+}
+
+.offscreen {
+    display: none;
+}
+
 /* Map Styling */
 #map {
     height: 135px;

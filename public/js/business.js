@@ -7,11 +7,6 @@ $('#submit').on('click', function (e) {
     location.replace("/search")
 });
 
-let searchIndexInput = sessionStorage.getItem('searchTag');
-let locationIndexInput = sessionStorage.getItem('locationTag');
-
-
-
 //GOOGLE MAPS INTERGRATION
 function initMap() {
     $.ajax({
@@ -37,7 +32,7 @@ function initMap() {
                 <li><i class="fas fa-phone fa-flip-horizontal"></i>&nbsp;${phone}</li>
                 <li><i class="fas fa-external-link-alt"></i>&nbsp;<a href='${url}'>${name}</a></li>
                 <li><i class="fas fa-mobile-alt"></i>&nbsp;<a href='#'>Send to your phone</a></li></ul>`;
-                $('.mapBoxText').append(info);
+                $('.mapBoxText').html(info);
 
                 const uluru = { lat: latitude, lng: longitude };
                 const map = new google.maps.Map(document.getElementById('map'), {
@@ -69,7 +64,7 @@ $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
         //console.log(newID);
         for (let i = 0; i < dataList.length; i++) {
             if (dataList[i].alias === newID) {
-                //console.log(dataList[i])
+                // console.log(dataList[i])
                 $(".review").attr("id", newID)
             }
         }
@@ -85,3 +80,24 @@ $('.review').on('click', function (event) {
 
     }
 })
+
+const initHeader = function () {
+    $.ajax({
+        url: `/api/restaurant/${window.location.search}`,
+        method: 'GET',
+        type: 'object'
+    }).then(function (data) {
+        const newID = window.location.search.substring(7)
+        data.filter(function (obj) {
+            if (newID === obj.alias) {
+                console.log(obj.rating);
+                let header = "";
+                header += `<h1>${obj.name}</h1>`;
+                header += `<div class='biz-rating'><div class='i-stars ${getStarRatingClass(obj.rating)}' title='${obj.rating}'><img class="offscreen" height="303" src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png" width="84" alt="${obj.rating} star rating"></div><span class='review-count'>${obj.review_count} reviews</span></div>`;
+                header += `<div class='price-category'><span class='bullet-after'><span class='price-range'>${obj.price || ''}</span></span><span class='category-list'>${anchorCategories(obj.categories)}</span></div>`;
+                $(".details").html(header);
+            }
+        });
+    })
+}
+initHeader();
