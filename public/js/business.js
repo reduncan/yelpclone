@@ -31,11 +31,13 @@ function initMap() {
                 const zipCode = obj.location.zip_code;
                 const phone = phoneFormat(obj.phone);
                 const url = obj.url;
+                const directions = `https://www.google.com/maps/dir/?api=1&origin=my%20location&destination=${latitude},${longitude}&dir_action=navigate&travelmode=driving`
+
                 const info = `<ul>
                 <li><i class="fas fa-map-marker-alt"></i><p> <span>${street}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${state}, ${city} ${zipCode}</span></p></li>
-                <li><i class="fas fa-directions"></i>&nbsp;<a href='#'>Get Directions</a></li>
+                <li><i class="fas fa-directions"></i>&nbsp;<a target=_blank href=${directions}>Get Directions</a></li>
                 <li><i class="fas fa-phone fa-flip-horizontal"></i>&nbsp;${phone}</li>
-                <li><i class="fas fa-external-link-alt"></i>&nbsp;<a href='${url}'>${name}</a></li>
+                <li><i class="fas fa-external-link-alt"></i>&nbsp;<a target=_blank href='${url}'>${name}</a></li>
                 <li><i class="fas fa-mobile-alt"></i>&nbsp;<a href='#'>Send to your phone</a></li></ul>`;
                 $('.mapBoxText').html(info);
 
