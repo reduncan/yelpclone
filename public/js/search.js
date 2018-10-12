@@ -9,12 +9,12 @@ const keywords = function (keywords, res) {
             { 'alias': regex },
             { 'categories.alias': regex },
             { 'categories.title': regex },
-            { 'location.address1' : regex },    
-            { 'location.address2' : regex },
-            { 'location.address3' : regex },
-            { 'location.zip_code' : regex },
-            { 'location.country' : regex },
-            { 'location.state' : regex },
+            // { 'location.address1' : regex },    
+            // { 'location.address2' : regex },
+            // { 'location.address3' : regex },
+            // { 'location.zip_code' : regex },
+            // { 'location.country' : regex },
+            // { 'location.state' : regex }
     ])
     .then(function(businesses) {res.json(businesses);})
     .catch(function(err) {res.json(err);});

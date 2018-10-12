@@ -1,7 +1,7 @@
 //GOOGLE MAPS INTERGRATION
 function initMap() {
     $.ajax({
-        url: '/api/restaurant',
+        url: '/api/business',
         method: 'GET',
         dataType: 'json',
     }).then(function (data) {

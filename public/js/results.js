@@ -10,11 +10,11 @@ $('#submit').on('click', function (event) {
   const geocode = () => {
     let location = document.getElementById('locationInput').value
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-        params: {
-          address: location,
-          key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
-        }
-      })
+      params: {
+        address: location,
+        key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
+      }
+    })
       .then(function (res) {
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
@@ -47,7 +47,6 @@ $('#submit').on('click', function (event) {
           $('#bestNear').html(`Best ${lowerSearchInput} near ${cityState}`);
         }
       })
-
       .catch(function (err) {
         console.log(err);
       })
@@ -55,6 +54,54 @@ $('#submit').on('click', function (event) {
     $('#searchInput').val(null)
     $('#locationInput').val(null)
     $('#searchInput').focus()
+    function initMap() {
+      $.ajax({
+        url: '/api/restaurant',
+        method: 'GET',
+        dataType: 'json'
+      }).then(function (data) {
+        const resultsId = [];
+        //this gets all ID's from found results
+        $('.biz-attributes a').map(function () {
+          resultsId.push(this.id)
+        })
+        const resultsIdFiltered = resultsId.filter(function (e) {
+          return e != "";
+        })
+        //this finds the resturants json obj matching page results, and returns the coors for each
+        const list = [];
+        data.map(function (obj) {
+          if (resultsIdFiltered.includes(obj.id)) {
+            list.push(obj)
+          }
+        })
+        const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 11,
+          zoomControl: true,
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP,
+          },
+          center: { lat: list[0].coordinates.latitude, lng: list[0].coordinates.longitude },
+          tilt: 45,
+          disableDefaultUI: true
+        })
+        for (let i = 0; i < 10; i++) {
+          const marker = new google.maps.Marker({
+            position: { lat: list[i].coordinates.latitude, lng: list[i].coordinates.longitude },
+            map: map,
+            title: list[i].name,
+            label: {
+              text:'Yelp',
+              fontSize: '10px',
+            }
+            
+          })
+        }
+      });
+    }
+
+
+    initMap();
   };
 })
 
@@ -65,9 +112,9 @@ $('#oneDollar').on('click', function (event) {
   $('#locationInput').val(null)
 
   $.ajax({
-      url: '/api/restaurant',
-      method: 'GET'
-    })
+    url: '/api/restaurant',
+    method: 'GET'
+  })
     .then(function (businessData) {
       let htmlstr = '';
       let filteredData = businessData.filter(e => e.price === '$')
@@ -89,9 +136,9 @@ $('#twoDollar').on('click', function (event) {
   $('#locationInput').val(null)
 
   $.ajax({
-      url: '/api/restaurant',
-      method: 'GET'
-    })
+    url: '/api/restaurant',
+    method: 'GET'
+  })
     .then(function (businessData) {
       let htmlstr = '';
       let filteredData = businessData.filter(e => e.price === '$$')
@@ -113,9 +160,9 @@ $('#threeDollar').on('click', function (event) {
   $('#locationInput').val(null)
 
   $.ajax({
-      url: '/api/restaurant',
-      method: 'GET'
-    })
+    url: '/api/restaurant',
+    method: 'GET'
+  })
     .then(function (businessData) {
       let htmlstr = '';
       let filteredData = businessData.filter(e => e.price === '$$$')
@@ -137,9 +184,9 @@ $('#fourDollar').on('click', function (event) {
   $('#locationInput').val(null)
 
   $.ajax({
-      url: '/api/restaurant',
-      method: 'GET'
-    })
+    url: '/api/restaurant',
+    method: 'GET'
+  })
     .then(function (businessData) {
       let htmlstr = '';
       let filteredData = businessData.filter(e => e.price === '$$$$')
@@ -182,55 +229,59 @@ $('#fourDollar').on('click', function (event) {
 //               console.log(err);
 //             })
 //         });
-//       });
-      //GOOGLE MAPS INTERGRATION
-      function initMap() {
-        $.ajax({
-          url: '/api/restaurant',
-          method: 'GET',
-          dataType: 'json',
-        }).then(function (data) {
-          const latitude = data[0].coordinates.latitude;
-          const longitude = data[0].coordinates.longitude;
-          const name = data[0].name;
-          const uluru = {
-            lat: latitude,
-            lng: longitude
-          };
-          const map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            zoomControl: true,
-            zoomControlOptions: {
-              position: google.maps.ControlPosition.LEFT_TOP,
-            },
-            center: uluru,
-            tilt: 45,
-            disableDefaultUI: true
-          });
-          const marker = new google.maps.Marker({
-            position: uluru,
-            map: map,
-            title: `${name}`
-          });
-        }).catch(function (err) {
-          console.log(err);
-        })
-      };
-      const lessMoreToggle = function () {
-        if ($('.map-header a span').text() === "Mo' Map") {
-          $('.map-header a span').text("Less Map");
-        } else {
-          $('.map-header a span').text("Mo' Map");
-        }
-      }
 
-      const rotate = function () {
-        $('.rotate').toggleClass('left');
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 18,
+    zoomControl: true,
+    zoomControlOptions: {
+      position: google.maps.ControlPosition.LEFT_TOP,
+    },
+    tilt: 45,
+    disableDefaultUI: true
+  });
+  let marker = new google.maps.Marker({
+    position: { lat: -34.397, lng: 150.644 },
+    map: map,
+    title: "You are here!",
+    animation: google.maps.Animation.BOUNCE
+  });
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
       };
+      map.setCenter(pos);
+      marker.setPosition(pos);
+    }, function () {
+      handleLocationError(true, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, map.getCenter());
+  }
+}
 
-      $('.map-header a').on('click', function (e) {
-        e.preventDefault();
-        rotate();
-        lessMoreToggle();
-        $('.result-map').toggleClass('mo-map');
-      })
+const lessMoreToggle = function () {
+  if ($('.map-header a span').text() === "Mo' Map") {
+    $('.map-header a span').text("Less Map");
+  }
+  else {
+    $('.map-header a span').text("Mo' Map");
+  }
+}
+
+const rotate = function () {
+  $('.rotate').toggleClass('left');
+};
+
+$('.map-header a').on('click', function (e) {
+  e.preventDefault();
+  rotate();
+  lessMoreToggle();
+  $('.result-map').toggleClass('mo-map');
+})

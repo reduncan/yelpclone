@@ -145,28 +145,17 @@ nav {
     grid-gap: 10px;
 }
 
-#bestNear {
-    font-size: 20px;
-    padding-top: 35px;
-    margin-bottom: 10px;
-}
-
 .dollar {
     display: grid;
     grid-template-rows: 1fr; 
     grid-template-columns: 40px 40px 50px 55px;
 }
 
-.tagFilter {
-    background-color: white;
-    border: 1px solid #e6e6e6;
-}
-
 button[data-tool-tip] {
     position: relative;
 }
 
-button[data-tool-tip]::after{
+ button[data-tool-tip]::after{
     content:attr(data-tool-tip);
     display: block;
     position: absolute;
@@ -181,10 +170,15 @@ button[data-tool-tip]::after{
     transform: scale(0);
     transition: ease-out 150ms;
 }
-
-button[data-tool-tip]:hover::after {
+ button[data-tool-tip]:hover::after {
     transform: scale(1);
     bottom: 100%;
+}
+
+#bestNear {
+    font-size: 20px;
+    padding-top: 35px;
+    margin-bottom: 10px;
 }
 
 button {
@@ -193,15 +187,15 @@ button {
 }
 
 .first {
-    border-radius: 3px 0px 0px 3px;
+    border-radius: 5px 0px 0px 5px;
 }
 
 .last {
-    border-radius: 0px 3px 3px 0px;
+    border-radius: 0px 5px 5px 0px;
 }
 
 .open {
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 .open i {
@@ -230,6 +224,14 @@ footer {
     grid-column: span 1;
     border-left: none;
     border-right: none;
+}
+
+.tagFilter {
+    background-color: white;
+    border: 1px solid #e6e6e6;
+}
+ .tagFilter:hover {
+    box-shadow:black;
 }
 
 .media-block {
