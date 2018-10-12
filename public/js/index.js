@@ -1,4 +1,4 @@
-const bgIndex = Math.floor((Math.random() * 10) + 1);
+const bgIndex = Math.floor((Math.random() * 9) + 1);
 
 const generate = function () {
     $.ajax({
@@ -7,8 +7,17 @@ const generate = function () {
         dataType: 'json',
     }).then (function (image) {
         const newBG = image[bgIndex].url;
+        const rgba = "rgba(51, 51, 51, .3)";
         console.log(newBG)
-        $('body').css({"background-image": "url(${newBG})"});
+        $('body').css({
+            "background": "linear-gradient("
+                + rgba +"," 
+                + rgba +
+              ")"+","+"url("+ newBG +")",
+              "background-size": "cover",
+              "background-repeat": "no-repeat",
+              "background-position": "center"
+    });
     });
 };
 
