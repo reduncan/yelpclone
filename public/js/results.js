@@ -104,6 +104,7 @@ if (searchIndexInput !== '' && locationIndexInput !== '') {
     initMap();
   }
 }
+
 $('#submit').on('click', function (event) {
   event.preventDefault();
   const geocode = () => {
@@ -115,6 +116,7 @@ $('#submit').on('click', function (event) {
         }
       })
       .then(function (res) {
+        console.log(res);
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
         callAddressCity(addressComponents[0].long_name, formattedAddress)
@@ -135,7 +137,8 @@ $('#submit').on('click', function (event) {
     $.post('/api/search', newSearch)
       .then(function (businessData) {
         let htmlstr = '';
-        if (newSearch.searchInput !== '' && newSearch.locationInput !== '') {
+        // if (newSearch.searchInput !== '' && newSearch.locationInput !== '') {
+          if (newSearch.locationInput !== '') {
           businessData.forEach(e => {
             htmlstr += build.businessBlock(e);
           });
