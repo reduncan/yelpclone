@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+  
   $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
   .then(function (dataList) {
     console.log(dataList)
@@ -42,7 +42,9 @@ const addReview = function(){
       $('.review-input').empty();
       $('#content').empty();
     }).then(function(){
-      alert('Thank you for your review')
+      $('#thank-you').slideDown(500, 'linear').delay(700);
+      $('#thank-you').removeClass('hide');
+      $('#thank-you').slideUp(500,'linear'); 
     })
     .fail(function(err){
       console.log('this failed', err)
