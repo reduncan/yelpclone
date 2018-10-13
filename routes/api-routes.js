@@ -51,9 +51,9 @@ module.exports = function (app) {
         
         db.Review.create(req.body)
             .then(function (dbReview) {
-                console.log(dbReview)
-                console.log('hello')
-                console.log(req.body.url)
+                // console.log(dbReview)
+                // console.log('hello')
+                // console.log(req.body.url)
                 db.Restaurant.findOneAndUpdate({alias: req.body.url}, {$set: {personal_review: {
                     // personal_review_ID : dbReview._id,
                     personal_review_text : dbReview.text, 
@@ -63,7 +63,7 @@ module.exports = function (app) {
                     //  { new: true}
                 
             .then(function(dbUser){
-                console.log(dbUser)
+                // console.log(dbUser)
                 res.json(dbUser)
             }
             )
