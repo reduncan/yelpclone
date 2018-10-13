@@ -69,6 +69,9 @@ var RestaurantSchema = new Schema(
             type: String,
             trim: true
         },
+        personal_review: {
+            type: Object
+        }
     }
 );
 
