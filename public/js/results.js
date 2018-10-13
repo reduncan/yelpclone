@@ -7,7 +7,7 @@
 let searchIndexInput = sessionStorage.getItem('searchTag');
 let locationIndexInput = sessionStorage.getItem('locationTag');
 
-if (searchIndexInput !== '' && locationIndexInput !== '') {
+if (locationIndexInput !== '') {
   const geocode = () => {
     let location = locationIndexInput;
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
@@ -42,7 +42,14 @@ if (searchIndexInput !== '' && locationIndexInput !== '') {
         });
         $('#holder').html(htmlstr);
         let lowerSearchInput = newSearchIndex.searchInput.charAt(0).toUpperCase() + newSearchIndex.searchInput.slice(1);
-        $('#bestNear').html(`Best ${lowerSearchInput} near ${cityStateIndex}`);
+        
+        if (newSearchIndex.searchInput !== '') {
+          $('#bestNear').html(`Best ${lowerSearchInput} near ${cityStateIndex}`);
+          $('#title').text(`Best ${lowerSearchInput} near ${cityStateIndex}`);
+        } else {
+          $('#bestNear').html(`Places near ${cityStateIndex}`);
+          $('#title').text(`Places near ${cityStateIndex}`);
+        }        
         $('#searchInput').val(`${lowerSearchInput}`);
         $('#locationInput').val(`${cityStateIndex}`);
       })
@@ -132,20 +139,25 @@ $('#submit').on('click', function (event) {
       searchInput: $('#searchInput').val().trim(),
       locationInput: shortName,
     };
+
     $.post('/api/search', newSearch)
       .then(function (businessData) {
         let htmlstr = '';
-        // if (newSearch.searchInput !== '' && newSearch.locationInput !== '') {
-        if (newSearch.locationInput !== '') {
-          businessData.forEach(e => {
-            htmlstr += build.businessBlock(e);
-          });
-          $('#holder').html(htmlstr);
-          let lowerSearchInput = newSearch.searchInput.charAt(0).toUpperCase() + newSearch.searchInput.slice(1);
+        businessData.forEach(e => {
+          htmlstr += build.businessBlock(e);
+        });
+        $('#holder').html(htmlstr);
+        let lowerSearchInput = newSearch.searchInput.charAt(0).toUpperCase() + newSearch.searchInput.slice(1);
+        
+        if ($('#searchInput').val() !== '') {
           $('#bestNear').html(`Best ${lowerSearchInput} near ${cityState}`);
-          $('#searchInput').val(`${lowerSearchInput}`);
-          $('#locationInput').val(`${cityState}`);
-        }
+          $('#title').text(`Best ${lowerSearchInput} near ${cityState}`);
+        } else {
+          $('#bestNear').html(`Places near ${cityState}`);
+          $('#title').text(`Places near ${cityState}`);
+        };
+        $('#searchInput').val(`${lowerSearchInput}`);
+        $('#locationInput').val(`${cityState}`); 
       })
       .catch(function (err) {
         console.log(err);
@@ -256,6 +268,7 @@ $('#oneDollar').on('click', function (event) {
           });
           $('#holder').html(htmlstr);
           $('#bestNear').html(`Places near ${cityState}`);
+          $('#title').text(`Places near ${cityState}`);
         })
         .catch(function (err) {
           console.log(err);
@@ -367,6 +380,7 @@ $('#twoDollar').on('click', function (event) {
           });
           $('#holder').html(htmlstr);
           $('#bestNear').html(`Places near ${cityState}`);
+          $('#title').text(`Places near ${cityState}`);
         })
         .catch(function (err) {
           console.log(err);
@@ -478,6 +492,7 @@ $('#threeDollar').on('click', function (event) {
           });
           $('#holder').html(htmlstr);
           $('#bestNear').html(`Places near ${cityState}`);
+          $('#title').text(`Places near ${cityState}`);
         })
         .catch(function (err) {
           console.log(err);
@@ -589,6 +604,7 @@ $('#fourDollar').on('click', function (event) {
           });
           $('#holder').html(htmlstr);
           $('#bestNear').html(`Places near ${cityState}`);
+          $('#title').text(`Places near ${cityState}`);
         })
         .catch(function (err) {
           console.log(err);
