@@ -126,6 +126,7 @@ module.exports = function (app) {
             res.json(err);
         });
     });
+    
     app.get('/api/business/:alias', function (req, res) {
         db.Restaurant.find({alias:req.params.alias})
             .then(function (dbRestaurant) {
