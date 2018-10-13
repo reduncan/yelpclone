@@ -43,6 +43,8 @@ if (searchIndexInput !== '' && locationIndexInput !== '') {
         $('#holder').html(htmlstr);
         let lowerSearchInput = newSearchIndex.searchInput.charAt(0).toUpperCase() + newSearchIndex.searchInput.slice(1);
         $('#bestNear').html(`Best ${lowerSearchInput} near ${cityStateIndex}`);
+        $('#searchInput').val(`${lowerSearchInput}`);
+        $('#locationInput').val(`${cityStateIndex}`);
       })
       .catch(function (err) {
         console.log(err);
@@ -114,7 +116,6 @@ $('#submit').on('click', function (event) {
         }
       })
       .then(function (res) {
-        console.log(res);
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
         callAddressCity(addressComponents[0].short_name, formattedAddress)
@@ -131,19 +132,19 @@ $('#submit').on('click', function (event) {
       searchInput: $('#searchInput').val().trim(),
       locationInput: shortName,
     };
-
     $.post('/api/search', newSearch)
       .then(function (businessData) {
-        console.log(businessData);
         let htmlstr = '';
         // if (newSearch.searchInput !== '' && newSearch.locationInput !== '') {
-          if (newSearch.locationInput !== '') {
+        if (newSearch.locationInput !== '') {
           businessData.forEach(e => {
             htmlstr += build.businessBlock(e);
           });
           $('#holder').html(htmlstr);
           let lowerSearchInput = newSearch.searchInput.charAt(0).toUpperCase() + newSearch.searchInput.slice(1);
           $('#bestNear').html(`Best ${lowerSearchInput} near ${cityState}`);
+          $('#searchInput').val(`${lowerSearchInput}`);
+          $('#locationInput').val(`${cityState}`);
         }
       })
       .catch(function (err) {
@@ -201,106 +202,452 @@ $('#submit').on('click', function (event) {
         }
       });
     }
-
-
     initMap();
   };
 })
 
 $('#oneDollar').on('click', function (event) {
   event.preventDefault();
+  const geocode = () => {
+    let location = document.getElementById('locationInput').value
+    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+        params: {
+          address: location,
+          key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
+        }
+      })
+      .then(function (res) {
+        let formattedAddress = res.data.results[0].formatted_address;
+        let addressComponents = res.data.results[0].address_components;
+        callAddressCity(addressComponents[0].short_name, formattedAddress)
+      })
 
-  $('#searchInput').val(null)
-  $('#locationInput').val(null)
+      .catch(function (err) {
+        console.log(err);
+      })
 
-  $.ajax({
-      url: '/api/restaurant',
-      method: 'GET'
-    })
-    .then(function (businessData) {
-      let htmlstr = '';
-      let filteredData = businessData.filter(e => e.price === '$')
-      filteredData.forEach(e => {
-        htmlstr += build.businessBlock(e);
+  };
+  geocode();
+  const callAddressCity = function (shortName, cityState) {
+    const newSearch = {
+      searchInput: $('#searchInput').val().trim(),
+      locationInput: shortName,
+    };
+    if (newSearch.searchInput !== '') {
+      $.post('/api/search', newSearch)
+        .then(function (businessData) {
+          let htmlstr = '';
+          let filteredData = businessData.filter(e => e.price === '$')
+          filteredData.forEach(e => {
+            htmlstr += build.businessBlock(e);
+          });
+          $('#holder').html(htmlstr);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+    } else {
+      $.post('/api/search', newSearch)
+        .then(function (businessData) {
+          let htmlstr = '';
+          let filteredData = businessData.filter(e => e.price === '$')
+          filteredData.forEach(e => {
+            htmlstr += build.businessBlock(e);
+          });
+          $('#holder').html(htmlstr);
+          $('#bestNear').html(`Places near ${cityState}`);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+    }
+
+    function initMap() {
+      $.ajax({
+        url: '/api/restaurant',
+        method: 'GET',
+        dataType: 'json'
+      }).then(function (data) {
+        const resultsId = [];
+        //this gets all ID's from found results
+        $('.biz-attributes a').map(function () {
+          resultsId.push(this.id)
+        })
+        const resultsIdFiltered = resultsId.filter(function (e) {
+          return e != "";
+        })
+        //this finds the resturants json obj matching page results, and returns the coors for each
+        const list = [];
+        data.map(function (obj) {
+          if (resultsIdFiltered.includes(obj.id)) {
+            list.push(obj)
+          }
+        })
+        const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 11,
+          zoomControl: true,
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP,
+          },
+          center: {
+            lat: list[0].coordinates.latitude,
+            lng: list[0].coordinates.longitude
+          },
+          tilt: 45,
+          disableDefaultUI: true
+        })
+        for (let i = 0; i < 10; i++) {
+          const marker = new google.maps.Marker({
+            position: {
+              lat: list[i].coordinates.latitude,
+              lng: list[i].coordinates.longitude
+            },
+            map: map,
+            title: list[i].name,
+            label: {
+              text: 'Yelp',
+              fontSize: '10px',
+            }
+
+          })
+        }
       });
-      $('#holder').html(htmlstr);
-    })
-
-    .catch(function (err) {
-      console.log(err);
-    })
+    }
+    initMap();
+  }
 });
 
 $('#twoDollar').on('click', function (event) {
   event.preventDefault();
+  const geocode = () => {
+    let location = document.getElementById('locationInput').value
+    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+        params: {
+          address: location,
+          key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
+        }
+      })
+      .then(function (res) {
+        let formattedAddress = res.data.results[0].formatted_address;
+        let addressComponents = res.data.results[0].address_components;
+        callAddressCity(addressComponents[0].short_name, formattedAddress)
+      })
 
-  $('#searchInput').val(null)
-  $('#locationInput').val(null)
+      .catch(function (err) {
+        console.log(err);
+      })
 
-  $.ajax({
-      url: '/api/restaurant',
-      method: 'GET'
-    })
-    .then(function (businessData) {
-      let htmlstr = '';
-      let filteredData = businessData.filter(e => e.price === '$$')
-      filteredData.forEach(e => {
-        htmlstr += build.businessBlock(e);
+  };
+  geocode();
+  const callAddressCity = function (shortName, cityState) {
+    const newSearch = {
+      searchInput: $('#searchInput').val().trim(),
+      locationInput: shortName,
+    };
+    if (newSearch.searchInput !== '') {
+      $.post('/api/search', newSearch)
+        .then(function (businessData) {
+          let htmlstr = '';
+          let filteredData = businessData.filter(e => e.price === '$$')
+          filteredData.forEach(e => {
+            htmlstr += build.businessBlock(e);
+          });
+          $('#holder').html(htmlstr);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+    } else {
+      $.post('/api/search', newSearch)
+        .then(function (businessData) {
+          let htmlstr = '';
+          let filteredData = businessData.filter(e => e.price === '$$')
+          filteredData.forEach(e => {
+            htmlstr += build.businessBlock(e);
+          });
+          $('#holder').html(htmlstr);
+          $('#bestNear').html(`Places near ${cityState}`);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+    }
+
+    function initMap() {
+      $.ajax({
+        url: '/api/restaurant',
+        method: 'GET',
+        dataType: 'json'
+      }).then(function (data) {
+        const resultsId = [];
+        //this gets all ID's from found results
+        $('.biz-attributes a').map(function () {
+          resultsId.push(this.id)
+        })
+        const resultsIdFiltered = resultsId.filter(function (e) {
+          return e != "";
+        })
+        //this finds the resturants json obj matching page results, and returns the coors for each
+        const list = [];
+        data.map(function (obj) {
+          if (resultsIdFiltered.includes(obj.id)) {
+            list.push(obj)
+          }
+        })
+        const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 11,
+          zoomControl: true,
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP,
+          },
+          center: {
+            lat: list[0].coordinates.latitude,
+            lng: list[0].coordinates.longitude
+          },
+          tilt: 45,
+          disableDefaultUI: true
+        })
+        for (let i = 0; i < 10; i++) {
+          const marker = new google.maps.Marker({
+            position: {
+              lat: list[i].coordinates.latitude,
+              lng: list[i].coordinates.longitude
+            },
+            map: map,
+            title: list[i].name,
+            label: {
+              text: 'Yelp',
+              fontSize: '10px',
+            }
+
+          })
+        }
       });
-      $('#holder').html(htmlstr);
-    })
-
-    .catch(function (err) {
-      console.log(err);
-    })
+    }
+    initMap();
+  }
 });
 
 $('#threeDollar').on('click', function (event) {
   event.preventDefault();
+  const geocode = () => {
+    let location = document.getElementById('locationInput').value
+    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+        params: {
+          address: location,
+          key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
+        }
+      })
+      .then(function (res) {
+        let formattedAddress = res.data.results[0].formatted_address;
+        let addressComponents = res.data.results[0].address_components;
+        callAddressCity(addressComponents[0].short_name, formattedAddress)
+      })
 
-  $('#searchInput').val(null)
-  $('#locationInput').val(null)
+      .catch(function (err) {
+        console.log(err);
+      })
 
-  $.ajax({
-      url: '/api/restaurant',
-      method: 'GET'
-    })
-    .then(function (businessData) {
-      let htmlstr = '';
-      let filteredData = businessData.filter(e => e.price === '$$$')
-      filteredData.forEach(e => {
-        htmlstr += build.businessBlock(e);
+  };
+  geocode();
+  const callAddressCity = function (shortName, cityState) {
+    const newSearch = {
+      searchInput: $('#searchInput').val().trim(),
+      locationInput: shortName,
+    };
+    if (newSearch.searchInput !== '') {
+      $.post('/api/search', newSearch)
+        .then(function (businessData) {
+          let htmlstr = '';
+          let filteredData = businessData.filter(e => e.price === '$$$')
+          filteredData.forEach(e => {
+            htmlstr += build.businessBlock(e);
+          });
+          $('#holder').html(htmlstr);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+    } else {
+      $.post('/api/search', newSearch)
+        .then(function (businessData) {
+          let htmlstr = '';
+          let filteredData = businessData.filter(e => e.price === '$$$')
+          filteredData.forEach(e => {
+            htmlstr += build.businessBlock(e);
+          });
+          $('#holder').html(htmlstr);
+          $('#bestNear').html(`Places near ${cityState}`);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+    }
+
+    function initMap() {
+      $.ajax({
+        url: '/api/restaurant',
+        method: 'GET',
+        dataType: 'json'
+      }).then(function (data) {
+        const resultsId = [];
+        //this gets all ID's from found results
+        $('.biz-attributes a').map(function () {
+          resultsId.push(this.id)
+        })
+        const resultsIdFiltered = resultsId.filter(function (e) {
+          return e != "";
+        })
+        //this finds the resturants json obj matching page results, and returns the coors for each
+        const list = [];
+        data.map(function (obj) {
+          if (resultsIdFiltered.includes(obj.id)) {
+            list.push(obj)
+          }
+        })
+        const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 11,
+          zoomControl: true,
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP,
+          },
+          center: {
+            lat: list[0].coordinates.latitude,
+            lng: list[0].coordinates.longitude
+          },
+          tilt: 45,
+          disableDefaultUI: true
+        })
+        for (let i = 0; i < 10; i++) {
+          const marker = new google.maps.Marker({
+            position: {
+              lat: list[i].coordinates.latitude,
+              lng: list[i].coordinates.longitude
+            },
+            map: map,
+            title: list[i].name,
+            label: {
+              text: 'Yelp',
+              fontSize: '10px',
+            }
+
+          })
+        }
       });
-      $('#holder').html(htmlstr);
-    })
-
-    .catch(function (err) {
-      console.log(err);
-    })
+    }
+    initMap();
+  }
 });
 
 $('#fourDollar').on('click', function (event) {
   event.preventDefault();
+  const geocode = () => {
+    let location = document.getElementById('locationInput').value
+    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+        params: {
+          address: location,
+          key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
+        }
+      })
+      .then(function (res) {
+        let formattedAddress = res.data.results[0].formatted_address;
+        let addressComponents = res.data.results[0].address_components;
+        callAddressCity(addressComponents[0].short_name, formattedAddress)
+      })
 
-  $('#searchInput').val(null)
-  $('#locationInput').val(null)
+      .catch(function (err) {
+        console.log(err);
+      })
 
-  $.ajax({
-      url: '/api/restaurant',
-      method: 'GET'
-    })
-    .then(function (businessData) {
-      let htmlstr = '';
-      let filteredData = businessData.filter(e => e.price === '$$$$')
-      filteredData.forEach(e => {
-        htmlstr += build.businessBlock(e);
+  };
+  geocode();
+  const callAddressCity = function (shortName, cityState) {
+    const newSearch = {
+      searchInput: $('#searchInput').val().trim(),
+      locationInput: shortName,
+    };
+    if (newSearch.searchInput !== '') {
+      $.post('/api/search', newSearch)
+        .then(function (businessData) {
+          let htmlstr = '';
+          let filteredData = businessData.filter(e => e.price === '$$$$')
+          filteredData.forEach(e => {
+            htmlstr += build.businessBlock(e);
+          });
+          $('#holder').html(htmlstr);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+    } else {
+      $.post('/api/search', newSearch)
+        .then(function (businessData) {
+          let htmlstr = '';
+          let filteredData = businessData.filter(e => e.price === '$$$$')
+          filteredData.forEach(e => {
+            htmlstr += build.businessBlock(e);
+          });
+          $('#holder').html(htmlstr);
+          $('#bestNear').html(`Places near ${cityState}`);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+    }
+
+    function initMap() {
+      $.ajax({
+        url: '/api/restaurant',
+        method: 'GET',
+        dataType: 'json'
+      }).then(function (data) {
+        const resultsId = [];
+        //this gets all ID's from found results
+        $('.biz-attributes a').map(function () {
+          resultsId.push(this.id)
+        })
+        const resultsIdFiltered = resultsId.filter(function (e) {
+          return e != "";
+        })
+        //this finds the resturants json obj matching page results, and returns the coors for each
+        const list = [];
+        data.map(function (obj) {
+          if (resultsIdFiltered.includes(obj.id)) {
+            list.push(obj)
+          }
+        })
+        const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 11,
+          zoomControl: true,
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP,
+          },
+          center: {
+            lat: list[0].coordinates.latitude,
+            lng: list[0].coordinates.longitude
+          },
+          tilt: 45,
+          disableDefaultUI: true
+        })
+        for (let i = 0; i < 10; i++) {
+          const marker = new google.maps.Marker({
+            position: {
+              lat: list[i].coordinates.latitude,
+              lng: list[i].coordinates.longitude
+            },
+            map: map,
+            title: list[i].name,
+            label: {
+              text: 'Yelp',
+              fontSize: '10px',
+            }
+
+          })
+        }
       });
-      $('#holder').html(htmlstr);
-    })
-
-    .catch(function (err) {
-      console.log(err);
-    })
+    }
+    initMap();
+  }
 });
 
 // $('#openStatus').on('click', function (event) {

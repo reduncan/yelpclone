@@ -1,10 +1,10 @@
 /** API to build elements dynamically */
 
 /** Yelp - Results Page */
-// let count = 0;
+let count = 0;
 
 const buildIndivBusinessBlock = function (businessData) {
-    // count++;
+    count++;
     let businessElement = '';
     businessElement += `<div class='media-block'>`;
     businessElement += `<div class='media-avatar'><img alt='Photo of ${businessData.name}' src='${businessData.image_url}' height='210' width='210'></div>`;
