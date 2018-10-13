@@ -51,9 +51,9 @@ module.exports = function (app) {
         
         db.Review.create(req.body)
             .then(function (dbReview) {
-                console.log(dbReview)
-                console.log('hello')
-                console.log(req.body.url)
+                // console.log(dbReview)
+                // console.log('hello')
+                // console.log(req.body.url)
                 db.Restaurant.findOneAndUpdate({alias: req.body.url}, {$set: {personal_review: {
                     // personal_review_ID : dbReview._id,
                     personal_review_text : dbReview.text, 
@@ -63,7 +63,7 @@ module.exports = function (app) {
                     //  { new: true}
                 
             .then(function(dbUser){
-                console.log(dbUser)
+                // console.log(dbUser)
                 res.json(dbUser)
             }
             )
@@ -138,7 +138,13 @@ module.exports = function (app) {
     });
 
     app.post('/api/search', function (req, res) {
-        console.log(`Searching keyword... ${req.body.searchInput} near ${req.body.locationInput}`);
-        searchBy.keywords(req.body.searchInput && req.body.locationInput, res);
+        let searchTerm = req.body.searchInput;
+        let location = req.body.locationInput;
+        // console.log("Search: " + searchTerm);
+        // console.log("Location: " + location);
+        console.log(`Searching keyword... ${searchTerm} near ${location}`);
+        // searchBy.location();
+        // searchBy.keywords(req.body.searchInput && req.body.locationInput, res);
+        searchBy.keywordAndLocation(searchTerm, location, res);
     });
 };
