@@ -6,6 +6,7 @@
  */
 let searchIndexInput = sessionStorage.getItem('searchTag');
 let locationIndexInput = sessionStorage.getItem('locationTag');
+
 if (searchIndexInput !== '' && locationIndexInput !== '') {
   const geocode = () => {
     let location = locationIndexInput;
@@ -18,7 +19,7 @@ if (searchIndexInput !== '' && locationIndexInput !== '') {
       .then(function (res) {
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
-        callAddressCityIndex(addressComponents[0].long_name, formattedAddress)
+        callAddressCityIndex(addressComponents[0].short_name, formattedAddress)
       })
 
       .catch(function (err) {
@@ -27,10 +28,10 @@ if (searchIndexInput !== '' && locationIndexInput !== '') {
 
   };
   geocode();
-  const callAddressCityIndex = function (longNameIndex, cityStateIndex) {
+  const callAddressCityIndex = function (shortNameIndex, cityStateIndex) {
     const newSearchIndex = {
       searchInput: searchIndexInput,
-      locationInput: longNameIndex,
+      locationInput: shortNameIndex,
     };
 
     $.post('/api/search', newSearchIndex)
@@ -46,9 +47,6 @@ if (searchIndexInput !== '' && locationIndexInput !== '') {
       .catch(function (err) {
         console.log(err);
       })
-
-    $('#searchInput').val(null)
-    $('#locationInput').val(null)
 
     function initMap() {
       $.ajax({
@@ -119,7 +117,7 @@ $('#submit').on('click', function (event) {
         console.log(res);
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
-        callAddressCity(addressComponents[0].long_name, formattedAddress)
+        callAddressCity(addressComponents[0].short_name, formattedAddress)
       })
 
       .catch(function (err) {
@@ -128,14 +126,15 @@ $('#submit').on('click', function (event) {
 
   };
   geocode();
-  const callAddressCity = function (longName, cityState) {
+  const callAddressCity = function (shortName, cityState) {
     const newSearch = {
       searchInput: $('#searchInput').val().trim(),
-      locationInput: longName,
+      locationInput: shortName,
     };
 
     $.post('/api/search', newSearch)
       .then(function (businessData) {
+        console.log(businessData);
         let htmlstr = '';
         // if (newSearch.searchInput !== '' && newSearch.locationInput !== '') {
           if (newSearch.locationInput !== '') {
@@ -150,10 +149,6 @@ $('#submit').on('click', function (event) {
       .catch(function (err) {
         console.log(err);
       })
-
-    $('#searchInput').val(null)
-    $('#locationInput').val(null)
-    $('#searchInput').focus()
 
     function initMap() {
       $.ajax({

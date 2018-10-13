@@ -26,9 +26,9 @@ const keywords = function (searchString, res) {
     db.Restaurant
     .find()
     .or([
-        { 'alias': regex },                 //term
-        { 'categories.alias': regex },      //tag
-        { 'categories.title': regex }       //tag
+        { 'alias'               : regex }, 
+        { 'categories.alias'    : regex },   
+        { 'categories.title'    : regex }
     ])
     .then(function(businessData) {
         businesses = businessData.length > 0 ? businessData : ["none"];
@@ -46,20 +46,19 @@ const keywords = function (searchString, res) {
  * @returns {array} business objects
  */
 const location = function (locationString, res) {
-    let _keywords = "Atlanta"; // hardcoded, replace using locationString later
     let businesses = [];
-    let regex = { $regex: new RegExp(_keywords, 'i')}
+    let regex = { $regex: new RegExp(locationString, 'i')}
 
     db.Restaurant
     .find()
     .or([
-            { 'location.city' : regex },
-            { 'location.address1' : regex },    
-            { 'location.address2' : regex },
-            { 'location.address3' : regex },
-            { 'location.zip_code' : regex },
-            { 'location.country' : regex },
-            { 'location.state' : regex }
+            { 'location.city'       : regex },
+            { 'location.address1'   : regex },    
+            { 'location.address2'   : regex },
+            { 'location.address3'   : regex },
+            { 'location.zip_code'   : regex },
+            { 'location.country'    : regex },
+            { 'location.state'      : regex }
     ])
     .then(function(businessData) {
         businesses = businessData.length > 0 ? businessData : ["none"];
@@ -92,9 +91,9 @@ const keywordAndLocation = function (searchString, locationString, res) {
 
         // at least one from these properties
         { $or: [
-            {'alias'                : reg_searchTerm}, 
-            {'categories.alias'     : reg_searchTerm},
-            {'categories.title'     : reg_searchTerm}
+            { 'alias'               : reg_searchTerm }, 
+            { 'categories.alias'    : reg_searchTerm },
+            { 'categories.title'    : reg_searchTerm }
         ]},
 
         // at least one from these properties
