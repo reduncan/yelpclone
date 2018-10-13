@@ -81,6 +81,7 @@ $('.review').on('click', function (event) {
     }
 })
 
+
 const initHeader = function () {
     $.ajax({
         url: `/api/restaurant/${window.location.search}`,
