@@ -44,7 +44,9 @@ const addReview = function(){
     }).then(function(){
       $('#thank-you').slideDown(500, 'linear').delay(700);
       $('#thank-you').removeClass('hide');
-      $('#thank-you').slideUp(500,'linear'); 
+      $('#thank-you').slideUp(800,'linear'); 
+      $('.outer-post').html('<i class="fas fa-check"></i> Posted');
+      $('.outer-post').attr('disabled' ,'disabled')
     })
     .fail(function(err){
       console.log('this failed', err)

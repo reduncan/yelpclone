@@ -89,7 +89,7 @@ $('.review').on('click', function (event) {
 })
 
 
-const initHeader = function () {
+const initBody = function () {
     $.ajax({
         url: `/api/restaurant/${window.location.search}`,
         method: 'GET',
@@ -98,14 +98,46 @@ const initHeader = function () {
         const newID = window.location.search.substring(7)
         data.filter(function (obj) {
             if (newID === obj.alias) {
-                console.log(obj.rating);
+                
                 let header = "";
                 header += `<h1>${obj.name}</h1>`;
                 header += `<div class='biz-rating'><div class='i-stars ${getStarRatingClass(obj.rating)}' title='${obj.rating}'><img class="offscreen" height="303" src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png" width="84" alt="${obj.rating} star rating"></div><span class='review-count'>${obj.review_count} reviews</span></div>`;
                 header += `<div class='price-category'><span class='bullet-after'><span class='price-range'>${obj.price || ''}</span></span><span class='category-list'>${anchorCategories(obj.categories)}</span></div>`;
                 $(".details").html(header);
+                
+                let reviewHead = "";
+                reviewHead += `<h3><span>Recommended Reviews</span> for ${obj.name}</h3>`;
+                $(".recommend").html(reviewHead);
+
+                let review = "";
+                review += `<div class="line"><p class="user">Gordon Ramsey</p>`;
+                review += `<p class="home">Hell's Kitchen</p></div>`;
+                review += `<div class="line"><div class='biz-rating2'><div class='i-stars2 ${getStarRatingClass(obj.personal_review.personal_review_rating)}'><img class="offscreen" height="303" src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png" width="84" alt="${obj.rating} star rating"></div><span class='review-date'>${obj.personal_review.personal_review_time}</span></div>`;
+                review += `<p class="thoughts">${obj.personal_review.personal_review_text}</p></div>`;
+                $(".user-review").html(review);
+
+                let photos = "";
+                photos += `<img src="${obj.image_url}" alt="Restaurant Photo" width="250px" height="250px">`;
+                $(".photos").html(photos);
             }
         });
     })
 }
-initHeader();
+initBody();
+
+const initReviews = function () {
+    $.ajax({
+        url: `/api/review`,
+        method: 'GET',
+        type: 'object'
+    }).then(function (data) {
+        // const reviews = window.location.search.substring(7)
+        const prefix = "https://www.yelp/com/biz/";
+        console.log(prefix);
+        const noPre = data.url.replace(prefix, "");
+        console.log(noPre);
+        const newAlias = noPre.substring(0, noPref.indexdOf('?'));
+        console.log(newAlias);
+    })
+}
+initReviews();
