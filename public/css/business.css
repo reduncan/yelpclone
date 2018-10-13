@@ -297,9 +297,113 @@ h1 {
     grid-template-columns: 312px 908px;
 }
 
+.photos {
+    display: grid;
+    justify-content: center;
+}
+
 .reviews {
     width: 1020px;
-    margin: auto;
+    margin: 50px auto;
+    display: grid;
+    grid-template-rows: 50px 1fr;
+    grid-template-columns: 1fr;
+}
+
+h3 {
+    font-size: 21px;
+}
+
+.recommend h3 span {
+    font-weight: 700;
+    color: #d32323;
+}
+
+.user-review {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 250px 250px;
+}
+
+.line {
+    border-top: 2px solid #e6e6e6;
+}
+
+.user-review p {
+    margin-top: 10px;
+}
+
+.user-review .user, .home {
+    margin-left: 10px;
+}
+
+.user-review .biz-rating {
+    margin-top: 10px;
+}
+
+.biz-rating2 {
+    margin: 6px 0;
+}
+.i-stars2 {
+    background: url(https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png) no-repeat;
+    display: inline-block;
+    background-size: 132px 560px;
+    vertical-align: middle;
+    margin: -1px 6px 0 0;
+}
+
+.line .star-rating-1 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -258px;
+}
+
+.line .star-rating-1-5 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -276px;
+}
+
+.line .star-rating-2 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -294px;
+}
+
+.line .star-rating-2-5 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -312px;
+}
+
+.line .star-rating-3 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -330px;
+}
+
+.line .star-rating-3-5 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -348px;
+}
+
+.line .star-rating-4 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -366px;
+}
+
+.line .star-rating-4-5 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -384px;
+}
+
+.line .star-rating-5 {
+    width: 102px;
+    height: 18px;
+    background-position: 0 -402px;
 }
 
 /* Map Styling */
