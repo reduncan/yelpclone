@@ -99,7 +99,7 @@ label {
 }
 
 .find {
-    border-radius: 3px 0px 0px 3px;
+    border-radius: 5px 0px 0px 5px;
 }
 
 input {
@@ -111,8 +111,12 @@ input {
 .submit {
     border: none;
     background-color: #d90007;
-    border-radius: 0px 3px 3px 0px;
+    border-radius: 0px 5px 5px 0px;
     cursor: pointer;
+}
+
+.search {
+    display: none;
 }
 
 .submit:hover {
@@ -146,4 +150,68 @@ footer {
     top: 350px;
     text-align: center;
     color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        width: 500px;
+    }
+    
+    .signup {
+        position: relative;
+        left: 156px;
+    }
+    
+    main {
+        margin-top: 90px;
+        display: grid;
+        grid-template-rows: 200px 200px 50px;
+        grid-template-columns: 1fr;
+    }
+    
+    form {
+        display: grid;
+        grid-template-rows: 70px 70px 70px;
+        grid-template-columns: 60px 420px;
+        justify-content: center;
+    }
+
+    label {
+        height: 60px;
+        border-radius: 5px 0px 0px 5px;
+    }
+
+    input {
+        height: 60px;
+        padding: 0px;
+        border-radius: 0px 5px 5px 0px;
+    }
+
+    form button {
+        height: 60px;
+    }
+
+    .submit {
+        border-radius: 5px;
+        cursor: pointer;
+        position: relative;
+        left: 157px;
+        width: 165px;
+    }
+
+    .search {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 700;
+        color: white;
+        margin-right: 10px;
+    }
+
+    .fa-2x {
+        font-size: 1.75em;
+    }
+    
+    footer {
+        top: 175px;
+    }
 }
