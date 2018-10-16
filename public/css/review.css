@@ -282,10 +282,10 @@ button:hover{
 }
 
 #thank-you {
-    height: 50px;
+    height: 100px;
     padding-top: 27px;  
     width: 100%;
-    background-color: #F5F5F5;
+    background-color: #d0ecfb;
     box-shadow: 1px 1px 10px #ccc;
     margin: 0 auto;
     text-align: center;
@@ -293,7 +293,12 @@ button:hover{
     font-weight: 700;
     color: #333333;
     font-family: Arial, Helvetica, sans-serif;
+    line-height: 35px;
     
+}
+.thank-you-message{
+    font-weight: 400;
+    font-size: 1em;
 }
 
 .hide {
