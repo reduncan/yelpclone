@@ -1,6 +1,4 @@
-/* Review Page */
-
-/* header */
+/* Main Page Styling */
 .review-header{
     position: relative;
     padding: 12px 0;
@@ -32,8 +30,6 @@
     vertical-align: middle;
     box-sizing: border-box;
     display: table-cell;
-    
-   
 }
 
 .yelp-logo{
@@ -43,6 +39,7 @@
     height: 40px;
     background-repeat: no-repeat;
 }
+
 .logo-link{
     display: block;
     width: 100%;
@@ -54,6 +51,7 @@
     text-decoration: none;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 }
+
 .write-review-contain{
     margin-left: 9px;
     margin-right: 9px;
@@ -80,7 +78,6 @@
 }
 
 /* Review Box */
-
 .y-container{
     position: relative;
     overflow-x: hidden;
@@ -91,19 +88,15 @@
     padding: 0 15px;
 }
 
-
-
 .header{
     padding-top: 24px;
     padding-bottom: 12px;
     margin-bottom: 6px;
-
 }
 
 .heading-link{
     font-size: 36px;
     line-height: 1.16667em;
-
 }
 h2 {
     word-wrap: break-word!important;
@@ -120,22 +113,19 @@ a {
 }
 
 /* Review Box */
-
 .reviewBox {
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: text;
     padding: 18px;
     max-width: 630px;
-
 }
 
 .rating-selector{
     vertical-align: middle;
     display: inline-block;
     margin-bottom: 18px;
-    width: 500px;
-    
+    width: 500px;    
 }
 
 .i-selector-star {
@@ -155,9 +145,9 @@ a {
     position:absolute;
     white-space:nowrap;
     left:100%;
-    top:9px;
-   
+    top:9px; 
 }
+
 [data-stars="0"]{background-position:0    0px;}
 [data-stars="1"]{background-position:0  -30px;}
 [data-stars="2"]{background-position:0  -60px;}
@@ -168,12 +158,12 @@ a {
 .stars:first-child{
     padding-left: 0;
 }
+
 .stars{
     padding-left: 3px;
     float: left;
     height: 30px;
     width: 30px;
-
 }
 
 .input{
@@ -188,6 +178,7 @@ a {
     cursor: pointer;
     outline: 0;
 }
+
 .label{
     display: none;
 }
@@ -197,6 +188,7 @@ a {
     float: right;
     display: inline-block;
 }
+
 .des-text{
     text-align: left;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
@@ -245,13 +237,11 @@ textarea{
 }
 
 /* Post Button */
-
 .review-footer{
     padding: 18px 0;
     background-color: #fff;
     position: relative;
-    height: 80px;
-    
+    height: 80px;    
 }
 
 .arrange-post{
@@ -260,6 +250,7 @@ textarea{
     box-sizing: border-box;
     display: table-cell;
 }
+
 .outer-post{
     min-width: 240px;
     height: 48px;
@@ -293,9 +284,9 @@ button:hover{
     font-weight: 700;
     color: #333333;
     font-family: Arial, Helvetica, sans-serif;
-    line-height: 35px;
-    
+    line-height: 35px;  
 }
+
 .thank-you-message{
     font-weight: 400;
     font-size: 1em;
@@ -306,7 +297,6 @@ button:hover{
 }
 
 .alert-rating::after {
-
     content: 'Please enter a rating.';
     color: rgb(218, 17, 17);
     font-family: Helvetica, sans-serif;
@@ -320,6 +310,4 @@ button:hover{
     font-family: Helvetica, sans-serif;
     transition: 1s;
     font-size: 1em;
-
 }
-

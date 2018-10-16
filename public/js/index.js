@@ -13,19 +13,18 @@ const generate = function () {
         url: '/api/background',
         method: 'GET',
         dataType: 'json',
-    }).then (function (image) {
+    }).then(function (image) {
         const newBG = image[bgIndex].url;
         const rgba = "rgba(51, 51, 51, .3)";
-        console.log(newBG)
         $('body').css({
             "background": "linear-gradient("
-                + rgba +"," 
+                + rgba + ","
                 + rgba +
-              ")"+","+"url("+ newBG +")",
-              "background-size": "cover",
-              "background-repeat": "no-repeat",
-              "background-position": "center"
-    });
+                ")" + "," + "url(" + newBG + ")",
+            "background-size": "cover",
+            "background-repeat": "no-repeat",
+            "background-position": "center"
+        });
     });
 };
 

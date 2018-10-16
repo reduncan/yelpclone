@@ -1,5 +1,4 @@
 /* Review Page */
-
 /* header */
 .review-header{
     position: relative;
@@ -12,7 +11,6 @@
     max-width: 960px;
     margin: 0 auto;
     padding: 0 15px;
-    
 }
 
 .header-arrange{
@@ -24,6 +22,7 @@
     min-width: 100%;
     table-layout: auto;
 }
+
 .logo-container{
     margin-left: 9px;
     margin-right: 9px;
@@ -32,8 +31,6 @@
     vertical-align: middle;
     box-sizing: border-box;
     display: table-cell;
-    
-   
 }
 
 .yelp-logo{
@@ -43,6 +40,7 @@
     height: 40px;
     background-repeat: no-repeat;
 }
+
 .logo-link{
     display: block;
     width: 100%;
@@ -54,6 +52,7 @@
     text-decoration: none;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 }
+
 .write-review-contain{
     margin-left: 9px;
     margin-right: 9px;
@@ -63,8 +62,8 @@
     white-space: nowrap;
     box-sizing: border-box;
     display: table-cell;
-  
 }
+
 .review-wrap{
     font-size: 20px;
     line-height: 1.3125em;
@@ -80,7 +79,6 @@
 }
 
 /* Review Box */
-
 .y-container{
     position: relative;
     overflow-x: hidden;
@@ -91,20 +89,17 @@
     padding: 0 15px;
 }
 
-
-
 .header{
     padding-top: 24px;
     padding-bottom: 12px;
     margin-bottom: 6px;
-
 }
 
 .heading-link{
     font-size: 36px;
     line-height: 1.16667em;
-
 }
+
 h2 {
     word-wrap: break-word!important;
     word-break: break-word!important;
@@ -120,14 +115,12 @@ a {
 }
 
 /* Review Box */
-
 #reviewBox {
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: text;
     padding: 18px;
     max-width: 630px;
-
 }
 
 .rating-selector{
@@ -135,7 +128,6 @@ a {
     display: inline-block;
     margin-bottom: 18px;
     width: 500px;
-    
 }
 
 .i-selector-star {
@@ -156,8 +148,8 @@ a {
     white-space:nowrap;
     left:100%;
     top:9px;
-   
 }
+
 [data-stars="0"]{background-position:0    0px;}
 [data-stars="1"]{background-position:0  -30px;}
 [data-stars="2"]{background-position:0  -60px;}
@@ -168,12 +160,12 @@ a {
 .stars:first-child{
     padding-left: 0;
 }
+
 .stars{
     padding-left: 3px;
     float: left;
     height: 30px;
     width: 30px;
-
 }
 
 .input{
@@ -188,6 +180,7 @@ a {
     cursor: pointer;
     outline: 0;
 }
+
 .label{
     display: none;
 }
@@ -197,6 +190,7 @@ a {
     float: right;
     display: inline-block;
 }
+
 .des-text{
     text-align: left;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
@@ -243,13 +237,13 @@ textarea{
     font: 400 13.3333px Arial;
     -webkit-writing-mode: horizontal-tb !important;
 }
+
 /* Post Button */
 .review-footer{
     padding: 18px 0;
     background-color: #fff;
     position: relative;
-    height: 80px;
-    
+    height: 80px;   
 }
 
 .arrange-post{
@@ -258,6 +252,7 @@ textarea{
     box-sizing: border-box;
     display: table-cell;
 }
+
 .outer-post{
     min-width: 240px;
     height: 48px;
@@ -293,13 +288,12 @@ textarea{
     text-shadow: none;
     -webkit-writing-mode: horizontal-tb !important;
     -webkit-appearance: button;
-
 }
-
 
 li:hover{
     color:#fff7cc;
 }
+
 .i-selector-stars{
     background:url(https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/a5aa4dca29f3/assets/img/stars/selector_stars.png) no-repeat;
     background-size:162px 180px;

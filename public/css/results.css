@@ -1,3 +1,4 @@
+/* Main Page Styling */
 body {
     height: 100vh;
     font-family: 'Roboto', sans-serif;
@@ -144,6 +145,7 @@ nav {
     grid-template-columns: 40px 40px 50px 55px;
 }
 
+/* Styling for Results */
 button[data-tool-tip] {
     position: relative;
 }
@@ -470,6 +472,7 @@ address {
     transform:rotate(-180deg);
 }
 
+/* Mobile Responsiveness */
 @media only screen and (max-width: 600px) {
     
     header {
