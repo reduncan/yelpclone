@@ -31,7 +31,7 @@ const buildIndivBusinessBlock = function (businessData) {
 
 const anchorCategories = function (categories) {
     let html = "";
-    categories.forEach(category => { html += `<a href="#">${category.title}</a>,` });
+    categories.forEach(category => { html += `<a href="#">${category.title}</a>,  ` });
     html = html.substring(0, html.lastIndexOf(","));
     return html;
 }
