@@ -66,12 +66,9 @@ initMap()
 
 $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
     .then(function (dataList) {
-        //console.log(window.location.search)
         const newID = window.location.search.substring(7);
-        //console.log(newID);
         for (let i = 0; i < dataList.length; i++) {
             if (dataList[i].alias === newID) {
-                // console.log(dataList[i])
                 $(".review").attr("id", newID)
             }
         }
@@ -82,12 +79,8 @@ $('.review').on('click', function (event) {
     event.preventDefault();
     if (event.target.id) {
         location.href = `review?alias=${event.target.id}`;
-
-        //console.log(event)
-
     }
 })
-
 
 const initBody = function () {
     $.ajax({
@@ -134,14 +127,10 @@ const initReviews = function () {
 
         const reviews = window.location.search.substring(7)
         const prefix = "https://www.yelp.com/biz/";
-        console.log(reviews);
-        for (let i = 0; i< data.length; i++){
+        for (let i = 0; i < data.length; i++) {
             const noPre = data[i].url.replace(prefix, '');
-            // console.log(noPre);
             const newAlias = noPre.substring(0, noPre.indexOf("?"));
-            // console.log(newAlias);
-            if (newAlias === reviews ){
-                console.log(data[i].text)
+            if (newAlias === reviews) {
                 let review = "";
                 review += `<div class="line"><p class="user">${data[i].user.name}</p>`;
                 review += `<p class="home">Somewhere in the World</p></div>`;
@@ -150,7 +139,7 @@ const initReviews = function () {
                 $(".seeded-review").html(review);
             }
         }
-    
+
     })
 }
 initReviews();
