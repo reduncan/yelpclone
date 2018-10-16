@@ -7,7 +7,7 @@
 let searchIndexInput = sessionStorage.getItem('searchTag');
 let locationIndexInput = sessionStorage.getItem('locationTag');
 
-if (locationIndexInput !== '') {
+if (locationIndexInput !== null) {
   const geocode = () => {
     let location = locationIndexInput;
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
