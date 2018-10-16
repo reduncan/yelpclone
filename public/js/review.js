@@ -39,26 +39,24 @@ const addReview = function(){
     time_created: newDate,
     url: reviewUrl
   } 
-  if ($('.review-input').val() === ''){
+  if ($('.review-input').val() == '' ){
     $('.reviewBox').addClass('alert-review')
-    setTimeout(function(){
-      $('.reviewBox').removeClass('alert-review');
-    }, 8000)
+    $( ".review-input" ).keypress(function() {
+       $('.reviewBox').removeClass('alert-review');
+    });
   
-  }else if ($(".i-selector-star").attr('data-stars', '0')){
+  }else if ($(".i-selector-star").data('stars') == '0' ){
     $('.reviewBox').addClass('alert-rating')
-    setTimeout(function(){
-      $('.reviewBox').removeClass('alert-rating');
-    }, 8000)
+    
   }
-  else {
+  console.log($(".i-selector-star").data('stars'))
+  if ( $('.review-input').val() != '' && $(".i-selector-star").data('stars') != '0'){
     $.ajax({url:"/api/review", method:"POST", data:newReview}).then(function (data){
       $('.review-input').empty();
       $('#content').empty();
     }).then(function(){
       $('#thank-you').slideDown(500, 'linear').delay(4000);
       $('#thank-you').removeClass('hide');
-      // $('#thank-you').slideUp(800,'linear'); 
       $('.outer-post').html('<i class="fas fa-check"></i> Posted');
       $('.outer-post').attr('disabled' ,'disabled')
     })
@@ -97,11 +95,13 @@ const addReview = function(){
   
     function setStars( val ){
       $el.attr("data-stars", val);
+      $el.data("stars", val);
       $info.text( msg[val] );
     }
     setStars( old );
     
     $el.on("mousemove", function(e){
+      $('.reviewBox').removeClass('alert-rating');
       now = (e.pageX-$(this).offset().left)/w*5 +1|0;
       setStars( now );
     }).on("mouseleave", function(){
