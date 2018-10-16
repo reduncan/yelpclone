@@ -39,8 +39,19 @@ const addReview = function(){
     time_created: newDate,
     url: reviewUrl
   } 
-
-    // console.log(newReview)
+  if ($('.review-input').val() === ''){
+    $('.reviewBox').addClass('alert-review')
+    setTimeout(function(){
+      $('.reviewBox').removeClass('alert-review');
+    }, 8000)
+  
+  }else if ($(".i-selector-star").attr('data-stars', '0')){
+    $('.reviewBox').addClass('alert-rating')
+    setTimeout(function(){
+      $('.reviewBox').removeClass('alert-rating');
+    }, 8000)
+  }
+  else {
     $.ajax({url:"/api/review", method:"POST", data:newReview}).then(function (data){
       $('.review-input').empty();
       $('#content').empty();
@@ -55,6 +66,7 @@ const addReview = function(){
       console.log('this failed', err)
 
     })
+  }
 
 
     $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })

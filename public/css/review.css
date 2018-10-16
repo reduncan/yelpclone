@@ -121,7 +121,7 @@ a {
 
 /* Review Box */
 
-#reviewBox {
+.reviewBox {
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: text;
@@ -303,5 +303,23 @@ button:hover{
 
 .hide {
     display: none;
+}
+
+.alert-rating::after {
+
+    content: 'Please enter a rating.';
+    color: rgb(218, 17, 17);
+    font-family: Helvetica, sans-serif;
+    transition: 1s;
+    font-size: 1em;
+}
+
+.alert-review::after{
+    content: 'Explain your rating to others.';
+    color: rgb(218, 17, 17);
+    font-family: Helvetica, sans-serif;
+    transition: 1s;
+    font-size: 1em;
+
 }
 
