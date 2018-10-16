@@ -37,6 +37,7 @@ if (locationIndexInput !== '') {
     $.post('/api/search', newSearchIndex)
       .then(function (businessData) {
         let htmlstr = '';
+        count = 0;
         businessData.forEach(e => {
           htmlstr += build.businessBlock(e);
         });
@@ -114,6 +115,7 @@ if (locationIndexInput !== '') {
 
 $('#submit').on('click', function (event) {
   event.preventDefault();
+  count = 0;
   const geocode = () => {
     let location = document.getElementById('locationInput').value
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
@@ -220,6 +222,7 @@ $('#submit').on('click', function (event) {
 
 $('#oneDollar').on('click', function (event) {
   event.preventDefault();
+  count = 0;
   const geocode = () => {
     let location = document.getElementById('locationInput').value
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
@@ -241,6 +244,7 @@ $('#oneDollar').on('click', function (event) {
   };
   geocode();
   const callAddressCity = function (shortName, cityState) {
+    
     const newSearch = {
       searchInput: $('#searchInput').val().trim(),
       locationInput: shortName,
@@ -332,6 +336,7 @@ $('#oneDollar').on('click', function (event) {
 
 $('#twoDollar').on('click', function (event) {
   event.preventDefault();
+  count = 0;
   const geocode = () => {
     let location = document.getElementById('locationInput').value
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
@@ -444,6 +449,7 @@ $('#twoDollar').on('click', function (event) {
 
 $('#threeDollar').on('click', function (event) {
   event.preventDefault();
+  count = 0;
   const geocode = () => {
     let location = document.getElementById('locationInput').value
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
@@ -556,6 +562,7 @@ $('#threeDollar').on('click', function (event) {
 
 $('#fourDollar').on('click', function (event) {
   event.preventDefault();
+  count = 0;
   const geocode = () => {
     let location = document.getElementById('locationInput').value
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
