@@ -322,22 +322,35 @@ h3 {
 .user-review {
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 250px 250px;
+    grid-template-columns: 250px 300px;
+}
+
+.seeded-review {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 250px 300px;
 }
 
 .line {
     border-top: 2px solid #e6e6e6;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
-.user-review p {
+.user {
+    color: #0073bb;
+    font-weight: bold;
+}
+
+.user-review p, .seeded-review p {
     margin-top: 10px;
 }
 
-.user-review .user, .home {
+.user-review .user, .home, .seeded-review .user {
     margin-left: 10px;
 }
 
-.user-review .biz-rating {
+.user-review .biz-rating, .seeded-review .biz-rating{
     margin-top: 10px;
 }
 

@@ -131,19 +131,26 @@ const initReviews = function () {
         method: 'GET',
         type: 'object'
     }).then(function (data) {
+
         const reviews = window.location.search.substring(7)
         const prefix = "https://www.yelp.com/biz/";
         console.log(reviews);
-        console.log(data[i].url);
-        const noPre = data[i].url.replace(prefix, '');
-        console.log(noPre);
-        const newAlias = noPre.substring(0, noPre.indexOf("?"));
-        console.log(newAlias);
-        const match = data.find(elem => elem.url === state.id)
-        if (newAlias === reviews) {
-            console.log(data)
+        for (let i = 0; i< data.length; i++){
+            const noPre = data[i].url.replace(prefix, '');
+            // console.log(noPre);
+            const newAlias = noPre.substring(0, noPre.indexOf("?"));
+            // console.log(newAlias);
+            if (newAlias === reviews ){
+                console.log(data[i].text)
+                let review = "";
+                review += `<div class="line"><p class="user">${data[i].user.name}</p>`;
+                review += `<p class="home">Somewhere in the World</p></div>`;
+                review += `<div class="line"><div class='biz-rating2'><div class='i-stars2 ${getStarRatingClass(data[i].rating)}'><img class="offscreen" height="303" src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png" width="84" alt="${data[i].rating} star rating"></div><span class='review-date'>${data[i].time_created}</span></div>`;
+                review += `<p class="thoughts">${data[i].text}</p></div>`;
+                $(".seeded-review").html(review);
+            }
         }
-
+    
     })
 }
 initReviews();
