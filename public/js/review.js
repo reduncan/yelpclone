@@ -15,6 +15,10 @@ $(document).ready(function(){
         $(".heading-link a").attr("href", newURL)
         $('.review-input').val(`${dataList[i].personal_review.personal_review_text}`)
         $(".i-selector-star").attr('data-stars', dataList[i].personal_review.personal_review_rating )
+        // $(".thank-you-header").append(`${dataList[i].name }`)
+        // $(".see-review").attr("href", newURL)
+        
+
 
       }
     }
@@ -36,15 +40,14 @@ const addReview = function(){
     url: reviewUrl
   } 
 
-      
     // console.log(newReview)
     $.ajax({url:"/api/review", method:"POST", data:newReview}).then(function (data){
       $('.review-input').empty();
       $('#content').empty();
     }).then(function(){
-      $('#thank-you').slideDown(500, 'linear').delay(700);
+      $('#thank-you').slideDown(500, 'linear').delay(4000);
       $('#thank-you').removeClass('hide');
-      $('#thank-you').slideUp(800,'linear'); 
+      // $('#thank-you').slideUp(800,'linear'); 
       $('.outer-post').html('<i class="fas fa-check"></i> Posted');
       $('.outer-post').attr('disabled' ,'disabled')
     })
@@ -53,12 +56,22 @@ const addReview = function(){
 
     })
 
+
+    $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
+  .then(function (dataList) {
+    const newID = window.location.search.substring(7);
+    for (let i=0; i < dataList.length; i++){
+      if(dataList[i].alias === newID){
+        const newURL = `http://localhost:3000/business${window.location.search}`
+        $(".thank-you-header").html(`${dataList[i].name }`)
+        $(".see-review").attr("href", newURL)
+      }
+    }
+})
   })
 }
   
 
-
-  
   $("[data-stars]").each(function(){
     var msg = ["Select your rating","Eek! Methinks not","Meh. I've experienced better","A-OK","Yay! I'm a fan","Woohoo! As good as it gets!"];
     
@@ -71,7 +84,6 @@ const addReview = function(){
     $el.append($info);
   
     function setStars( val ){
-      // $el.attr("data-stars", val);
       $el.attr("data-stars", val);
       $info.text( msg[val] );
     }
@@ -85,7 +97,7 @@ const addReview = function(){
     }).on("click", function(){
       old = now;
       setStars( old );
-      // Submit `old` string value ("1-5") to server using AJAX 
+      
     });
     
   });

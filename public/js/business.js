@@ -131,13 +131,19 @@ const initReviews = function () {
         method: 'GET',
         type: 'object'
     }).then(function (data) {
-        // const reviews = window.location.search.substring(7)
-        const prefix = "https://www.yelp/com/biz/";
-        console.log(prefix);
-        const noPre = data.url.replace(prefix, "");
+        const reviews = window.location.search.substring(7)
+        const prefix = "https://www.yelp.com/biz/";
+        console.log(reviews);
+        console.log(data[i].url);
+        const noPre = data[i].url.replace(prefix, '');
         console.log(noPre);
-        const newAlias = noPre.substring(0, noPref.indexdOf('?'));
+        const newAlias = noPre.substring(0, noPre.indexOf("?"));
         console.log(newAlias);
+        const match = data.find(elem => elem.url === state.id)
+        if (newAlias === reviews ){
+            console.log(data)
+        }
+    
     })
 }
 initReviews();

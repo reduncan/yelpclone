@@ -26,9 +26,9 @@
             <a href="/" class="yelp"><img src="https://s3.amazonaws.com/yelpcloneassets/Logos/yelp.logo.png" class="logo" /></a>
             <form class="searchbar-business">
                 <label class="find">Find</label>
-                <input id="searchInput" type="text" placeholder="restaurants, burgers, pizza" />
+                <input id="searchInput" type="text" onfocus="this.value=''" placeholder="restaurants, burgers, pizza" />
                 <label class="location">Near</label>
-                <input id="locationInput" type="text" placeholder="Current Location" />
+                <input id="locationInput" type="text" onfocus="this.value=''" placeholder="Current Location" />
                 <button type="submit" class="submit" id="submit"><i class="fas fa-search fa-2x"></i></button>
         </div>
         </form>
@@ -83,9 +83,6 @@
             <div id="map"></div>
         </aside>
     </div>
-    <footer>
-        <p>created by a bunch of nerds (the candy that is)</p>
-    </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>

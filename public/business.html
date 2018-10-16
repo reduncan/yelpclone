@@ -24,9 +24,9 @@
             <a href="/" class="yelp"><img src="https://s3.amazonaws.com/yelpcloneassets/Logos/yelp.logo.png" class="logo" /></a>
             <form class="searchbar-business">
                 <label class="find">Find</label>
-                <input id="searchInput" type="text" placeholder="restaurants, burgers, pizza" />
+                <input id="searchInput" type="text" onfocus="this.value=''" placeholder="restaurants, burgers, pizza" />
                 <label class="location">Near</label>
-                <input id="locationInput" type="text" placeholder="Current location" />
+                <input id="locationInput" type="text" onfocus="this.value=''" placeholder="Current location" />
                 <button type="submit" class="submit" id="submit"><i class="fas fa-search fa-2x"></i></button>
         </div>
         </form>
