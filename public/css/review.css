@@ -1,4 +1,7 @@
 /* Main Page Styling */
+body{
+    min-width: auto;
+}
 .review-header{
     position: relative;
     padding: 12px 0;
@@ -9,19 +12,11 @@
 .header-content{
     max-width: 960px;
     margin: 0 auto;
-    padding: 0 15px;
-    
+    padding: 0 15px; 
+    display: grid;
+    grid-template-columns: 120px 1fr; 
 }
 
-.header-arrange{
-    margin-left: -18px;
-    margin-right: -18px;
-    border-collapse: separate;
-    border-spacing: 18px 0;
-    display: table;
-    min-width: 100%;
-    table-layout: auto;
-}
 .logo-container{
     margin-left: 9px;
     margin-right: 9px;
@@ -52,30 +47,16 @@
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
-.write-review-contain{
-    margin-left: 9px;
-    margin-right: 9px;
-    border-collapse: collapse;
-    border-spacing: 0 0;
-    vertical-align: middle;
-    white-space: nowrap;
-    box-sizing: border-box;
-    display: table-cell;
-  
-}
 .review-wrap{
     font-size: 20px;
     line-height: 1.3125em;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
     color: #fff;
     font-weight: 700;
+    padding-top: 5px;
     -webkit-font-smoothing: antialiased;
 }
 
-.write-review{
-    display: inline;
-    margin-right: 515px;
-}
 
 /* Review Box */
 .y-container{
@@ -92,6 +73,7 @@
     padding-top: 24px;
     padding-bottom: 12px;
     margin-bottom: 6px;
+    min-width:200px ;
 }
 
 .heading-link{
@@ -103,7 +85,6 @@ h2 {
     word-break: break-word!important;
     overflow-wrap: break-word!important;
     font-weight: 700;
-    /* margin-bottom: 6px; */
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -119,17 +100,17 @@ a {
     cursor: text;
     padding: 18px;
     max-width: 630px;
+    min-width: 300px;
 }
 
 .rating-selector{
     vertical-align: middle;
     display: inline-block;
     margin-bottom: 18px;
-    width: 500px;    
+    width: 500px;   
 }
 
 .i-selector-star {
-    /* float: left; */
     width: 162px;
     height: 30px;
     background-position: 0 -30px;
@@ -310,4 +291,22 @@ button:hover{
     font-family: Helvetica, sans-serif;
     transition: 1s;
     font-size: 1em;
+}
+
+
+@media only screen and (max-width: 600px){
+    #thank-you {
+        height: 200px;
+          
+    }
+
+    .review-wrap{
+        font-size: 14px;
+    }
+    .header-content{
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 15px; 
+        display: inherit;
+    }
 }
