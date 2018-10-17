@@ -1,6 +1,4 @@
 /* Main Page Styling */
-
-
 .review-header{
     position: relative;
     padding: 12px 0;
@@ -9,7 +7,7 @@
 }
 
 .header-content{
-    /* width: 100vh; */
+    max-width: 960px;
     margin: 0 auto;
     padding: 0 15px;
     
@@ -312,12 +310,4 @@ button:hover{
     font-family: Helvetica, sans-serif;
     transition: 1s;
     font-size: 1em;
-}
-
-/* Mobile Responsiveness */
-@media only screen and (max-width: 600px){
-    
-    body {
-        width: max-content;
-    }
 }
