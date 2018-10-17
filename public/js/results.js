@@ -1,9 +1,3 @@
-/**
- * add two numbers JSDoc format
- * @param {Number} num1 - The first Number
- * @param {Number} num2 - The second Number
- * @return {Number} sum of the two param
- */
 let searchIndexInput = sessionStorage.getItem('searchTag');
 let locationIndexInput = sessionStorage.getItem('locationTag');
 
@@ -148,6 +142,7 @@ $('#submit').on('click', function (event) {
         businessData.forEach(e => {
           htmlstr += build.businessBlock(e);
         });
+        console.log(count);
         $('#holder').html(htmlstr);
         let lowerSearchInput = newSearch.searchInput.charAt(0).toUpperCase() + newSearch.searchInput.slice(1);
         

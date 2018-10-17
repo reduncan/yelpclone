@@ -1,8 +1,21 @@
-/** API to build elements dynamically */
+/**
+ * Date: 10/13/2018
+ * @version 1.0 
+ * @author David Ye
+ * @description
+ *  1.0
+ *  - Script to build certain elements by inputting the proper json data.
+ *  - buildIndivBusinessBlock returns a string of html to append to the results page.
+ */
 
-/** Yelp - Results Page */
 let count = 0;
 
+/**
+ * Builds a block of html string to render to results page
+ * @since 1.0
+ * @param {Object} businessData 
+ * @returns {String} business element html
+ */
 const buildIndivBusinessBlock = function (businessData) {
     count++;
     let businessElement = '';
@@ -29,6 +42,12 @@ const buildIndivBusinessBlock = function (businessData) {
     return businessElement;
 }
 
+/**
+ * Takes an array of categories and wraps it in anchor tags
+ * @since 1.0
+ * @param {Array} categories
+ * @returns {String} a set of anchor tag htmls to populate the business block 
+ */
 const anchorCategories = function (categories) {
     let html = "";
     categories.forEach(category => { html += `<a href="#">${category.title}</a>,  ` });
@@ -36,6 +55,14 @@ const anchorCategories = function (categories) {
     return html;
 }
 
+/**
+ * Takes a phone number from the database and reformats it
+ * to display properly in the business block
+ * Ex: +14048733088 --> (404) 873-3088
+ * @since 1.0
+ * @param {String} phoneNumber 
+ * @returns {String} a formatted phone number
+ */
 const formatPhoneNumbers = function (phoneNumber) {
     //     'phone': '+14048733088'
     let noCountryCode = phoneNumber.substring(2);
@@ -45,17 +72,27 @@ const formatPhoneNumbers = function (phoneNumber) {
     return `(${areaCode}) ${prefix}-${lineNumber}`;
 }
 
+/**
+ * Dynamically calculates the class to add to 
+ * the star ratings element in order to properly 
+ * display the right amount of stars.
+ * @since 1.0
+ * @param {Integer} rating
+ * @returns {String} the class that displays the right stars
+ */
 const getStarRatingClass = function (rating) {
     let stringRating = rating.toString();
     stringRating = stringRating.replace(".", "-");
     return `star-rating-${stringRating}`;
 }
 
+/** API for potential future elements */
 const build = {
     businessBlock: buildIndivBusinessBlock,
     count: count
 }
 
+/** Test json for testing code. Represents the data of one business entity */
 const testJson = {
     '_id': '5bb6bacc6b166a662080d323',
     'id': 'ZMEZgMF9FkgR9yl_RJkWfQ',
