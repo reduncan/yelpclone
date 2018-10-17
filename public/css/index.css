@@ -1,3 +1,4 @@
+/* Main Page Styling */
 body {
     height: 100vh;
     width: 1020px;
@@ -152,6 +153,7 @@ footer {
     color: white;
 }
 
+/* Mobile Responsiveness */
 @media only screen and (max-width: 600px) {
     body {
         width: 500px;
