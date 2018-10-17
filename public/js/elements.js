@@ -131,27 +131,3 @@ const testJson = {
     'phone': '+14048733088',
     '__v': 0
 }
-
-// const initReviews = function () {
-//     $.ajax({
-//         url: `/api/review`,
-//         method: 'GET',
-//         type: 'object'
-//     }).then(function (data) {
-
-//         const reviews = window.location.search.substring(7)
-//         const prefix = "https://www.yelp.com/biz/";
-//         console.log(reviews);
-//         for (let i = 0; i< data.length; i++){
-//             const noPre = data[i].url.replace(prefix, '');
-//             // console.log(noPre);
-//             const newAlias = noPre.substring(0, noPre.indexOf("?"));
-//             console.log(newAlias);
-//             if (newAlias === reviews ){
-//                 // console.log(data[i].text)
-//             }
-//         }
-    
-//     })
-// }
-// initReviews();
