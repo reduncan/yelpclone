@@ -1,5 +1,5 @@
 /**
- * Date: 10/13/2018
+ * Date: 10/11/2018
  * @version 1.1 
  * @author David Ye, Justin Kook
  * @description
@@ -17,7 +17,7 @@ const db = require("../../models");
  * @param {String} searchString 
  * @param {Response} res 
  * @since 1.0
- * @returns {array} business objects
+ * @returns {Array} business objects
  */
 const keywords = function (searchString, res) {
     let regex = { $regex: new RegExp(searchString, 'i')}
@@ -43,7 +43,7 @@ const keywords = function (searchString, res) {
  * @param {String} locationString 
  * @param {Response} res 
  * @since 1.0
- * @returns {array} business objects
+ * @returns {Array} business objects
  */
 const location = function (locationString, res) {
     let businesses = [];
@@ -74,7 +74,7 @@ const location = function (locationString, res) {
  * @param {String} location 
  * @param {Response} res 
  * @since 1.1
- * @returns {array} business objects
+ * @returns {Array} business objects
  */
 const keywordAndLocation = function (searchString, locationString, res) {
     // console.log("Inside keywordAndLocation function");
@@ -124,7 +124,7 @@ const keywordAndLocation = function (searchString, locationString, res) {
  * @param {Object} what3words 
  * @param {Response} res 
  * @since 1.0
- * @returns {array} business objects
+ * @returns {Array} business objects
  */
 const what3words = function (words, options) {}
 
