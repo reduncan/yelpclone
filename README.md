@@ -40,6 +40,11 @@ We are not currently accepting contributions to this project.
   * configured information for business.html DOM manipulation
 
 * **Ben Nguyen** - Reviews/Ratings 
+  * Created base HTML, Javascript and CSS for review page.
+  * Created base base functionality for review box.
+  * Connected routes from business to review page.
+  * Created a mobile friendly version for review page.
+  
   
 * **Justin Kook** - Search by Location
   * created html render for the search results
@@ -51,7 +56,10 @@ We are not currently accepting contributions to this project.
   *
   
 * **Matthew Carpenter** - Google Maps
-  * 
+  * Created map layout for results, and business page
+  * Utilized Google Maps API to link restaurants lat/lon to pinned items on map
+  * Created/Styled large map box on results page/Animated with CSS
+  * Created/Styled business info box on business page
 
 
 ## License
@@ -72,4 +80,4 @@ This project is licensed under the MIT License
   * Vitalina Makakenko (https://unsplash.com/@vitalina)
   * Anita Austvika (https://unsplash.com/@anitaaustvika)
   * NordWood Themes (https://unsplash.com/@nordwood)
-
+!
