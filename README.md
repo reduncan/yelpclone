@@ -40,6 +40,11 @@ We are not currently accepting contributions to this project.
   * configured information for business.html DOM manipulation
 
 * **Ben Nguyen** - Reviews/Ratings 
+  * Created base HTML, Javascript and CSS for review page.
+  * Created base base functionality for review box.
+  * Connected routes from business to review page.
+  * Created a mobile friendly version for review page.
+  
   
 * **Justin Kook** - Search by Location
   * created html render for the search results
