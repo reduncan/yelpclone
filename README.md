@@ -56,7 +56,10 @@ We are not currently accepting contributions to this project.
   *
   
 * **Matthew Carpenter** - Google Maps
-  * 
+  * Created map layout for results, and business page
+  * Utilized Google Maps API to link restaurants lat/lon to pinned items on map
+  * Created/Styled large map box on results page/Animated with CSS
+  * Created/Styled business info box on business page
 
 
 ## License
