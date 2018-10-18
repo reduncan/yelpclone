@@ -721,33 +721,29 @@ function initMap() {
   }
 }
     /**
-     * -Changes Map text on expand of window
+     * -Changes Map text on expand of window, rotates chevron
      */
 const lessMoreToggle = function () {
   if ($('.map-header a span').text() === "Mo' Map") {
     $('.map-header a span').text("Less Map");
+    $('.rotate').toggleClass('left');
     $('.media-story').addClass('newgrid');
     $('.media-block').addClass('gridnew');
     $('.secondary-attributes, .biz-extra-info').addClass('hide');
   } else {
     $('.map-header a span').text("Mo' Map");
+    $('.rotate').toggleClass('left');
     $('.media-story').removeClass('newgrid');
     $('.media-block').removeClass('gridnew');
     $('.secondary-attributes, .biz-extra-info').removeClass('hide'); 
   }
 }
+
     /**
-     * -Rotates the chevron on click
-     */
-const rotate = function () {
-  $('.rotate').toggleClass('left');
-};
-    /**
-     * -On click function rotates checkron changes words
+     * -On click function calls LessMoreToggle
      */
 $('.map-header a').on('click', function (e) {
   e.preventDefault();
-  rotate();
   lessMoreToggle();
   $('.result-map').toggleClass('mo-map');
 })
