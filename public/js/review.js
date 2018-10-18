@@ -1,37 +1,39 @@
 $(document).ready(function(){
   
+
+
+  /**
+ * Searches database for businesses based on URL alias
+ * @param {dataList}  the specific restaurant.
+ * @const {newID}  the trimmed version of the URL to match an restaurant's alias.
+ * if they match append the name of business, any previous reviews and ratings.
+ */
   $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
   .then(function (dataList) {
-    console.log(dataList)
-    console.log(window.location.search)
     const newID = window.location.search.substring(7);
-    console.log(newID);
     for (let i=0; i < dataList.length; i++){
       if(dataList[i].alias === newID){
-        console.log(dataList[i])
         const newURL = `http://localhost:3000/business${window.location.search}`
-        console.log(newURL)
         $(".heading-link a").append(`${dataList[i].name }`)
         $(".heading-link a").attr("href", newURL)
         $('.review-input').val(`${dataList[i].personal_review.personal_review_text}`)
         $(".i-selector-star").attr('data-stars', dataList[i].personal_review.personal_review_rating )
-        // $(".thank-you-header").append(`${dataList[i].name }`)
-        // $(".see-review").attr("href", newURL)
-        
-
-
       }
     }
     
 })
-  
+
+ /**
+ * Add personal review to database 
+ * @const {newReview}  the new updated added
+ * @param {dataList}  the the specific restaurant. 
+ * @const {newID}  the trimmed version of the URL to match an restaurant's alias.
+ * if they match, add the name of business to html, and new URL.
+ */
 const addReview = function(){
-  console.log('in the function')
   $('.outer-post').on('click', function (event){
-    console.log('clicked')
   event.preventDefault();
   const newDate = (new Date().toJSON()).substring(0, 10);
-  // const getAlias = cutPrefix.substring(0, cutPrefix.indexOf("?"));
   const reviewUrl = window.location.search.substring(7);
   const newReview = {
     rating: $(".i-selector-star").attr('data-stars'),
@@ -49,7 +51,6 @@ const addReview = function(){
     $('.reviewBox').addClass('alert-rating')
     
   }
-  console.log($(".i-selector-star").data('stars'))
   if ( $('.review-input').val() != '' && $(".i-selector-star").data('stars') != '0'){
     $.ajax({url:"/api/review", method:"POST", data:newReview}).then(function (data){
       $('.review-input').empty();
@@ -61,7 +62,6 @@ const addReview = function(){
       $('.outer-post').attr('disabled' ,'disabled')
     })
     .fail(function(err){
-      console.log('this failed', err)
 
     })
   }
@@ -81,6 +81,15 @@ const addReview = function(){
   })
 }
   
+
+ /**
+ * Input the ratings of each starts.
+ * @var {msg}  the different messages for each stars.
+ * @var {$info}  the appends each message next to the rating. 
+ * @function {setStars}  sets the input and attributes of the stars to latest number.
+ * On hover display the stars where the cursor is at, when off hover stars should return to latest number.
+ * on click change the current stars to latest stars
+ */
 
   $("[data-stars]").each(function(){
     var msg = ["Select your rating","Eek! Methinks not","Meh. I've experienced better","A-OK","Yay! I'm a fan","Woohoo! As good as it gets!"];
