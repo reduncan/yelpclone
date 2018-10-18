@@ -20,21 +20,21 @@ const db = require("../../models");
  * @returns {Array} business objects
  */
 const keywords = function (searchString, res) {
-    let regex = { $regex: new RegExp(searchString, 'i')}
+    let regex = { $regex: new RegExp(searchString, 'i') }
     let businesses = [];
 
     db.Restaurant
-    .find()
-    .or([
-        { 'alias'               : regex }, 
-        { 'categories.alias'    : regex },   
-        { 'categories.title'    : regex }
-    ])
-    .then(function(businessData) {
-        businesses = businessData.length > 0 ? businessData : ["none"];
-        if(res !== undefined) res.json(businessData);
-    })
-    .catch(function(err) {res.json(err);});
+        .find()
+        .or([
+            { 'alias': regex },
+            { 'categories.alias': regex },
+            { 'categories.title': regex }
+        ])
+        .then(function (businessData) {
+            businesses = businessData.length > 0 ? businessData : ["none"];
+            if (res !== undefined) res.json(businessData);
+        })
+        .catch(function (err) { res.json(err); });
     return businesses;
 }
 
@@ -47,24 +47,24 @@ const keywords = function (searchString, res) {
  */
 const location = function (locationString, res) {
     let businesses = [];
-    let regex = { $regex: new RegExp(locationString, 'i')}
+    let regex = { $regex: new RegExp(locationString, 'i') }
 
     db.Restaurant
-    .find()
-    .or([
-            { 'location.city'       : regex },
-            { 'location.address1'   : regex },    
-            { 'location.address2'   : regex },
-            { 'location.address3'   : regex },
-            { 'location.zip_code'   : regex },
-            { 'location.country'    : regex },
-            { 'location.state'      : regex }
-    ])
-    .then(function(businessData) {
-        businesses = businessData.length > 0 ? businessData : ["none"];
-        if(res !== undefined) res.json(businessData);
-    })
-    .catch(function(err) {console.log(err);});
+        .find()
+        .or([
+            { 'location.city': regex },
+            { 'location.address1': regex },
+            { 'location.address2': regex },
+            { 'location.address3': regex },
+            { 'location.zip_code': regex },
+            { 'location.country': regex },
+            { 'location.state': regex }
+        ])
+        .then(function (businessData) {
+            businesses = businessData.length > 0 ? businessData : ["none"];
+            if (res !== undefined) res.json(businessData);
+        })
+        .catch(function (err) { console.log(err); });
     return businesses;
 }
 
@@ -82,38 +82,42 @@ const keywordAndLocation = function (searchString, locationString, res) {
     // console.log("Location String: " + locationString);
 
     let businesses = [];
-    let reg_searchTerm = { $regex: new RegExp(searchString, 'i')}
-    let reg_location = { $regex: new RegExp(locationString, 'i')}
+    let reg_searchTerm = { $regex: new RegExp(searchString, 'i') }
+    let reg_location = { $regex: new RegExp(locationString, 'i') }
 
     db.Restaurant
-    .find()
-    .and([
+        .find()
+        .and([
 
-        // at least one from these properties
-        { $or: [
-            { 'alias'               : reg_searchTerm }, 
-            { 'categories.alias'    : reg_searchTerm },
-            { 'categories.title'    : reg_searchTerm }
-        ]},
+            // at least one from these properties
+            {
+                $or: [
+                    { 'alias': reg_searchTerm },
+                    { 'categories.alias': reg_searchTerm },
+                    { 'categories.title': reg_searchTerm }
+                ]
+            },
 
-        // at least one from these properties
-        { $or: [
-            { 'location.city'       : reg_location },
-            { 'location.address1'   : reg_location },    
-            { 'location.address2'   : reg_location },
-            { 'location.address3'   : reg_location },
-            { 'location.zip_code'   : reg_location },
-            { 'location.country'    : reg_location },
-            { 'location.state'      : reg_location }
-        ]}
-    ])
-    .then(function(businessData) {
-        businesses = businessData.length > 0 ? businessData : ["none"];
+            // at least one from these properties
+            {
+                $or: [
+                    { 'location.city': reg_location },
+                    { 'location.address1': reg_location },
+                    { 'location.address2': reg_location },
+                    { 'location.address3': reg_location },
+                    { 'location.zip_code': reg_location },
+                    { 'location.country': reg_location },
+                    { 'location.state': reg_location }
+                ]
+            }
+        ])
+        .then(function (businessData) {
+            businesses = businessData.length > 0 ? businessData : ["none"];
 
-        // console.log("This is what it returns: " + businessData);
-        if(res !== undefined) res.json(businessData);
-    })
-    .catch(function(err) {console.log(err);});
+            // console.log("This is what it returns: " + businessData);
+            if (res !== undefined) res.json(businessData);
+        })
+        .catch(function (err) { console.log(err); });
     return businesses;
 }
 
@@ -126,16 +130,16 @@ const keywordAndLocation = function (searchString, locationString, res) {
  * @since 1.0
  * @returns {Array} business objects
  */
-const what3words = function (words, options) {}
+const what3words = function (words, options) { }
 
 /**
  * API wrapper object
  */
 const by = {
-    keywords            : keywords,
-    location            : location,
-    keywordAndLocation  : keywordAndLocation,
-    what3words          : what3words // for future implementations
+    keywords: keywords,
+    location: location,
+    keywordAndLocation: keywordAndLocation,
+    what3words: what3words // for future implementations
 }
 
 module.exports = by;

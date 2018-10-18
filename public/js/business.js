@@ -70,7 +70,7 @@ function initMap() {
 initMap()
 
 
-   /**
+/**
  * Searches database for businesses based on URL alias
  * @param {dataList}  the specific restaurant.
  * @const {newID}  the trimmed version of the URL to match an restaurant's alias.
@@ -87,11 +87,10 @@ $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
 
     })
 
-  /**
+/**
  * On click function go to new location href.
  * @location.href = added url string and target id.
  */
-
 $('.review').on('click', function (event) {
     event.preventDefault();
     if (event.target.id) {
