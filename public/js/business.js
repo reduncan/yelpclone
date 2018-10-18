@@ -7,7 +7,12 @@ $('#submit').on('click', function (e) {
     location.replace("/search")
 });
 
-
+/**
+ * -Gets the restaurant JSON from database
+ * -Pulls out needed info for info box
+ * -Creates list for the information
+ * -Adds pin and map for JSON lat/lon
+ */
 function initMap() {
     $.ajax({
         url: `/api/restaurant`,
