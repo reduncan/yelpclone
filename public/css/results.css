@@ -481,6 +481,20 @@ address {
     transform:rotate(-180deg);
 }
 
+.hide {
+    display: none;
+}
+
+.newgrid {
+    display: block !important;
+}
+
+.gridnew {
+    grid-template-columns: 130px auto;
+    grid-template-rows: 130px;
+    height: auto;
+}
+
 /* Mobile Responsiveness */
 @media only screen and (max-width: 600px) {
     

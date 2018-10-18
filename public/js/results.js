@@ -726,8 +726,14 @@ function initMap() {
 const lessMoreToggle = function () {
   if ($('.map-header a span').text() === "Mo' Map") {
     $('.map-header a span').text("Less Map");
+    $('.media-story').addClass('newgrid');
+    $('.media-block').addClass('gridnew');
+    $('.secondary-attributes, .biz-extra-info').addClass('hide');
   } else {
     $('.map-header a span').text("Mo' Map");
+    $('.media-story').removeClass('newgrid');
+    $('.media-block').removeClass('gridnew');
+    $('.secondary-attributes, .biz-extra-info').removeClass('hide'); 
   }
 }
     /**
