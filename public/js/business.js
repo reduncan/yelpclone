@@ -82,6 +82,11 @@ $('.review').on('click', function (event) {
     }
 })
 
+/**
+ * initBody uses an AJAX call to pull business
+ * info out of the database. It is inserted into 
+ * the DOM using .html. 
+ */
 const initBody = function () {
     $.ajax({
         url: `/api/restaurant/${window.location.search}`,
@@ -118,6 +123,11 @@ const initBody = function () {
 }
 initBody();
 
+/**
+ * initReviews uses an AJAX call to pull
+ * reviews out of the database. It is inserted 
+ * into the DOM using .html. 
+ */
 const initReviews = function () {
     $.ajax({
         url: `/api/review`,
@@ -144,6 +154,12 @@ const initReviews = function () {
 }
 initReviews();
 
+/**
+ * initTitle uses an AJAX call to pull business
+ * info out of the database using an alias from 
+ * the window. It is inserted into the 
+ * DOM using .html.
+ */
 const initTitle = function () {
     $.ajax({
         url: `/api/restaurant/${window.location.search}`,
