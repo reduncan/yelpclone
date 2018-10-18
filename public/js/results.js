@@ -68,7 +68,7 @@ if (locationIndexInput !== null) {
         method: 'GET',
         dataType: 'json'
       }).then(function (data) {
-        
+
         const resultsId = [];
         $('.biz-attributes a').map(function () {
           resultsId.push(this.id)
@@ -153,7 +153,6 @@ $('#submit').on('click', function (event) {
         businessData.forEach(e => {
           htmlstr += build.businessBlock(e);
         });
-        console.log(count);
         $('#holder').html(htmlstr);
         let lowerSearchInput = newSearch.searchInput.charAt(0).toUpperCase() + newSearch.searchInput.slice(1);
 
@@ -678,9 +677,9 @@ $('#fourDollar').on('click', function (event) {
     initMap();
   }
 });
-    /**
-     * -Google Maps API, Use to find your location if no results are found
-     */
+/**
+ * -Google Maps API, Use to find your location if no results are found
+ */
 let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -720,9 +719,9 @@ function initMap() {
     handleLocationError(false, map.getCenter());
   }
 }
-    /**
-     * -Changes Map text on expand of window, rotates chevron
-     */
+/**
+ * -Changes Map text on expand of window, rotates chevron
+ */
 const lessMoreToggle = function () {
   if ($('.map-header a span').text() === "Mo' Map") {
     $('.map-header a span').text("Less Map");
@@ -735,13 +734,13 @@ const lessMoreToggle = function () {
     $('.rotate').toggleClass('left');
     $('.media-story').removeClass('newgrid');
     $('.media-block').removeClass('gridnew');
-    $('.secondary-attributes, .biz-extra-info').removeClass('hide'); 
+    $('.secondary-attributes, .biz-extra-info').removeClass('hide');
   }
 }
 
-    /**
-     * -On click function calls LessMoreToggle
-     */
+/**
+ * -On click function calls LessMoreToggle
+ */
 $('.map-header a').on('click', function (e) {
   e.preventDefault();
   lessMoreToggle();

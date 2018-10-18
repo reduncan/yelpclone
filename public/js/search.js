@@ -77,10 +77,6 @@ const location = function (locationString, res) {
  * @returns {Array} business objects
  */
 const keywordAndLocation = function (searchString, locationString, res) {
-    // console.log("Inside keywordAndLocation function");
-    // console.log("Search String: " + searchString);
-    // console.log("Location String: " + locationString);
-
     let businesses = [];
     let reg_searchTerm = { $regex: new RegExp(searchString, 'i') }
     let reg_location = { $regex: new RegExp(locationString, 'i') }
@@ -89,7 +85,6 @@ const keywordAndLocation = function (searchString, locationString, res) {
         .find()
         .and([
 
-            // at least one from these properties
             {
                 $or: [
                     { 'alias': reg_searchTerm },
@@ -97,8 +92,6 @@ const keywordAndLocation = function (searchString, locationString, res) {
                     { 'categories.title': reg_searchTerm }
                 ]
             },
-
-            // at least one from these properties
             {
                 $or: [
                     { 'location.city': reg_location },
@@ -114,7 +107,6 @@ const keywordAndLocation = function (searchString, locationString, res) {
         .then(function (businessData) {
             businesses = businessData.length > 0 ? businessData : ["none"];
 
-            // console.log("This is what it returns: " + businessData);
             if (res !== undefined) res.json(businessData);
         })
         .catch(function (err) { console.log(err); });
