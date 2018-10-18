@@ -727,9 +727,15 @@ const lessMoreToggle = function () {
   if ($('.map-header a span').text() === "Mo' Map") {
     $('.map-header a span').text("Less Map");
     $('.rotate').toggleClass('left');
+    $('.media-story').addClass('newgrid');
+    $('.media-block').addClass('gridnew');
+    $('.secondary-attributes, .biz-extra-info').addClass('hide');
   } else {
     $('.map-header a span').text("Mo' Map");
     $('.rotate').toggleClass('left');
+    $('.media-story').removeClass('newgrid');
+    $('.media-block').removeClass('gridnew');
+    $('.secondary-attributes, .biz-extra-info').removeClass('hide'); 
   }
 }
 
