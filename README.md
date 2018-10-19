@@ -39,7 +39,11 @@ We are not currently accepting contributions to this project.
   * implemented random background generator on homepage
   * configured information for business.html DOM manipulation
 
-* **Ben Nguyen** - Reviews/Ratings 
+* **Ben Nguyen** - Reviews/Ratings
+  * Created base HTML, Javascript and CSS for review page.
+  * Created base base functionality for review box.
+  * Connected routes from business to review page.
+  * Created a mobile friendly version for review page. 
   
 * **Justin Kook** - Search by Location
   * created html render for the search results
@@ -48,10 +52,17 @@ We are not currently accepting contributions to this project.
   * dynamic html title and ability to search only by location
   
 * **David Ye** - Search by Terms/Tags
-  *
+  * created search function to filter the database for tags and terms
+  * created html render api to build elements dynamically
+  * added a feature to automatically detect user's location and use it as default
+  * contributed to results page css to support the element rendering
+  * created functions to perform ETL on data coming from database to frontend 
   
 * **Matthew Carpenter** - Google Maps
-  * 
+  * Created map layout for results, and business page
+  * Utilized Google Maps API to link restaurants lat/lon to pinned items on map
+  * Created/Styled large map box on results page/Animated with CSS
+  * Created/Styled business info box on business page 
 
 
 ## License

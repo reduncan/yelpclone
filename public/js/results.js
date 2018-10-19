@@ -3,6 +3,7 @@
  * @param {String} searchIndexInput - catagory searchInput
  * @param {String} locationIndexInput - location locationInput
  */
+
 let searchIndexInput = sessionStorage.getItem('searchTag');
 let locationIndexInput = sessionStorage.getItem('locationTag');
 
@@ -12,11 +13,11 @@ if (locationIndexInput !== null) {
   const geocode = () => {
     let location = locationIndexInput;
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-        params: {
-          address: location,
-          key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
-        }
-      })
+      params: {
+        address: location,
+        key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
+      }
+    })
       .then(function (res) {
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
@@ -50,14 +51,14 @@ if (locationIndexInput !== null) {
         });
         $('#holder').html(htmlstr);
         let lowerSearchInput = newSearchIndex.searchInput.charAt(0).toUpperCase() + newSearchIndex.searchInput.slice(1);
-        
+
         if (newSearchIndex.searchInput !== '') {
           $('#bestNear').html(`Best ${lowerSearchInput} near ${cityStateIndex}`);
           $('#title').text(`Best ${lowerSearchInput} near ${cityStateIndex}`);
         } else {
           $('#bestNear').html(`Places near ${cityStateIndex}`);
           $('#title').text(`Places near ${cityStateIndex}`);
-        }        
+        }
         $('#searchInput').val(`${lowerSearchInput}`);
         $('#locationInput').val(`${cityStateIndex}`);
       })
@@ -65,22 +66,32 @@ if (locationIndexInput !== null) {
         console.log(err);
       })
 
-    // Google Maps API to render markers corresponding to respective business
+    /**
+     * -Google Maps API, Use returned restaurant lat/lon to add 10 pins to the map.
+     * -Ajax returns all resturants JSON from database
+     * -Get all the ID's from the resturants returned from search results
+     * -Filter empty/blank array elements
+     * -Push matched ID results to list array
+     * -Create Google Map, with center on first result of search, 
+     *   loop through list array create pin for each one
+     */
+
     function initMap() {
       $.ajax({
         url: '/api/restaurant',
         method: 'GET',
         dataType: 'json'
       }).then(function (data) {
+
         const resultsId = [];
-        //this gets all ID's from found results
         $('.biz-attributes a').map(function () {
           resultsId.push(this.id)
-        })
+        });
+
         const resultsIdFiltered = resultsId.filter(function (e) {
           return e != "";
-        })
-        //this finds the resturants json obj matching page results, and returns the coors for each
+        });
+
         const list = [];
         data.map(function (obj) {
           if (resultsIdFiltered.includes(obj.id)) {
@@ -127,11 +138,11 @@ $('#submit').on('click', function (event) {
   const geocode = () => {
     let location = document.getElementById('locationInput').value
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-        params: {
-          address: location,
-          key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
-        }
-      })
+      params: {
+        address: location,
+        key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
+      }
+    })
       .then(function (res) {
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
@@ -158,7 +169,7 @@ $('#submit').on('click', function (event) {
         });
         $('#holder').html(htmlstr);
         let lowerSearchInput = newSearch.searchInput.charAt(0).toUpperCase() + newSearch.searchInput.slice(1);
-        
+
         if ($('#searchInput').val() !== '') {
           $('#bestNear').html(`Best ${lowerSearchInput} near ${cityState}`);
           $('#title').text(`Best ${lowerSearchInput} near ${cityState}`);
@@ -167,7 +178,7 @@ $('#submit').on('click', function (event) {
           $('#title').text(`Places near ${cityState}`);
         };
         $('#searchInput').val(`${lowerSearchInput}`);
-        $('#locationInput').val(`${cityState}`); 
+        $('#locationInput').val(`${cityState}`);
       })
       .catch(function (err) {
         console.log(err);
@@ -180,14 +191,14 @@ $('#submit').on('click', function (event) {
         dataType: 'json'
       }).then(function (data) {
         const resultsId = [];
-        //this gets all ID's from found results
+
         $('.biz-attributes a').map(function () {
           resultsId.push(this.id)
         })
         const resultsIdFiltered = resultsId.filter(function (e) {
           return e != "";
         })
-        //this finds the resturants json obj matching page results, and returns the coors for each
+
         const list = [];
         data.map(function (obj) {
           if (resultsIdFiltered.includes(obj.id)) {
@@ -235,11 +246,11 @@ $('#oneDollar').on('click', function (event) {
   const geocode = () => {
     let location = document.getElementById('locationInput').value
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-        params: {
-          address: location,
-          key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
-        }
-      })
+      params: {
+        address: location,
+        key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
+      }
+    })
       .then(function (res) {
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
@@ -253,7 +264,7 @@ $('#oneDollar').on('click', function (event) {
   };
   geocode();
   const callAddressCity = function (shortName, cityState) {
-    
+
     const newSearch = {
       searchInput: $('#searchInput').val().trim(),
       locationInput: shortName,
@@ -295,14 +306,14 @@ $('#oneDollar').on('click', function (event) {
         dataType: 'json'
       }).then(function (data) {
         const resultsId = [];
-        //this gets all ID's from found results
+
         $('.biz-attributes a').map(function () {
           resultsId.push(this.id)
         })
         const resultsIdFiltered = resultsId.filter(function (e) {
           return e != "";
         })
-        //this finds the resturants json obj matching page results, and returns the coors for each
+
         const list = [];
         data.map(function (obj) {
           if (resultsIdFiltered.includes(obj.id)) {
@@ -350,11 +361,11 @@ $('#twoDollar').on('click', function (event) {
   const geocode = () => {
     let location = document.getElementById('locationInput').value
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-        params: {
-          address: location,
-          key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
-        }
-      })
+      params: {
+        address: location,
+        key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
+      }
+    })
       .then(function (res) {
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
@@ -409,14 +420,14 @@ $('#twoDollar').on('click', function (event) {
         dataType: 'json'
       }).then(function (data) {
         const resultsId = [];
-        //this gets all ID's from found results
+
         $('.biz-attributes a').map(function () {
           resultsId.push(this.id)
         })
         const resultsIdFiltered = resultsId.filter(function (e) {
           return e != "";
         })
-        //this finds the resturants json obj matching page results, and returns the coors for each
+
         const list = [];
         data.map(function (obj) {
           if (resultsIdFiltered.includes(obj.id)) {
@@ -464,11 +475,11 @@ $('#threeDollar').on('click', function (event) {
   const geocode = () => {
     let location = document.getElementById('locationInput').value
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-        params: {
-          address: location,
-          key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
-        }
-      })
+      params: {
+        address: location,
+        key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
+      }
+    })
       .then(function (res) {
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
@@ -523,14 +534,14 @@ $('#threeDollar').on('click', function (event) {
         dataType: 'json'
       }).then(function (data) {
         const resultsId = [];
-        //this gets all ID's from found results
+
         $('.biz-attributes a').map(function () {
           resultsId.push(this.id)
         })
         const resultsIdFiltered = resultsId.filter(function (e) {
           return e != "";
         })
-        //this finds the resturants json obj matching page results, and returns the coors for each
+
         const list = [];
         data.map(function (obj) {
           if (resultsIdFiltered.includes(obj.id)) {
@@ -578,11 +589,11 @@ $('#fourDollar').on('click', function (event) {
   const geocode = () => {
     let location = document.getElementById('locationInput').value
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-        params: {
-          address: location,
-          key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
-        }
-      })
+      params: {
+        address: location,
+        key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
+      }
+    })
       .then(function (res) {
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
@@ -637,14 +648,14 @@ $('#fourDollar').on('click', function (event) {
         dataType: 'json'
       }).then(function (data) {
         const resultsId = [];
-        //this gets all ID's from found results
+
         $('.biz-attributes a').map(function () {
           resultsId.push(this.id)
         })
         const resultsIdFiltered = resultsId.filter(function (e) {
           return e != "";
         })
-        //this finds the resturants json obj matching page results, and returns the coors for each
+
         const list = [];
         data.map(function (obj) {
           if (resultsIdFiltered.includes(obj.id)) {
@@ -684,38 +695,10 @@ $('#fourDollar').on('click', function (event) {
     initMap();
   }
 });
-
-// $('#openStatus').on('click', function (event) {
-//       event.preventDefault();
-
-//       $('#searchInput').val(null)
-//       $('#locationInput').val(null)
-
-//       $.ajax({
-//           url: '/api/restaurant',
-//           method: 'GET'
-//         })
-//         .then(function (businessData) {
-//           axios.get('https://api.yelp.com/v3/businesses/:id', {
-//               params: {
-//                 id: businessData.forEach(e => e.id),
-//                 'api-key': 'api-key-here'
-//               }
-//             }).then(function (businessHours) {
-//               let htmlstr = '';
-//               let filteredData = businessHours.filter(e => e.hours.is_open_now === true)
-//               filteredData.forEach(e => {
-//                 htmlstr += build.businessBlock(e);
-//               });
-//               $('#holder').html(htmlstr);
-//             })
-//             .catch(function (err) {
-//               console.log(err);
-//             })
-//         });
-
-var map;
-
+/**
+ * -Google Maps API, Use to find your location if no results are found
+ */
+let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {
@@ -739,7 +722,6 @@ function initMap() {
     title: "You are here!",
     animation: google.maps.Animation.BOUNCE
   });
-  // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
       var pos = {
@@ -752,26 +734,33 @@ function initMap() {
       handleLocationError(true, map.getCenter());
     });
   } else {
-    // Browser doesn't support Geolocation
     handleLocationError(false, map.getCenter());
   }
 }
-
+/**
+ * -Changes Map text on expand of window, rotates chevron
+ */
 const lessMoreToggle = function () {
   if ($('.map-header a span').text() === "Mo' Map") {
     $('.map-header a span').text("Less Map");
+    $('.rotate').toggleClass('left');
+    $('.media-story').addClass('newgrid');
+    $('.media-block').addClass('gridnew');
+    $('.secondary-attributes, .biz-extra-info').addClass('hide');
   } else {
     $('.map-header a span').text("Mo' Map");
+    $('.rotate').toggleClass('left');
+    $('.media-story').removeClass('newgrid');
+    $('.media-block').removeClass('gridnew');
+    $('.secondary-attributes, .biz-extra-info').removeClass('hide');
   }
 }
 
-const rotate = function () {
-  $('.rotate').toggleClass('left');
-};
-
+/**
+ * -On click function calls LessMoreToggle
+ */
 $('.map-header a').on('click', function (e) {
   e.preventDefault();
-  rotate();
   lessMoreToggle();
   $('.result-map').toggleClass('mo-map');
 })

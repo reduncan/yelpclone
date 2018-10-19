@@ -176,6 +176,15 @@ button[data-tool-tip] {
     margin-bottom: 10px;
 }
 
+#bestNear, #paginationCount {
+    display: inline-block;
+    padding-top: 35px;
+}
+
+#paginationCount {
+    float: right;
+}
+
 button {
     height: 40px;
     border-radius: 1px 0px 1px 0px;
@@ -470,6 +479,20 @@ address {
     -moz-transform:rotate(-180deg);
     -webkit-transform:rotate(-180deg);
     transform:rotate(-180deg);
+}
+
+.hide {
+    display: none;
+}
+
+.newgrid {
+    display: block !important;
+}
+
+.gridnew {
+    grid-template-columns: 130px auto;
+    grid-template-rows: 130px;
+    height: auto;
 }
 
 /* Mobile Responsiveness */
