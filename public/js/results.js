@@ -1,13 +1,14 @@
 /**
- * add two numbers JSDoc format
- * @param {Number} num1 - The first Number
- * @param {Number} num2 - The second Number
- * @return {Number} sum of the two param
+ * gets two string inputs from index.html then stores to session storage
+ * @param {String} searchIndexInput - catagory searchInput
+ * @param {String} locationIndexInput - location locationInput
  */
 let searchIndexInput = sessionStorage.getItem('searchTag');
 let locationIndexInput = sessionStorage.getItem('locationTag');
 
 if (locationIndexInput !== null) {
+
+  // Calls Google Geocoding API with location param as LocationIndexInput
   const geocode = () => {
     let location = locationIndexInput;
     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
@@ -28,6 +29,12 @@ if (locationIndexInput !== null) {
 
   };
   geocode();
+  /**
+   * @param {string} shortNameIndex - uncapitalized alias of location ex. atlanta
+   * @param {string} cityStateIndex - Properly formatted city, state ex. Atlanta, GA, USA
+   * @return {object} businessData - filtered business by tag and location
+   */
+
   const callAddressCityIndex = function (shortNameIndex, cityStateIndex) {
     const newSearchIndex = {
       searchInput: searchIndexInput,
@@ -58,6 +65,7 @@ if (locationIndexInput !== null) {
         console.log(err);
       })
 
+    // Google Maps API to render markers corresponding to respective business
     function initMap() {
       $.ajax({
         url: '/api/restaurant',
@@ -220,6 +228,7 @@ $('#submit').on('click', function (event) {
   };
 })
 
+// Filter businessData.price returned from /api/search route by $
 $('#oneDollar').on('click', function (event) {
   event.preventDefault();
   count = 0;
@@ -334,6 +343,7 @@ $('#oneDollar').on('click', function (event) {
   }
 });
 
+// Filter businessData.price returned from /api/search route by $$
 $('#twoDollar').on('click', function (event) {
   event.preventDefault();
   count = 0;
@@ -447,6 +457,7 @@ $('#twoDollar').on('click', function (event) {
   }
 });
 
+// Filter businessData.price returned from /api/search route by $$$
 $('#threeDollar').on('click', function (event) {
   event.preventDefault();
   count = 0;
@@ -560,6 +571,7 @@ $('#threeDollar').on('click', function (event) {
   }
 });
 
+// Filter businessData.price returned from /api/search route by $$$$
 $('#fourDollar').on('click', function (event) {
   event.preventDefault();
   count = 0;
