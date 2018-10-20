@@ -13,7 +13,7 @@ $(document).ready(function () {
       const newID = window.location.search.substring(7);
       for (let i = 0; i < dataList.length; i++) {
         if (dataList[i].alias === newID) {
-          const newURL = `http://localhost:3000/business${window.location.search}`
+          const newURL = `https://yelpper.herokuapp.com/business${window.location.search}`
           $(".heading-link a").append(`${dataList[i].name}`)
           $(".heading-link a").attr("href", newURL)
           $('.review-input').val(`${dataList[i].personal_review.personal_review_text}`)
