@@ -72,19 +72,19 @@ initMap()
 
 /**
  * Searches database for businesses based on URL alias
- * @param {dataList}  the specific restaurant.
+ * @param {dataList}  all restaurants.
+ * @param {business}  each specific restaurants.
  * @const {newID}  the trimmed version of the URL to match an restaurant's alias.
  * if dataList[i].alias match with newID change the id of that class to newID.
  */
 $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
     .then(function (dataList) {
         const newID = window.location.search.substring(7);
-        for (let i = 0; i < dataList.length; i++) {
-            if (dataList[i].alias === newID) {
-                $(".review").attr("id", newID)
+        dataList.forEach((business) => {
+            if (business.alias === newID) {
+                $(".review").attr("id", newID);
             }
-        }
-
+          });
     })
 
 /**
@@ -153,19 +153,18 @@ const initReviews = function () {
 
         const reviews = window.location.search.substring(7)
         const prefix = "https://www.yelp.com/biz/";
-        for (let i = 0; i < data.length; i++) {
-            const noPre = data[i].url.replace(prefix, '');
+        data.forEach((business) => {
+            const noPre = business.url.replace(prefix, '');
             const newAlias = noPre.substring(0, noPre.indexOf("?"));
             if (newAlias === reviews) {
                 let review = "";
-                review += `<div class="line"><p class="user">${data[i].user.name}</p>`;
+                review += `<div class="line"><p class="user">${business.user.name}</p>`;
                 review += `<p class="home">Somewhere in the World</p></div>`;
-                review += `<div class="line"><div class='biz-rating2'><div class='i-stars2 ${getStarRatingClass(data[i].rating)}'><img class="offscreen" height="303" src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png" width="84" alt="${data[i].rating} star rating"></div><span class='review-date'>${data[i].time_created}</span></div>`;
-                review += `<p class="thoughts">${data[i].text}</p></div>`;
+                review += `<div class="line"><div class='biz-rating2'><div class='i-stars2 ${getStarRatingClass(business.rating)}'><img class="offscreen" height="303" src="https://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_design_web/9b34e39ccbeb/assets/img/stars/stars.png" width="84" alt="${business.rating} star rating"></div><span class='review-date'>${business.time_created}</span></div>`;
+                review += `<p class="thoughts">${business.text}</p></div>`;
                 $(".seeded-review").html(review);
             }
-        }
-
+          });
     })
 }
 initReviews();
