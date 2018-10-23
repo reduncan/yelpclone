@@ -1,26 +1,24 @@
 $(document).ready(function () {
 
-
-
   /**
    * Searches database for businesses based on URL alias
-   * @param {dataList}  the specific restaurant.
+   * @param {dataList}  all restaurants.
+   * @param {business}  each specific restaurant. 
    * @const {newID}  the trimmed version of the URL to match an restaurant's alias.
    * if they match append the name of business, any previous reviews and ratings.
    */
   $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
     .then(function (dataList) {
       const newID = window.location.search.substring(7);
-      for (let i = 0; i < dataList.length; i++) {
-        if (dataList[i].alias === newID) {
+      dataList.forEach((business) => {
+        if (business.alias === newID) {
           const newURL = `https://yelpper.herokuapp.com/business${window.location.search}`
-          $(".heading-link a").append(`${dataList[i].name}`)
+          $(".heading-link a").append(`${business.name}`)
           $(".heading-link a").attr("href", newURL)
-          $('.review-input').val(`${dataList[i].personal_review.personal_review_text}`)
-          $(".i-selector-star").attr('data-stars', dataList[i].personal_review.personal_review_rating)
+          $('.review-input').val(`${business.personal_review.personal_review_text}`)
+          $(".i-selector-star").attr('data-stars', business.personal_review.personal_review_rating)
         }
-      }
-
+      });
     })
 
   /**
@@ -70,13 +68,13 @@ $(document).ready(function () {
       $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
         .then(function (dataList) {
           const newID = window.location.search.substring(7);
-          for (let i = 0; i < dataList.length; i++) {
-            if (dataList[i].alias === newID) {
+          dataList.forEach((business) => {
+            if (business.alias === newID) {
               const newURL = `https://yelpper.herokuapp.com/business${window.location.search}`
-              $(".thank-you-header").html(`${dataList[i].name}`)
+              $(".thank-you-header").html(`${business.name}`)
               $(".see-review").attr("href", newURL)
             }
-          }
+          });
         })
     })
   }
