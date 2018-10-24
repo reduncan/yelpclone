@@ -12,15 +12,11 @@ if (locationIndexInput !== null) {
   // Calls Google Geocoding API with location param as LocationIndexInput
   const geocode = () => {
     let location = locationIndexInput;
-    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-      params: {
-        address: location,
-        key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
-      }
-    })
-      .then(function (res) {
-        let formattedAddress = res.data.results[0].formatted_address;
-        let addressComponents = res.data.results[0].address_components;
+    const queryURL = 'api/geocode/' + location;
+    $.get(queryURL)
+      .then(function(results) {
+        let formattedAddress = results.results[0].formatted_address;
+        let addressComponents = results.results[0].address_components;
         callAddressCityIndex(addressComponents[0].short_name, formattedAddress)
       })
 

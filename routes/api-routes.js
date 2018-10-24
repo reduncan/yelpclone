@@ -1,6 +1,9 @@
 const db = require('../models/');
 const searchBy = require('../public/js/search.js');
+const axios = require('axios');
+require("dotenv").config();
 const test = require('../models/test.js');
+
 
 module.exports = function (app) {
 
@@ -38,20 +41,21 @@ module.exports = function (app) {
 
         db.Review.create(req.body)
             .then(function (dbReview) {
-                db.Restaurant.findOneAndUpdate({ alias: req.body.url }, {
-                    $set: {
-                        personal_review: {
-                            personal_review_text: dbReview.text,
-                            personal_review_rating: dbReview.rating,
-                            personal_review_time: dbReview.time_created,
+                db.Restaurant.findOneAndUpdate({
+                        alias: req.body.url
+                    }, {
+                        $set: {
+                            personal_review: {
+                                personal_review_text: dbReview.text,
+                                personal_review_rating: dbReview.rating,
+                                personal_review_time: dbReview.time_created,
+                            }
                         }
-                    }
-                })
+                    })
 
                     .then(function (dbUser) {
                         res.json(dbUser)
-                    }
-                    )
+                    })
                     .catch(function (err) {
                         res.json(err);
                     });
@@ -59,8 +63,8 @@ module.exports = function (app) {
     })
     app.put('/api/review/:id', function (req, res) {
         db.Review.findOneAndUpdate({
-            _id: req.params.id
-        }, {
+                _id: req.params.id
+            }, {
                 $set: {
                     time_created: req.body.time_created,
                     text: req.body.text,
@@ -87,8 +91,8 @@ module.exports = function (app) {
 
     app.get('/api/restaurant/:alias', function (req, res) {
         db.Restaurant.find({
-            alias: req.params.alias
-        })
+                alias: req.params.alias
+            })
             .then(function (dbRestaurant) {
                 res.json(dbRestaurant);
             })
@@ -99,9 +103,15 @@ module.exports = function (app) {
 
     app.get('/api/review/:alias', function (req, res) {
         let alias = req.params.alias;
-        let regex = { $regex: new RegExp(alias, 'i') };
-        db.Restaurant.find({ 'alias': alias })
-            .or([{ 'url': regex }])
+        let regex = {
+            $regex: new RegExp(alias, 'i')
+        };
+        db.Restaurant.find({
+                'alias': alias
+            })
+            .or([{
+                'url': regex
+            }])
             .then(function (aliasReview) {
                 res.json(aliasReview);
             })
@@ -111,7 +121,9 @@ module.exports = function (app) {
     });
 
     app.get('/api/business/:alias', function (req, res) {
-        db.Restaurant.find({ alias: req.params.alias })
+        db.Restaurant.find({
+                alias: req.params.alias
+            })
             .then(function (dbRestaurant) {
                 res.json(dbRestaurant);
             })
@@ -125,4 +137,19 @@ module.exports = function (app) {
         let location = req.body.locationInput;
         searchBy.keywordAndLocation(searchTerm, location, res);
     });
-};
+
+    app.get('/api/geocode/:location', function (req, res) {
+        axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+                params: {
+                    address: req.params.location,
+                    key: process.env.GEOCODE_KEY
+                }
+            })
+            .then(function (result) {
+                res.json(result.data);
+            })
+            .catch(function (err) {
+                res.json(err);
+            })
+    });
+}
