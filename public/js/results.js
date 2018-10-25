@@ -14,7 +14,7 @@ if (locationIndexInput !== null) {
     let location = locationIndexInput;
     const queryURL = 'api/geocode/' + location;
     $.get(queryURL)
-      .then(function(data) {
+      .then(function (data) {
         let formattedAddress = data.results[0].formatted_address;
         let addressComponents = data.results[0].address_components;
         callAddressCityIndex(addressComponents[0].short_name, formattedAddress)
@@ -131,8 +131,12 @@ if (locationIndexInput !== null) {
 $('#submit').on('click', function (event) {
   event.preventDefault();
   count = 0;
+  let searchTag = $('#searchInput').val().trim();
+  let locationTag = $('#locationInput').val().trim();
+  sessionStorage.setItem('searchTag', `${searchTag}`);
+  sessionStorage.setItem('locationTag', `${locationTag}`);
   const geocode = () => {
-    let location = document.getElementById('locationInput').value
+    let location = sessionStorage.getItem('locationTag');
     const queryURL = 'api/geocode/' + location;
     $.get(queryURL)
       .then(function (res) {
@@ -149,7 +153,7 @@ $('#submit').on('click', function (event) {
   geocode();
   const callAddressCity = function (shortName, cityState) {
     const newSearch = {
-      searchInput: $('#searchInput').val().trim(),
+      searchInput: sessionStorage.getItem('searchTag'),
       locationInput: shortName,
     };
 
@@ -235,8 +239,12 @@ $('#submit').on('click', function (event) {
 $('#oneDollar').on('click', function (event) {
   event.preventDefault();
   count = 0;
+  let searchTag = $('#searchInput').val().trim();
+  let locationTag = $('#locationInput').val().trim();
+  sessionStorage.setItem('searchTag', `${searchTag}`);
+  sessionStorage.setItem('locationTag', `${locationTag}`);
   const geocode = () => {
-    let location = document.getElementById('locationInput').value
+    let location = sessionStorage.getItem('locationTag');
     const queryURL = 'api/geocode/' + location;
     $.get(queryURL)
       .then(function (res) {
@@ -254,7 +262,7 @@ $('#oneDollar').on('click', function (event) {
   const callAddressCity = function (shortName, cityState) {
 
     const newSearch = {
-      searchInput: $('#searchInput').val().trim(),
+      searchInput: sessionStorage.getItem('searchTag'),
       locationInput: shortName,
     };
     if (newSearch.searchInput !== '') {
@@ -346,8 +354,12 @@ $('#oneDollar').on('click', function (event) {
 $('#twoDollar').on('click', function (event) {
   event.preventDefault();
   count = 0;
+  let searchTag = $('#searchInput').val().trim();
+  let locationTag = $('#locationInput').val().trim();
+  sessionStorage.setItem('searchTag', `${searchTag}`);
+  sessionStorage.setItem('locationTag', `${locationTag}`);
   const geocode = () => {
-    let location = document.getElementById('locationInput').value
+    let location = sessionStorage.getItem('locationTag');
     const queryURL = 'api/geocode/' + location;
     $.get(queryURL)
       .then(function (res) {
@@ -364,7 +376,7 @@ $('#twoDollar').on('click', function (event) {
   geocode();
   const callAddressCity = function (shortName, cityState) {
     const newSearch = {
-      searchInput: $('#searchInput').val().trim(),
+      searchInput: sessionStorage.getItem('searchTag'),
       locationInput: shortName,
     };
     if (newSearch.searchInput !== '') {
@@ -456,8 +468,12 @@ $('#twoDollar').on('click', function (event) {
 $('#threeDollar').on('click', function (event) {
   event.preventDefault();
   count = 0;
+  let searchTag = $('#searchInput').val().trim();
+  let locationTag = $('#locationInput').val().trim();
+  sessionStorage.setItem('searchTag', `${searchTag}`);
+  sessionStorage.setItem('locationTag', `${locationTag}`);
   const geocode = () => {
-    let location = document.getElementById('locationInput').value
+    let location = sessionStorage.getItem('locationTag');
     const queryURL = 'api/geocode/' + location;
     $.get(queryURL)
       .then(function (res) {
@@ -474,7 +490,7 @@ $('#threeDollar').on('click', function (event) {
   geocode();
   const callAddressCity = function (shortName, cityState) {
     const newSearch = {
-      searchInput: $('#searchInput').val().trim(),
+      searchInput: sessionStorage.getItem('searchTag'),
       locationInput: shortName,
     };
     if (newSearch.searchInput !== '') {
@@ -566,8 +582,12 @@ $('#threeDollar').on('click', function (event) {
 $('#fourDollar').on('click', function (event) {
   event.preventDefault();
   count = 0;
+  let searchTag = $('#searchInput').val().trim();
+  let locationTag = $('#locationInput').val().trim();
+  sessionStorage.setItem('searchTag', `${searchTag}`);
+  sessionStorage.setItem('locationTag', `${locationTag}`);
   const geocode = () => {
-    let location = document.getElementById('locationInput').value
+    let location = sessionStorage.getItem('locationTag');
     const queryURL = 'api/geocode/' + location;
     $.get(queryURL)
       .then(function (res) {
@@ -584,7 +604,7 @@ $('#fourDollar').on('click', function (event) {
   geocode();
   const callAddressCity = function (shortName, cityState) {
     const newSearch = {
-      searchInput: $('#searchInput').val().trim(),
+      searchInput: sessionStorage.getItem('searchTag'),
       locationInput: shortName,
     };
     if (newSearch.searchInput !== '') {
@@ -675,6 +695,7 @@ $('#fourDollar').on('click', function (event) {
  * -Google Maps API, Use to find your location if no results are found
  */
 let map;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {
