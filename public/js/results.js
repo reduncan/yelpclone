@@ -14,9 +14,9 @@ if (locationIndexInput !== null) {
     let location = locationIndexInput;
     const queryURL = 'api/geocode/' + location;
     $.get(queryURL)
-      .then(function(results) {
-        let formattedAddress = results.results[0].formatted_address;
-        let addressComponents = results.results[0].address_components;
+      .then(function(data) {
+        let formattedAddress = data.results[0].formatted_address;
+        let addressComponents = data.results[0].address_components;
         callAddressCityIndex(addressComponents[0].short_name, formattedAddress)
       })
 
@@ -136,8 +136,8 @@ $('#submit').on('click', function (event) {
     const queryURL = 'api/geocode/' + location;
     $.get(queryURL)
       .then(function (res) {
-        let formattedAddress = res.data.results[0].formatted_address;
-        let addressComponents = res.data.results[0].address_components;
+        let formattedAddress = res.results[0].formatted_address;
+        let addressComponents = res.results[0].address_components;
         callAddressCity(addressComponents[0].short_name, formattedAddress)
       })
 
@@ -240,8 +240,8 @@ $('#oneDollar').on('click', function (event) {
     const queryURL = 'api/geocode/' + location;
     $.get(queryURL)
       .then(function (res) {
-        let formattedAddress = res.data.results[0].formatted_address;
-        let addressComponents = res.data.results[0].address_components;
+        let formattedAddress = res.results[0].formatted_address;
+        let addressComponents = res.results[0].address_components;
         callAddressCity(addressComponents[0].short_name, formattedAddress)
       })
 
@@ -351,8 +351,8 @@ $('#twoDollar').on('click', function (event) {
     const queryURL = 'api/geocode/' + location;
     $.get(queryURL)
       .then(function (res) {
-        let formattedAddress = res.data.results[0].formatted_address;
-        let addressComponents = res.data.results[0].address_components;
+        let formattedAddress = res.results[0].formatted_address;
+        let addressComponents = res.results[0].address_components;
         callAddressCity(addressComponents[0].short_name, formattedAddress)
       })
 
@@ -461,8 +461,8 @@ $('#threeDollar').on('click', function (event) {
     const queryURL = 'api/geocode/' + location;
     $.get(queryURL)
       .then(function (res) {
-        let formattedAddress = res.data.results[0].formatted_address;
-        let addressComponents = res.data.results[0].address_components;
+        let formattedAddress = res.results[0].formatted_address;
+        let addressComponents = res.results[0].address_components;
         callAddressCity(addressComponents[0].short_name, formattedAddress)
       })
 
@@ -571,8 +571,8 @@ $('#fourDollar').on('click', function (event) {
     const queryURL = 'api/geocode/' + location;
     $.get(queryURL)
       .then(function (res) {
-        let formattedAddress = res.data.results[0].formatted_address;
-        let addressComponents = res.data.results[0].address_components;
+        let formattedAddress = res.results[0].formatted_address;
+        let addressComponents = res.results[0].address_components;
         callAddressCity(addressComponents[0].short_name, formattedAddress)
       })
 
