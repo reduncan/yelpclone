@@ -133,12 +133,8 @@ $('#submit').on('click', function (event) {
   count = 0;
   const geocode = () => {
     let location = document.getElementById('locationInput').value
-    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-      params: {
-        address: location,
-        key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
-      }
-    })
+    const queryURL = 'api/geocode/' + location;
+    $.get(queryURL)
       .then(function (res) {
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
@@ -241,12 +237,8 @@ $('#oneDollar').on('click', function (event) {
   count = 0;
   const geocode = () => {
     let location = document.getElementById('locationInput').value
-    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-      params: {
-        address: location,
-        key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
-      }
-    })
+    const queryURL = 'api/geocode/' + location;
+    $.get(queryURL)
       .then(function (res) {
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
@@ -356,12 +348,8 @@ $('#twoDollar').on('click', function (event) {
   count = 0;
   const geocode = () => {
     let location = document.getElementById('locationInput').value
-    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-      params: {
-        address: location,
-        key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
-      }
-    })
+    const queryURL = 'api/geocode/' + location;
+    $.get(queryURL)
       .then(function (res) {
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
@@ -470,12 +458,8 @@ $('#threeDollar').on('click', function (event) {
   count = 0;
   const geocode = () => {
     let location = document.getElementById('locationInput').value
-    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-      params: {
-        address: location,
-        key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
-      }
-    })
+    const queryURL = 'api/geocode/' + location;
+    $.get(queryURL)
       .then(function (res) {
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
@@ -584,12 +568,8 @@ $('#fourDollar').on('click', function (event) {
   count = 0;
   const geocode = () => {
     let location = document.getElementById('locationInput').value
-    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-      params: {
-        address: location,
-        key: 'AIzaSyAxG39mIjdDBwU3JnRsD1SmItsodWv_1lw'
-      }
-    })
+    const queryURL = 'api/geocode/' + location;
+    $.get(queryURL)
       .then(function (res) {
         let formattedAddress = res.data.results[0].formatted_address;
         let addressComponents = res.data.results[0].address_components;
