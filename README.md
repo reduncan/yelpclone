@@ -29,7 +29,7 @@ We have our app set to run on port 3000. If you prefer to use a different port f
 
 ## Contributing
 
-We are not currently accepting contributions to this project. 
+We are currently accepting contributions to this project. Feel free to open any custom issues or bugs.
 
 ## Authors
 
@@ -39,7 +39,7 @@ We are not currently accepting contributions to this project.
   * implemented random background generator on homepage
   * configured information for business.html DOM manipulation
 
-* **Ben Nguyen** - Reviews/Ratings
+* **Tri (Ben) Nguyen** - Reviews/Ratings
   * Created base HTML, Javascript and CSS for review page.
   * Created base base functionality for review box.
   * Connected routes from business to review page.
