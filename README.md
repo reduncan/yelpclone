@@ -23,6 +23,9 @@ You will need the following isntalled on your machine to be able to run our app:
 * Express
 * Mongoose
 
+Our project uses dotenv node package
+You need to create an .env file with GEOCODE_KEY={YOUR-API-KEY} as an environmental variables for the results to render.
+
 ## Deployment
 
 We have our app set to run on port 3000. If you prefer to use a different port feel free to chaneg the port after cloning into the repository. 
