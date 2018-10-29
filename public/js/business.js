@@ -76,6 +76,7 @@ initMap()
  * @param {business}  each specific restaurants.
  * @const {newID}  the trimmed version of the URL to match an restaurant's alias.
  * if dataList[i].alias match with newID change the id of that class to newID.
+ * if the business personal review 'already_reviewed' field is true change the "write a review" button to "edit your review" 
  */
 $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
     .then(function (dataList) {
@@ -83,8 +84,6 @@ $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
         dataList.forEach((business) => {
             if (business.alias === newID) {
                 $(".review").attr("id", newID);
-                console.log($('.review'));
-                console.log($('.review').text());
                 if(business.personal_review.already_reviewed === 'true' || business.personal_review.already_reviewed === true ){
                 const edit = "Edit your Review"
                 $('.review').text("Edit Your Review") 

@@ -23,7 +23,8 @@ $(document).ready(function () {
 
   /**
    * Add personal review to database 
-   * @const {newReview}  the new updated added
+   * @const {newReview}  the new updated if you HAVE NOT add review
+   * @const {newEdit} the new update if you HAVE added a review
    * @param {dataList}  the the specific restaurant. 
    * @const {newID}  the trimmed version of the URL to match an restaurant's alias.
    * if they match, add the name of business to html, and new URL.
@@ -55,7 +56,10 @@ $(document).ready(function () {
         .then(function (dataList) {
           const newID = window.location.search.substring(7);
           dataList.forEach((business) => {
-            if (business.alias === newID) {  
+            if (business.alias === newID) { 
+              const newURL = `https://yelpper.herokuapp.com/business${window.location.search}`
+              $(".thank-you-header").html(`${business.name}`)
+              $(".see-review").attr("href", newURL) 
               if (!business.personal_review){
                 $.ajax({ url: "/api/review", method: "POST", data: newReview }).then(function (data) {
                   $('.review-input').empty();
@@ -141,15 +145,4 @@ $(document).ready(function () {
   addReview();
 
  
-  $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
-        .then(function (dataList) {
-          const newID = window.location.search.substring(7);
-          dataList.forEach((business) => {
-            if (business.alias === newID) {
-              const newURL = `https://yelpper.herokuapp.com/business${window.location.search}`
-              $(".thank-you-header").html(`${business.name}`)
-              $(".see-review").attr("href", newURL)
-            }            
-          });
-        })
 })
