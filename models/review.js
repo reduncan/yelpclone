@@ -27,6 +27,11 @@ var ReviewSchema = new Schema(
         url: {
             type: String,
             trim: true
+        },
+        already_reviewed:{
+            type: Boolean,
+            // required: true,
+            unique: false
         }
     }
 )
