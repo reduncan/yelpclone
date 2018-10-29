@@ -23,7 +23,8 @@ $(document).ready(function () {
 
   /**
    * Add personal review to database 
-   * @const {newReview}  the new updated added
+   * @const {newReview}  the new updated if you HAVE NOT add review
+   * @const {newEdit} the new update if you HAVE added a review
    * @param {dataList}  the the specific restaurant. 
    * @const {newID}  the trimmed version of the URL to match an restaurant's alias.
    * if they match, add the name of business to html, and new URL.
@@ -37,12 +38,13 @@ $(document).ready(function () {
         rating: $(".i-selector-star").attr('data-stars'),
         text: $('.review-input').val().trim(),
         time_created: newDate,
-        url: reviewUrl
+        url: reviewUrl,
+        already_reviewed: new Boolean(true)
       }
       if ($('.review-input').val() == '') {
         $('.reviewBox').addClass('alert-review')
         $(".review-input").keypress(function () {
-          $('.reviewBox').removeClass('alert-review');
+        $('.reviewBox').removeClass('alert-review');
         });
 
       } else if ($(".i-selector-star").data('stars') == '0') {
@@ -50,32 +52,50 @@ $(document).ready(function () {
 
       }
       if ($('.review-input').val() != '' && $(".i-selector-star").data('stars') != '0') {
-        $.ajax({ url: "/api/review", method: "POST", data: newReview }).then(function (data) {
-          $('.review-input').empty();
-          $('#content').empty();
-        }).then(function () {
-          $('#thank-you').slideDown(500, 'linear').delay(4000);
-          $('#thank-you').removeClass('hide');
-          $('.outer-post').html('<i class="fas fa-check"></i> Posted');
-          $('.outer-post').attr('disabled', 'disabled')
-        })
-          .fail(function (err) {
-
-          })
-      }
-
-
-      $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
+        $.ajax({ url: `/api/restaurant/${window.location.search}`, method: "GET" })
         .then(function (dataList) {
           const newID = window.location.search.substring(7);
           dataList.forEach((business) => {
-            if (business.alias === newID) {
+            if (business.alias === newID) { 
               const newURL = `https://yelpper.herokuapp.com/business${window.location.search}`
               $(".thank-you-header").html(`${business.name}`)
-              $(".see-review").attr("href", newURL)
-            }
+              $(".see-review").attr("href", newURL) 
+              if (!business.personal_review){
+                $.ajax({ url: "/api/review", method: "POST", data: newReview }).then(function (data) {
+                  $('.review-input').empty();
+                  $('#content').empty();
+                }).then(function () {
+                  $('#thank-you').slideDown(500, 'linear').delay(4000);
+                  $('#thank-you').removeClass('hide');
+                  $('.outer-post').html('<i class="fas fa-check"></i> Posted');
+                  $('.outer-post').attr('disabled', 'disabled')
+                })
+                  .fail(function (err) {
+                  })
+              }    
+              else {
+                const newEdit = {
+                  personal_review_text: $('.review-input').val().trim(),
+                  personal_review_rating: $(".i-selector-star").attr('data-stars'),
+                  personal_review_time: newDate,
+                  already_reviewed: new Boolean(true)
+                }
+                $.ajax({ url: `/api/update/${newID}`, method: "PUT", data: newEdit }).then(function (data) {
+                  $('.review-input').empty();
+                  $('#content').empty();
+                }).then(function () {
+                  $('#thank-you').slideDown(500, 'linear').delay(4000);
+                  $('#thank-you').removeClass('hide');
+                  $('.outer-post').html('<i class="fas fa-check"></i> Edited');
+                  $('.outer-post').attr('disabled', 'disabled')
+                })
+                  .fail(function (err) {
+                  })
+              }  
+            }          
           });
-        })
+        })   
+      }
     })
   }
 
@@ -123,4 +143,6 @@ $(document).ready(function () {
 
 
   addReview();
+
+ 
 })

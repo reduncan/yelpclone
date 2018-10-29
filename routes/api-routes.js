@@ -49,10 +49,10 @@ module.exports = function (app) {
                                 personal_review_text: dbReview.text,
                                 personal_review_rating: dbReview.rating,
                                 personal_review_time: dbReview.time_created,
+                                already_reviewed: dbReview.already_reviewed
                             }
                         }
                     })
-
                     .then(function (dbUser) {
                         res.json(dbUser)
                     })
@@ -61,22 +61,21 @@ module.exports = function (app) {
                     });
             });
     })
-    app.put('/api/review/:id', function (req, res) {
-        db.Review.findOneAndUpdate({
-                _id: req.params.id
-            }, {
-                $set: {
-                    time_created: req.body.time_created,
-                    text: req.body.text,
-                    rating: req.body.rating
-                }
-            })
-            .then(function (dbReview) {
-                res.json(dbReview);
-            })
-            .catch(function (err) {
-                res.json(err);
-            });
+
+    app.put('/api/update/:id', function (req, res) {
+                db.Restaurant.findOneAndUpdate({
+                        alias: req.params.id
+                    }, {
+                        $set: {
+                            personal_review: req.body
+                        }
+                    })
+                    .then(function (dbUser) {
+                        res.json(dbUser)
+                    })
+                    .catch(function (err) {
+                        res.json(err);
+                    });
     });
 
     app.get('/api/restaurant', function (req, res) {
