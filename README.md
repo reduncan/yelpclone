@@ -1,7 +1,7 @@
 # yelpclone
 This is a project for a Coding Bootcamp. We are not profiting from this project. 
 
-yelp is a a web app that allows users to search for businesses and restaurants anywhere in the USA. Each business page shows the hours of operation, price rating, menus, reviews, user ratings and many more aspects of their business. 
+yelp is a web app that allows users to search for businesses and restaurants anywhere in the USA. Each business page shows the hours of operation, price rating, menus, reviews, user ratings and many more aspects of their business.
 
 For this project we were tasked with duplicating the yelp web app and having the following features:
 
@@ -28,7 +28,7 @@ You need to create an .env file with GEOCODE_KEY={YOUR-API-KEY} as an environmen
 
 ## Deployment
 
-We have our app set to run on port 3000. If you prefer to use a different port feel free to chaneg the port after cloning into the repository. 
+We have our app set to run on port 3000. If you prefer to use a different port feel free to change the port after cloning into the repository.
 
 ## Contributing
 
