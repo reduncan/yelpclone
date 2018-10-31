@@ -7,6 +7,22 @@
 let searchIndexInput = sessionStorage.getItem('searchTag');
 let locationIndexInput = sessionStorage.getItem('locationTag');
 
+let _businessData = {};
+
+const renderResults = function (data, page) {
+  let htmlstr = '';
+
+  const initial = (10 * (page - 1)) + 1;
+  count = initial - 1;
+
+  for (let i = initial; i < initial + 10 && i < data.length; i++) {
+    let e = data[i];
+    htmlstr += build.businessBlock(e);
+  }
+
+  $('#holder').html(htmlstr);
+};
+
 if (locationIndexInput !== null) {
 
   // Calls Google Geocoding API with location param as LocationIndexInput
@@ -40,12 +56,13 @@ if (locationIndexInput !== null) {
 
     $.post('/api/search', newSearchIndex)
       .then(function (businessData) {
-        let htmlstr = '';
-        count = 0;
-        businessData.forEach(e => {
-          htmlstr += build.businessBlock(e);
-        });
-        $('#holder').html(htmlstr);
+        _businessData = businessData;
+        renderResults(businessData, 1);
+
+        for (let i = 2; i <= Math.ceil((businessData.length - 1) / 10); i++) {
+          $('footer').append(`<a>${i}</a>`);
+        }
+
         let lowerSearchInput = newSearchIndex.searchInput.charAt(0).toUpperCase() + newSearchIndex.searchInput.slice(1);
 
         if (newSearchIndex.searchInput !== '') {
@@ -760,4 +777,14 @@ $('.map-header a').on('click', function (e) {
   e.preventDefault();
   lessMoreToggle();
   $('.result-map').toggleClass('mo-map');
-})
+});
+
+$('footer').on('click', 'a', function (e) {
+  $('footer a').each(function () {
+    $(this).removeClass('active');
+  });
+
+  $(this).addClass('active');
+
+  renderResults(_businessData, $(this).text());
+});

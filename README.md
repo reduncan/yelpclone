@@ -1,7 +1,7 @@
 # yelpclone
 This is a project for a Coding Bootcamp. We are not profiting from this project. 
 
-yelp is a a web app that allows users to search for businesses and restaurants anywhere in the USA. Each business page shows the hours of operation, price rating, menus, reviews, user ratings and many more aspects of their business. 
+yelp is a web app that allows users to search for businesses and restaurants anywhere in the USA. Each business page shows the hours of operation, price rating, menus, reviews, user ratings and many more aspects of their business.
 
 For this project we were tasked with duplicating the yelp web app and having the following features:
 
@@ -23,13 +23,17 @@ You will need the following isntalled on your machine to be able to run our app:
 * Express
 * Mongoose
 
+Our project uses dotenv node package.
+
+You need to create an .env file with GEOCODE_KEY={YOUR-API-KEY} as an environmental variables for the results to render.
+
 ## Deployment
 
-We have our app set to run on port 3000. If you prefer to use a different port feel free to chaneg the port after cloning into the repository. 
+We have our app set to run on port 3000. If you prefer to use a different port feel free to change the port after cloning into the repository.
 
 ## Contributing
 
-We are not currently accepting contributions to this project. 
+We are currently accepting contributions to this project. Feel free to open any custom issues or bugs.
 
 ## Authors
 
@@ -39,7 +43,7 @@ We are not currently accepting contributions to this project.
   * implemented random background generator on homepage
   * configured information for business.html DOM manipulation
 
-* **Ben Nguyen** - Reviews/Ratings
+* **Tri (Ben) Nguyen** - Reviews/Ratings
   * Created base HTML, Javascript and CSS for review page.
   * Created base base functionality for review box.
   * Connected routes from business to review page.
@@ -64,7 +68,9 @@ We are not currently accepting contributions to this project.
   * Created/Styled large map box on results page/Animated with CSS
   * Created/Styled business info box on business page 
 
-
+* **Rohit Kumar @aerohitk** - Pagination of Results.html
+  * Merged a pull request that paginated businessData onto results.html
+  
 ## License
 
 This project is licensed under the MIT License
