@@ -211,7 +211,19 @@ button {
 }
 
 footer {
-    text-align: center;
+    padding: 10px;
+    font-size: 1.3em;
+    text-align: right;
+}
+
+footer a {
+    cursor: pointer;
+    padding: 5px;
+    margin: 5px;
+}
+
+footer a.active {
+    border-bottom: 3px red solid;
 }
 
 .results {
