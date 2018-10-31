@@ -23,7 +23,8 @@ You will need the following isntalled on your machine to be able to run our app:
 * Express
 * Mongoose
 
-Our project uses dotenv node package
+Our project uses dotenv node package.
+
 You need to create an .env file with GEOCODE_KEY={YOUR-API-KEY} as an environmental variables for the results to render.
 
 ## Deployment
@@ -67,7 +68,9 @@ We are currently accepting contributions to this project. Feel free to open any 
   * Created/Styled large map box on results page/Animated with CSS
   * Created/Styled business info box on business page 
 
-
+* **Rohit Kumar @aerohitk** - Pagination of Results.html
+  * Merged a pull request that paginated businessData onto results.html
+  
 ## License
 
 This project is licensed under the MIT License
