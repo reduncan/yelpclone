@@ -30,7 +30,7 @@ var ReviewSchema = new Schema(
         },
         already_reviewed:{
             type: Boolean,
-            required: true,
+            // required: true,
             unique: false
         }
     }
