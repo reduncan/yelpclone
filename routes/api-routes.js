@@ -1,9 +1,24 @@
-const db = require('../models/');
 const searchBy = require('../public/js/search.js');
 const axios = require('axios');
 require("dotenv").config();
-const test = require('../models/test.js');
+const RestfulAPI = require('./RestClass');
+const models = require('../models');
 
+module.exports = function (app) {
+  
+  const background = new RestfulAPI('background', app, models.Background);
+  background.find();
+  background.create();
+
+  const restaurant = new RestfulAPI('restaurant', app, models.Restaurant);
+  restaurant.find();
+  user.create();
+
+  const review = new RestfulAPI('review', app, models.Review);
+  review.find();
+  event.find('date');
+  event.create();
+}
 
 module.exports = function (app) {
 
