@@ -5,9 +5,9 @@ class RestfulAPI {
     this.model = model;
   }
 
-  findAll() {
+  find() {
     this.app.get(`/api/${this.resource}`, (req, res) => {
-      this.model.findAll({})
+      this.model.find({})
       .then(function(data) {
         res.json(data);
       })
@@ -20,22 +20,6 @@ class RestfulAPI {
   create() {
     this.app.post(`/api/${this.resource}`, (req, res) => {
       this.model.create(req.body)
-      .then(function(data) {
-        res.json(data);
-      })
-      .catch(function(err){
-        res.json(err);
-      })
-    })
-  }
-
-  find(identifier) {
-    this.app.get(`/api/${this.resource}/:${identifier}`, (req, res) => {
-      this.model.findAll({
-        where: {
-          [identifier]: req.params[identifier]
-        }
-      })
       .then(function(data) {
         res.json(data);
       })
