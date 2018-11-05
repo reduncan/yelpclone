@@ -2,40 +2,19 @@ const db = require('../models/');
 const searchBy = require('../public/js/search.js');
 const axios = require('axios');
 require("dotenv").config();
-const test = require('../models/test.js');
-
+const RestfulAPI = require('./RestClass');
 
 module.exports = function (app) {
 
-    app.get('/api/background', function (req, res) {
-        db.Background.find({})
-            .then(function (dbBackground) {
-                res.json(dbBackground)
-            })
-            .catch(function (err) {
-                res.json(err);
-            });
-    });
+    const background = new RestfulAPI('background', app, db.Background);
+    background.find();
+    background.create();
 
-    app.post('/api/background', function (req, res) {
-        db.Background.create(req.body)
-            .then(function (dbBackground) {
-                res.json(dbBackground)
-            })
-            .catch(function (err) {
-                res.json(err);
-            });
-    });
+    const restaurant = new RestfulAPI('restaurant', app, db.Restaurant);
+    restaurant.find();
 
-    app.get('/api/review', function (req, res) {
-        db.Review.find({})
-            .then(function (dbReview) {
-                res.json(dbReview);
-            })
-            .catch(function (err) {
-                res.json(err);
-            });
-    });
+    const review = new RestfulAPI('review', app, db.Review);
+    review.find();
 
     app.post('/api/review', function (req, res) {
 
@@ -63,31 +42,21 @@ module.exports = function (app) {
     })
 
     app.put('/api/update/:id', function (req, res) {
-                db.Restaurant.findOneAndUpdate({
-                        alias: req.params.id
-                    }, {
-                        $set: {
-                            personal_review: req.body
-                        }
-                    })
-                    .then(function (dbUser) {
-                        res.json(dbUser)
-                    })
-                    .catch(function (err) {
-                        res.json(err);
-                    });
-    });
-
-    app.get('/api/restaurant', function (req, res) {
-        db.Restaurant.find({})
-            .then(function (dbRestaurant) {
-                res.json(dbRestaurant);
+        db.Restaurant.findOneAndUpdate({
+                alias: req.params.id
+            }, {
+                $set: {
+                    personal_review: req.body
+                }
+            })
+            .then(function (dbUser) {
+                res.json(dbUser)
             })
             .catch(function (err) {
                 res.json(err);
             });
     });
-
+    
     app.get('/api/restaurant/:alias', function (req, res) {
         db.Restaurant.find({
                 alias: req.params.alias
