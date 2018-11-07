@@ -9,6 +9,25 @@ let locationIndexInput = sessionStorage.getItem('locationTag');
 
 let _businessData = {};
 
+class Geocode {
+  constructor(locationIndexInput) {
+    this.location = locationIndexInput;
+  }
+
+  getLocation() {
+    return $.get(`api/geocode/${this.location}`)
+      .then(function (data) {
+        let formattedAddress = data.results[0].formatted_address;
+        let addressComponents = data.results[0].address_components;
+        callAddressCityIndex(addressComponents[0].short_name, formattedAddress)
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
+
+  }
+}
+
 const renderResults = function (data, page) {
   let htmlstr = '';
 
@@ -26,22 +45,8 @@ const renderResults = function (data, page) {
 if (locationIndexInput !== null) {
 
   // Calls Google Geocoding API with location param as LocationIndexInput
-  const geocode = () => {
-    let location = locationIndexInput;
-    const queryURL = 'api/geocode/' + location;
-    $.get(queryURL)
-      .then(function (data) {
-        let formattedAddress = data.results[0].formatted_address;
-        let addressComponents = data.results[0].address_components;
-        callAddressCityIndex(addressComponents[0].short_name, formattedAddress)
-      })
-
-      .catch(function (err) {
-        console.log(err);
-      })
-
-  };
-  geocode();
+  const geocode = new Geocode(locationIndexInput);
+  geocode.getLocation();
   /**
    * @param {string} shortNameIndex - uncapitalized alias of location ex. atlanta
    * @param {string} cityStateIndex - Properly formatted city, state ex. Atlanta, GA, USA
@@ -85,7 +90,7 @@ if (locationIndexInput !== null) {
      * -Get all the ID's from the resturants returned from search results
      * -Filter empty/blank array elements
      * -Push matched ID results to list array
-     * -Create Google Map, with center on first result of search, 
+     * -Create Google Map, with center on first result of search,
      *   loop through list array create pin for each one
      */
 
@@ -152,22 +157,9 @@ $('#submit').on('click', function (event) {
   let locationTag = $('#locationInput').val().trim();
   sessionStorage.setItem('searchTag', `${searchTag}`);
   sessionStorage.setItem('locationTag', `${locationTag}`);
-  const geocode = () => {
-    let location = sessionStorage.getItem('locationTag');
-    const queryURL = 'api/geocode/' + location;
-    $.get(queryURL)
-      .then(function (res) {
-        let formattedAddress = res.results[0].formatted_address;
-        let addressComponents = res.results[0].address_components;
-        callAddressCity(addressComponents[0].short_name, formattedAddress)
-      })
-
-      .catch(function (err) {
-        console.log(err);
-      })
-
-  };
-  geocode();
+  let location = sessionStorage.getItem('locationTag');
+  const geocode = new Geocode(location);
+  geocode.getLocation();
   const callAddressCity = function (shortName, cityState) {
     const newSearch = {
       searchInput: sessionStorage.getItem('searchTag'),
@@ -260,22 +252,9 @@ $('#oneDollar').on('click', function (event) {
   let locationTag = $('#locationInput').val().trim();
   sessionStorage.setItem('searchTag', `${searchTag}`);
   sessionStorage.setItem('locationTag', `${locationTag}`);
-  const geocode = () => {
-    let location = sessionStorage.getItem('locationTag');
-    const queryURL = 'api/geocode/' + location;
-    $.get(queryURL)
-      .then(function (res) {
-        let formattedAddress = res.results[0].formatted_address;
-        let addressComponents = res.results[0].address_components;
-        callAddressCity(addressComponents[0].short_name, formattedAddress)
-      })
-
-      .catch(function (err) {
-        console.log(err);
-      })
-
-  };
-  geocode();
+  let location = sessionStorage.getItem('locationTag');
+  const geocode = new Geocode(location);
+  geocode.getLocation();
   const callAddressCity = function (shortName, cityState) {
 
     const newSearch = {
@@ -375,22 +354,9 @@ $('#twoDollar').on('click', function (event) {
   let locationTag = $('#locationInput').val().trim();
   sessionStorage.setItem('searchTag', `${searchTag}`);
   sessionStorage.setItem('locationTag', `${locationTag}`);
-  const geocode = () => {
-    let location = sessionStorage.getItem('locationTag');
-    const queryURL = 'api/geocode/' + location;
-    $.get(queryURL)
-      .then(function (res) {
-        let formattedAddress = res.results[0].formatted_address;
-        let addressComponents = res.results[0].address_components;
-        callAddressCity(addressComponents[0].short_name, formattedAddress)
-      })
-
-      .catch(function (err) {
-        console.log(err);
-      })
-
-  };
-  geocode();
+  let location = sessionStorage.getItem('locationTag');
+  const geocode = new Geocode(locationIndexInput);
+  geocode.getLocation();
   const callAddressCity = function (shortName, cityState) {
     const newSearch = {
       searchInput: sessionStorage.getItem('searchTag'),
@@ -489,22 +455,9 @@ $('#threeDollar').on('click', function (event) {
   let locationTag = $('#locationInput').val().trim();
   sessionStorage.setItem('searchTag', `${searchTag}`);
   sessionStorage.setItem('locationTag', `${locationTag}`);
-  const geocode = () => {
-    let location = sessionStorage.getItem('locationTag');
-    const queryURL = 'api/geocode/' + location;
-    $.get(queryURL)
-      .then(function (res) {
-        let formattedAddress = res.results[0].formatted_address;
-        let addressComponents = res.results[0].address_components;
-        callAddressCity(addressComponents[0].short_name, formattedAddress)
-      })
-
-      .catch(function (err) {
-        console.log(err);
-      })
-
-  };
-  geocode();
+  let location = sessionStorage.getItem('locationTag');
+  const geocode = new Geocode(location);
+  geocode.getLocation();
   const callAddressCity = function (shortName, cityState) {
     const newSearch = {
       searchInput: sessionStorage.getItem('searchTag'),
@@ -603,22 +556,9 @@ $('#fourDollar').on('click', function (event) {
   let locationTag = $('#locationInput').val().trim();
   sessionStorage.setItem('searchTag', `${searchTag}`);
   sessionStorage.setItem('locationTag', `${locationTag}`);
-  const geocode = () => {
-    let location = sessionStorage.getItem('locationTag');
-    const queryURL = 'api/geocode/' + location;
-    $.get(queryURL)
-      .then(function (res) {
-        let formattedAddress = res.results[0].formatted_address;
-        let addressComponents = res.results[0].address_components;
-        callAddressCity(addressComponents[0].short_name, formattedAddress)
-      })
-
-      .catch(function (err) {
-        console.log(err);
-      })
-
-  };
-  geocode();
+  let location = sessionStorage.getItem('locationTag');
+  const geocode = new Geocode(locationIndexInput);
+  geocode.getLocation();
   const callAddressCity = function (shortName, cityState) {
     const newSearch = {
       searchInput: sessionStorage.getItem('searchTag'),
